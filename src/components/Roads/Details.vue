@@ -1,0 +1,133 @@
+<template>
+  <div class="wrapper">
+    <div class="container">
+      <h1>Details</h1>
+      <div class="cards">
+        <div class="card">
+          <h2 class="card-title">{{road.username}}</h2>
+          <div class="start">
+            <img class="card-img-top" :src="road.startimage" alt="No picture" />
+            <p class="startpoint">
+              <span>Start:</span>
+              {{road.startpoint}}
+            </p>
+          </div>
+          <div class="end">
+            <img class="card-img-top" :src="road.endimage" alt="No picture" />
+            <p class="endpoint">
+              <span>End:</span>
+              {{road.endpoint}}
+            </p>
+          </div>
+          <div class="btns">
+            <button @click.stop="editData(docID)" :disabled="disableButton">Edit</button>
+            <button @click.stop="deleteData(docID)" :disabled="disableButton">Delete</button>
+          </div>
+        </div>
+        <div class="exp">{{road.expectations}}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import * as firebase from "firebase";
+import router from "../../router";
+import { roadService } from "../Services/roadsService";
+
+export default {
+  mixins: [roadService],
+  data() {
+    return {
+      road: {},
+      disabled: null
+    };
+  },
+  created() {
+    this.getData()
+  },
+  methods: {
+    deleteData(id) {
+      this.delData(id)
+    },
+    editData(id) {
+      router.push({ name: "Edit", params: { id: id } });
+    },
+  },
+  computed: {
+    disableButton: function() {
+        return this.road.username === firebase.auth().currentUser.displayName ? false : true
+    }
+  }
+};
+</script>
+
+<style scoped>
+.wrapper {
+  background-color: darkslategrey;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: white;
+}
+.container {
+  padding-top: 60px;
+}
+.card {
+  padding-bottom: 5px;
+  width: 250px;
+  height: 391px;
+  background-color: rgb(25, 30, 35);
+  display: inline-block;
+  vertical-align: top;
+  box-shadow: 13px 10px 5px black;
+}
+.exp {
+  background-color: rgb(25, 30, 35);
+  display: inline-block;
+  width: 190px;
+  height: 336px;
+  text-align: justify;
+  vertical-align: top;
+  padding: 30px;
+  box-shadow: 10px 10px 5px black;
+  font-size: 22px;
+}
+img {
+  width: 200px;
+  height: 130px;
+}
+.start,
+.end,
+.btns {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+button {
+  width: 35%;
+  height: 30px;
+  background-color: olive;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  font-size: 14px;
+  transition: all 0.1s ease-in-out;
+}
+button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+span {
+  color: gold;
+}
+button:disabled
+{
+  background-color: rgb(204, 204, 204);
+  color: rgb(102, 102, 102);
+  opacity: 0.8;
+  transform: scale(1);
+}
+</style>
