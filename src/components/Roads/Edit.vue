@@ -1,30 +1,75 @@
 <template>
   <div class="wrapper">
-    <div class="container" @submit.prevent=editData>
+    <div class="container" @submit.prevent="editData">
       <form class="inputFields">
         <h1>Edit your road {{road.username}}</h1>
         <div>
           <label>Start point:</label>
-          <input class="startpoint" type="text" v-model="road.startpoint" />
+          <div class="error" v-if="$v.road.startpoint.$error">
+            <p v-if="!$v.road.startpoint.minLength">Minimum length is 3 characters</p>
+            <p v-if="!$v.road.startpoint.maxLength">Maximum length is 15 characters</p>
+            <p v-if="!$v.road.startpoint.required">Please fill in starting point</p>
+          </div>
+          <input
+            class="startpoint"
+            type="text"
+            v-model="road.startpoint"
+            @blur="$v.road.startpoint.$touch()"
+          />
+        </div>
+
+        <div class="error" v-if="$v.road.startimage.$error">
+          <p v-if="!$v.road.startimage.required">Place image url</p>
         </div>
         <div>
           <label>Start image:</label>
-          <input class="startimage" type="text" v-model="road.startimage" />
+          <input
+            class="startimage"
+            type="text"
+            v-model="road.startimage"
+            @blur="$v.road.startimage.$touch()"
+          />
         </div>
+
         <div>
+          <div class="error" v-if="$v.road.endpoint.$error">
+            <p v-if="!$v.road.endpoint.minLength">Minimum length is 3 characters</p>
+            <p v-if="!$v.road.endpoint.maxLength">Maximum length is 15 characters</p>
+            <p v-if="!$v.road.endpoint.required">Please fill in ending point</p>
+          </div>
           <label>End point:</label>
-          <input class="endpoint" type="text" v-model="road.endpoint" />
+          <input
+            class="endpoint"
+            type="text"
+            v-model="road.endpoint"
+            @blur="$v.road.endpoint.$touch()"
+          />
         </div>
+
         <div>
+          <div class="error" v-if="$v.road.endimage.$error">
+            <p v-if="!$v.road.endimage.required">Place image url</p>
+          </div>
           <label>End image:</label>
-          <input class="endimage" type="text" v-model="road.endimage" />
+          <input
+            class="endimage"
+            type="text"
+            v-model="road.endimage"
+            @blur="$v.road.endimage.$touch()"
+          />
         </div>
+
         <div>
+          <div class="error" v-if="$v.road.expectations.$error">
+            <p v-if="!$v.road.expectations.minLength">Minimum length is 6 characters</p>
+            <p v-if="!$v.road.expectations.maxLength">Maximum length is 150 characters</p>
+            <p v-if="!$v.road.expectations.required">Please write your expectations</p>
+          </div>
           <label>Expectations:</label>
-          <input class="expectations" type="text" v-model="road.expectations" />
+          <input class="expectations" type="text" v-model="road.expectations" @blur="$v.road.expectations.$touch()"/>
         </div>
         <div>
-          <button type=submit>Edit</button>
+          <button type="submit" :disabled="$v.$invalid">Edit</button>
         </div>
       </form>
     </div>
@@ -32,8 +77,8 @@
 </template>
 
 <script>
-
 import { roadService } from "../Services/roadsService";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
 export default {
   mixins: [roadService],
@@ -43,12 +88,37 @@ export default {
       road: {}
     };
   },
+  validations: {
+    road: {
+      startpoint: {
+        required,
+        minLength: minLength(3),
+        maxLength: maxLength(15)
+      },
+      endpoint: {
+        required,
+        minLength: minLength(3),
+        maxLength: maxLength(15)
+      },
+      expectations: {
+        required,
+        minLength: minLength(6),
+        maxLength: maxLength(200)
+      },
+      startimage: {
+        required
+      },
+      endimage: {
+        required
+      }
+    }
+  },
   created() {
-    this.getData()
+    this.getData();
   },
   methods: {
     editData() {
-      this.setData()
+      this.setData();
     }
   }
 };
@@ -93,7 +163,7 @@ input {
   border-color: transparent;
   border-bottom: 1px solid yellowgreen;
   font-size: 16px;
-  margin-right: 100px
+  margin-right: 100px;
 }
 ::placeholder {
   color: gold;
@@ -119,6 +189,17 @@ label {
   font-size: 18px;
   color: gold;
   padding-right: 5px;
-  /* margin-right: 100px */
+}
+button:disabled {
+  background-color: rgb(204, 204, 204);
+  color: rgb(102, 102, 102);
+  opacity: 0.8;
+  transform: scale(1);
+}
+.error {
+  color: red;
+  font-weight: 700;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 </style>

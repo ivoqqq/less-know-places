@@ -35,6 +35,15 @@
             @mouseout.native="animeMouseOutLink($event)"
           >Create</router-link>
 
+          <router-link
+            to="/profile"
+            class="link"
+            active-class
+            exact
+            @mouseover.native="animeMouseOverLink($event)"
+            @mouseout.native="animeMouseOutLink($event)"
+          >Profile</router-link>
+
           <!-- <router-link
             to="/return"
             class="link"
@@ -92,9 +101,6 @@ export default {
       isSignupFormOpen: false,
       loginBtn: firebase.auth().currentUser === null,
     };
-  },
-  created(){
-    this.userData()
   },
   methods: {
     logShift(a) {

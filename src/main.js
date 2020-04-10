@@ -1,8 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
+import Vuelidate from 'vuelidate'
 import * as firebase from "firebase";
 import router from "./router";
 
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
@@ -24,7 +26,7 @@ firebase.auth().onAuthStateChanged(function () {
   if (!app) {
     app = new Vue({
       router,
-      render: h => h(App),
+      render: h => h(App)
     }).$mount('#app')
   }
 });

@@ -4,8 +4,7 @@ export let roadService = {
     data() {
         return {
             road: {
-                docID: "",
-                userID: "",
+                id: firebase.auth().currentUser.uid,
                 startpoint: "",
                 startimage: "",
                 endpoint: "",
@@ -28,17 +27,6 @@ export let roadService = {
                     alert("Error adding document: ", error);
                 });
         },
-        getData() {
-            firebase
-                .firestore()
-                .collection("roads")
-                .doc(this.$route.params.id)
-                .get()
-                .then(doc => {
-                    this.docID = doc.id;
-                    this.road = doc.data();
-                });
-        },
         setData() {
             firebase
                 .firestore()
@@ -48,7 +36,6 @@ export let roadService = {
                 .then(() => {
                     // router.push({ name: "Details", params: { id: this.$route.params.id } });
                     router.push("/hit-the-road");
-
                 })
         },
         delData(id) {
@@ -59,6 +46,17 @@ export let roadService = {
                 .delete()
                 .then(() => {
                     router.push("/hit-the-road");
+                });
+        },
+        getData() {
+            firebase
+                .firestore()
+                .collection("roads")
+                .doc(this.$route.params.id)
+                .get()
+                .then(doc => {
+                    this.docID = doc.id;
+                    this.road = doc.data();
                 });
         },
         getQueryData() {
@@ -80,6 +78,29 @@ export let roadService = {
                         });
                     });
                 });
+        },
+        getQueryDataProfile(){
+            firebase
+            .firestore()
+            .collection("roads")
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+          if (firebase.auth().currentUser.uid === doc.data().id) {
+
+                    this.roads.push({
+                        docID: doc.id,
+                        userID: doc.data().id,
+                        username: doc.data().username,
+                        startpoint: doc.data().startpoint,
+                        endpoint: doc.data().endpoint,
+                        expectations: doc.data().expectations,
+                        startimage: doc.data().startimage,
+                        endimage: doc.data().endimage
+                    });
+                }
+                });
+            });
         }
     },
 }

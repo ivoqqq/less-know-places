@@ -1,14 +1,17 @@
 <template>
   <div class="wrapper">
     <h1>HOME PAGE</h1>
-    <div>This is the story of jasndjansfjbasdjffalsfl</div>
+    <div class="info">In this page logged users can upload their future journeys and what they expect to see or learn..</div>
   </div>
 </template>
 
 <script>
 
+
 export default {
-  
+  data() {
+    return {};
+  },
 };
 </script>
 
@@ -25,5 +28,11 @@ export default {
 }
 h1 {
   padding-top: 60px;
+}
+.info {
+  padding-top: 100px;
+  font-size: 22px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 </style>

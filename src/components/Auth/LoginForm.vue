@@ -3,11 +3,25 @@
     <form class="form-content" @submit.prevent>
       <div class="container">
         <h1 class="error" v-if="error">{{error}}</h1>
-        <h1 class="title" v-else>Log in</h1>
 
-        <input type="text" placeholder="Your email" v-model="email"/>
+        <h1 class="title">Log in</h1>
 
-        <input type="password" placeholder="Your password" v-model="password"/>
+        <div class="error" v-if="$v.email.$error">
+          <p v-if="!$v.email.email">Please fill in a valid email</p>
+          <p v-if="!$v.email.required">Please fill in email</p>
+        </div>
+        <input type="text" placeholder="Your email" @blur="$v.email.$touch()" v-model="email" />
+
+        <div class="error" v-if="$v.password.$error">
+          <p v-if="!$v.password.minLength">Must be at least 6 characters</p>
+          <p v-if="!$v.password.required">Please fill in password</p>
+        </div>
+        <input
+          type="password"
+          placeholder="Your password"
+          @blur="$v.password.$touch()"
+          v-model="password"
+        />
 
         <div class="clearfix">
           <button class="cancelbtn" @click="clearInputFields(), close()">Cancel</button>
@@ -19,7 +33,8 @@
 </template>
 
 <script>
-import { authService } from "../Services/authService"
+import { required, email, minLength } from "vuelidate/lib/validators";
+import { authService } from "../Services/authService";
 
 export default {
   mixins: [authService],
@@ -32,8 +47,18 @@ export default {
     return {
       email: "",
       password: "",
-      error: null,
+      error: null
     };
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      minLength: minLength(6)
+    }
   },
   methods: {
     close() {
@@ -45,8 +70,8 @@ export default {
       this.password = "";
       this.error = null;
     },
-    login(){
-      this.userLogin()
+    login() {
+      this.userLogin();
     }
   }
 };
@@ -143,5 +168,8 @@ button:hover {
   to {
     transform: scale(1);
   }
+}
+v-alert {
+  color: red;
 }
 </style>
