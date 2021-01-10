@@ -1,4 +1,4 @@
-import * as firebase from "firebase";
+import firebase from "firebase";
 import router from "../../router"
 export let roadService = {
     data() {

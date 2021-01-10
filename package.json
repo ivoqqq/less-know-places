@@ -9,6 +9,7 @@
     "start": "vue-cli-service serve --open"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "core-js": "^3.6.4",
     "firebase": "^7.12.0",
     "mdbvue": "6.2.0",

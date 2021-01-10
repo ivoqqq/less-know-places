@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import * as firebase from "firebase";
+import firebase from "firebase";
 import router from "../../router";
 import { roadService } from "../Services/roadsService";
 

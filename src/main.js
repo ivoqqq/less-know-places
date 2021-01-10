@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import Vuelidate from 'vuelidate'
-import * as firebase from "firebase";
+import firebase from "firebase";
 import router from "./router";
 
 Vue.use(Vuelidate)

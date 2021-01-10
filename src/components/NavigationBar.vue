@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="back">
     <div class="wrapper">
       <div class="burger" @click="activeNavBar = !activeNavBar, menuAnimate($event)">
         <span></span>
@@ -9,105 +9,68 @@
       <div class="nav-bar">
         <ul v-show="activeNavBar">
           <router-link
-            to="/"
             class="link"
-            active-class
-            exact
             @mouseover.native="animeMouseOverLink($event)"
             @mouseout.native="animeMouseOutLink($event)"
-          >HOME</router-link>
-
-          <router-link
-            to="/hit-the-road"
-            class="link"
-            active-class
-            exact
-            @mouseover.native="animeMouseOverLink($event)"
-            @mouseout.native="animeMouseOutLink($event)"
-          >HitTheRoad</router-link>
-
-          <router-link
-            to="/create"
-            class="link"
-            active-class
-            exact
-            @mouseover.native="animeMouseOverLink($event)"
-            @mouseout.native="animeMouseOutLink($event)"
-          >Create</router-link>
-
-          <router-link
-            to="/profile"
-            class="link"
-            active-class
-            exact
-            @mouseover.native="animeMouseOverLink($event)"
-            @mouseout.native="animeMouseOutLink($event)"
-          >Profile</router-link>
-
-          <!-- <router-link
-            to="/return"
-            class="link"
-            active-class
-            exact
-            @mouseover.native="animeMouseOverLink($event)"
-            @mouseout.native="animeMouseOutLink($event)"
-          >Return</router-link> -->
+            v-for="(route) in routes"
+            :key="route.path"
+            :to="route.path"
+          >{{route.name}}</router-link>
         </ul>
       </div>
     </div>
     <div class="btns">
       <div class="loginbtn">
         <button class="btn" v-if="loginBtn" @click="openLoginForm()">Login</button>
-        <button class="btn" v-else @click="logOut()">Logout</button>
-
-        <app-login-form
-          v-model="isLoginFormOpen"
-          @logout="logShift()"
-          @closeForm="isLoginFormOpen=$event"
-        ></app-login-form>
+        <button class="btn" v-else @click="logOut">Logout</button>
       </div>
       <div class="signupbtn">
-        <button class="btn" @click="openSignupForm()" :disabled="disableButton">Sign up</button>
-
-        <!-- <app-signup-form v-model="isSignupFormOpen" @closeForm="isSignupFormOpen=$event"></app-signup-form> -->
-        <app-signup-form
-          v-bind:value="isSignupFormOpen"
-          v-on:input="isSignupFormOpen = $event.target.value"
-          @closeForm="isSignupFormOpen = $event"
-        ></app-signup-form>
+        <button class="btn" @click="openSignupForm" :disabled="disableButton">Sign up</button>
       </div>
+
+      <app-login-form
+        v-model="isLoginFormOpen"
+        @logout="logShift()"
+        @closeForm="isLoginFormOpen=$event"
+      ></app-login-form>
+      <app-signup-form
+        v-bind:value="isSignupFormOpen"
+        v-on:input="isSignupFormOpen = $event.target.value"
+        @closeForm="isSignupFormOpen = $event"
+      ></app-signup-form>
     </div>
   </div>
 </template>
 
 <script>
-import anime from "animejs";
 import AppLoginForm from "./Auth/LoginForm";
 import AppSignupForm from "./Auth/SignupForm";
-import { authService } from "./Services/authService"
-import * as firebase from "firebase";
-
+import firebase from "firebase";
+import { authService } from "./Services/authService";
+import { animation } from "../barAnime";
 
 export default {
   components: {
     AppLoginForm,
     AppSignupForm
   },
-  mixins: [authService],
+  mixins: [authService, animation],
   data() {
     return {
       activeNavBar: false,
       isLoginFormOpen: false,
       isSignupFormOpen: false,
       loginBtn: firebase.auth().currentUser === null,
+      routes: this.$router.options.routes.slice(0, 4)
     };
   },
   methods: {
     logShift(a) {
       this.loginBtn = a;
+      console.log(a)
     },
     logOut() {
-      this.userLogout()
+      this.userLogout();
     },
     openLoginForm() {
       this.isLoginFormOpen = true;
@@ -116,86 +79,13 @@ export default {
       this.isSignupFormOpen = true;
     },
     animeMouseOverLink(e) {
-      anime({
-        targets: e.target,
-        translateX: 50,
-        scale: 1.3,
-        duration: 1000,
-        color: "#e60f00"
-      });
+      this.mouseOverLink(e);
     },
     animeMouseOutLink(e) {
-      anime.remove(e.target);
-      anime({
-        targets: e.target,
-        translateX: 50,
-        scale: 1,
-        duration: 1000,
-        color: "#ffffff"
-      });
+      this.mouseOutLink(e);
     },
     menuAnimate(e) {
-      if (this.activeNavBar) {
-        //menu animation
-        anime({
-          targets: ".link",
-          delay: function(el, i) {
-            return i * 100;
-          },
-          translateX: [0, 50],
-          easing: "easeOutExpo",
-          opacity: [0, 1]
-        });
-
-        //burger animation
-        anime({
-          targets: ".burger",
-          rotate: {
-            value: 450
-          },
-          duration: 700,
-          easing: "easeInOutCubic"
-        });
-        anime({
-          targets: document.querySelector("span"),
-          translateX: 10,
-          delay: 500,
-          width: 15
-        });
-        anime({
-          targets: document.querySelectorAll("span")[1],
-          translateX: 5,
-          delay: 500,
-          width: 25,
-          backgroundColor: "#e60f00"
-        });
-      } else {
-        anime.remove(e.target);
-        //burger animation reverse
-        anime({
-          targets: "span",
-          rotate: {
-            value: 0
-          }
-        });
-        anime({
-          targets: ".burger",
-          rotate: {
-            value: 0
-          }
-        });
-        anime({
-          targets: document.querySelector("span"),
-          translateX: 0,
-          width: 35
-        });
-        anime({
-          targets: document.querySelectorAll("span")[1],
-          translateX: 0,
-          width: 35,
-          backgroundColor: "#fff"
-        });
-      }
+      this.menu(e);
     }
   },
   computed: {
@@ -215,16 +105,17 @@ export default {
   border-radius: 5px;
 }
 .wrapper {
-  float: left;
-  width: 90.5%;
+  width: calc(100% - 160px);
+  position: absolute;
 }
 .btns {
   display: table;
-  width: 8%;
+  /* width: 8%; */
+  width: 100px;
   float: right;
   border: 1px solid white;
   height: 30px;
-  margin: 10px 10px;
+  margin: 10px;
 }
 .signupbtn,
 .loginbtn {
@@ -260,9 +151,18 @@ button:disabled:hover {
 }
 
 .nav-bar {
-  display: block;
+  width: 100%;
+  position: absolute;
   margin: 0px;
   text-align: center;
+  transform: translateX(50px);
+}
+@media screen and (max-width: 760px){
+  .nav-bar {
+    width: 20px;
+    padding-top: 100px;
+    transform: translateX(10px)
+  }
 }
 ul {
   margin-top: 0px;
@@ -277,7 +177,7 @@ ul {
   color: white;
   list-style-type: none;
   text-decoration: none;
-  padding: 0 30px 0 30px;
+  padding: 0 2% 0 2%;
 }
 
 /* burger */
@@ -288,6 +188,7 @@ ul {
   position: relative;
   cursor: pointer;
   float: left;
+  z-index: 50;
 }
 .burger span {
   background-color: #fff;
@@ -303,9 +204,5 @@ ul {
 }
 .burger span:nth-child(3) {
   top: 20px;
-}
-span {
-  color: gold;
-  font-size: 22px;
 }
 </style>
