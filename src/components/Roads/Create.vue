@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <div class="container">
+  <div class="create-container">
+    <div class="cover-container">
       <form class="inputFields" @submit.prevent="addData">
         <h1>Create your road {{username}}</h1>
 
@@ -121,33 +121,31 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
+.create-container {
   background-image: url("../../assets/ro-road_332.jpg");
-  /* background-color: darkslategrey; */
-  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
 }
-h1 {
-  color: gold;
-}
-.container {
+.cover-container {
   background-color: rgba(0, 0, 0, 0.7);
   text-align: center;
   width: 100%;
-  height: 70vh;
+  height: 100%;
   margin: 0 auto;
   display: table;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 10px 5px black;
+}
+h1 {
+  color: gold;
 }
 .inputFields {
-  /* border: 2px solid greenyellow; */
   display: table-cell;
   vertical-align: middle;
 }
@@ -160,7 +158,7 @@ input {
   height: 30px;
   background: transparent;
   border-color: transparent;
-  border-bottom: 1px solid yellowgreen;
+  border-bottom: 2px solid yellowgreen;
   font-size: 16px;
 }
 ::placeholder {

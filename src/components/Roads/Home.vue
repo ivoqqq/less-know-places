@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="home-container">
     <h1>HOME PAGE</h1>
     <div class="info">In this page logged users can upload their future journeys and what they expect to see or learn..</div>
   </div>
@@ -16,13 +16,16 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
+.home-container {
   background-image: url("../../assets/Forest Road-4096x2731.jpg");
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-attachment: fixed; sets whether a background image scrolls with the rest of the page, or is fixed. */
   color: white;
   text-align: center;
 }

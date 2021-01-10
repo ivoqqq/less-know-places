@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <div class="container" @submit.prevent="editData">
+  <div class="edit-container">
+    <div class="cover-container" @submit.prevent="editData">
       <form class="inputFields">
         <h1>Edit your road {{road.username}}</h1>
         <div>
@@ -125,37 +125,43 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
+.edit-container {
   background-color: darkslategrey;
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
 }
-h1 {
-  color: gold;
-}
-.container {
+
+.cover-container {
   background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
   width: 100%;
-  height: 70vh;
+  height: 100%;
   margin: 0 auto;
   display: table;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 10px 5px black;
+}
+h1 {
+  color: gold;
+  margin-bottom: 20px;
 }
 .inputFields {
   display: table-cell;
   vertical-align: middle;
 }
+.inputFields > div:not(:last-child){
+  width: 50%;
+  margin: 0 auto;
+}
 input {
   outline: none;
   color: white;
-  width: 50%;
+  width: 100%;
   margin: 5px 0 22px 0;
   display: inline-block;
   height: 30px;
@@ -163,7 +169,7 @@ input {
   border-color: transparent;
   border-bottom: 1px solid yellowgreen;
   font-size: 16px;
-  margin-right: 100px;
+  /* margin-right: 100px; */
 }
 ::placeholder {
   color: gold;

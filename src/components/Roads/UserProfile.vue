@@ -1,29 +1,27 @@
 <template>
-  <div class="wrapper">
-    <div class="container">
-      <h1>User profile</h1>
-      <h2>Welcome {{username}}</h2>
-      <div class="cards" :key="road.key" v-for="road in roads">
-        <div class="card">
-          <div class="start">
-            <img class="card-img-top" :src="road.startimage" alt="No picture" />
-            <p class="startpoint">
-              <span>Start:</span>
-              {{road.startpoint}}
-            </p>
-          </div>
-          <div class="end">
-            <img class="card-img-top" :src="road.endimage" alt="No picture" />
-            <p class="endpoint">
-              <span>End:</span>
-              {{road.endpoint}}
-            </p>
-          </div>
-          <div class="exp">{{road.expectations }}</div>
-          <!-- <div class="exp">{{road.expectations | textShown}}...</div> с 4 реда css -->
-          <div class="btns">
-            <button @click="details(road)">Details</button>
-          </div>
+  <div class="profile-container">
+    <h1>User profile</h1>
+    <h2>Welcome {{ username }}</h2>
+    <div class="cards" :key="road.key" v-for="road in roads">
+      <div class="card">
+        <div class="start">
+          <img class="card-img-top" :src="road.startimage" alt="No picture" />
+          <p class="startpoint">
+            <span>Start:</span>
+            {{ road.startpoint }}
+          </p>
+        </div>
+        <div class="end">
+          <img class="card-img-top" :src="road.endimage" alt="No picture" />
+          <p class="endpoint">
+            <span>End:</span>
+            {{ road.endpoint }}
+          </p>
+        </div>
+        <div class="exp">{{ road.expectations }}</div>
+        <!-- <div class="exp">{{road.expectations | textShown}}...</div> с 4 реда css -->
+        <div class="btns">
+          <button @click="details(road)">Details</button>
         </div>
       </div>
     </div>
@@ -35,14 +33,11 @@ import { authService } from "../Services/authService";
 import { roadService } from "../Services/roadsService";
 import router from "../../router";
 
-
-// import * as firebase from "firebase";
-
 export default {
   mixins: [authService, roadService],
   data() {
     return {
-      roads: []
+      roads: [],
     };
   },
   created() {
@@ -52,28 +47,28 @@ export default {
   methods: {
     details(road) {
       router.push({ name: "Details", params: { id: road.docID } });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.wrapper {
-  /* background-image: url("../../assets/city-lights-night-traffic-highway-roads-1609975.jpg"); */
-  background-color: darkslategrey;
+.profile-container {
+  background-color: rgb(29, 49, 49);
   height: 100vh;
+  overflow: auto;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   text-align: center;
 }
-.container {
-  padding-top: 60px;
+h1 {
+  padding: 60px 0 20px 0;
 }
 .cards {
   display: inline-block;
-  padding: 20px 20px 0 20px;
+  padding: 0 20px 20px 20px;
   width: 250px;
 }
 .card {
