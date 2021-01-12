@@ -55,7 +55,7 @@ import AppLoginForm from "./Auth/LoginForm";
 import AppSignupForm from "./Auth/SignupForm";
 import firebase from "firebase";
 import { authService } from "./Services/authService";
-import { animation } from "../barAnime";
+import { animation } from "../nav-bar-anime-mixins";
 
 export default {
   components: {
