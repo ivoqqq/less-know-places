@@ -1,5 +1,7 @@
 # first-project
 ```
+Vue.js CRUD app with Cloud Firestore
+
 This app stores information about future journeys. It provides the starting and ending destination with pictures from these destinations and what users expect to see or learn during the journey.
 
 Public part when user is not logged in. 
