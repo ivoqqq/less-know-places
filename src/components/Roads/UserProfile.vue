@@ -5,7 +5,7 @@
     <div class="cards" :key="road.key" v-for="road in roads">
       <div class="card">
         <div class="start">
-          <img class="card-img-top" :src="road.startimage" alt="No picture" />
+          <img class="destination-image" :src="road.startimage" alt="No picture" />
           <p class="startpoint">
             <span>Start:</span>
             {{ road.startpoint }}
@@ -54,8 +54,8 @@ export default {
 
 <style scoped>
 .profile-container {
-  background-color: rgb(29, 49, 49);
-  height: 100vh;
+  background-color: rgb(23, 37, 37);
+  min-height: 100vh;
   overflow: auto;
   background-position: center;
   background-repeat: no-repeat;
@@ -82,10 +82,11 @@ h1 {
   padding-bottom: 5px;
   padding-top: 5px;
 }
-img {
+/* .destination-image {
   width: 200px;
   height: 130px;
-}
+  object-fit: contain;
+} */
 .exp {
   display: inline-block;
   width: 200px;

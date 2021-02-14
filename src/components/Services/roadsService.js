@@ -5,17 +5,16 @@ export let roadService = {
         return {
             road: {
                 id: firebase.auth().currentUser.uid,
+                username: firebase.auth().currentUser.displayName,
                 startpoint: "",
                 startimage: "",
-                endpoint: "",
-                endimage: "",
                 expectations: "",
-                username: firebase.auth().currentUser.displayName
             }
         };
     },
     methods: {
         createData() {
+
             firebase
                 .firestore()
                 .collection("roads")
@@ -63,44 +62,46 @@ export let roadService = {
             firebase
                 .firestore()
                 .collection("roads")
+                // .orderBy("rating")
                 .get()
                 .then(querySnapshot => {
+                    console.log(querySnapshot)
                     querySnapshot.forEach(doc => {
                         this.roads.push({
                             docID: doc.id,
                             userID: doc.data().id,
                             username: doc.data().username,
                             startpoint: doc.data().startpoint,
-                            endpoint: doc.data().endpoint,
                             expectations: doc.data().expectations,
                             startimage: doc.data().startimage,
-                            endimage: doc.data().endimage
                         });
                     });
-                });
+                })
+                .then(()=> {
+                    console.log("ALL DATA LOADED")
+                    this.isLoaded = true
+                })
         },
-        getQueryDataProfile(){
+        getQueryDataProfile() {
             firebase
-            .firestore()
-            .collection("roads")
-            .get()
-            .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-          if (firebase.auth().currentUser.uid === doc.data().id) {
+                .firestore()
+                .collection("roads")
+                .get()
+                .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                        if (firebase.auth().currentUser.uid === doc.data().id) {
 
-                    this.roads.push({
-                        docID: doc.id,
-                        userID: doc.data().id,
-                        username: doc.data().username,
-                        startpoint: doc.data().startpoint,
-                        endpoint: doc.data().endpoint,
-                        expectations: doc.data().expectations,
-                        startimage: doc.data().startimage,
-                        endimage: doc.data().endimage
+                            this.roads.push({
+                                docID: doc.id,
+                                userID: doc.data().id,
+                                username: doc.data().username,
+                                startpoint: doc.data().startpoint,
+                                expectations: doc.data().expectations,
+                                startimage: doc.data().startimage,
+                            });
+                        }
                     });
-                }
                 });
-            });
         }
     },
 }

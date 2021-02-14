@@ -24,29 +24,22 @@
       </div>
     </div>
     <div class="btns">
-      <div class="loginbtn">
-        <button class="btn" v-if="loginBtn" @click="openLoginForm">
-          Login
-        </button>
-        <button class="btn" v-else @click="logOut">Logout</button>
+      <div class="logInBtn" v-if="isLogged" @click="openLoginForm">Login</div>
+      <div class="logOutBtn" v-else @click="logOut">Logout</div>
+      <div class="signUpBtn" @click="openSignupForm" v-if="isLogged">
+        Sign up
       </div>
-      <div class="signupbtn">
-        <button class="btn" @click="openSignupForm" :disabled="disableButton">
-          Sign up
-        </button>
-      </div>
-
-      <app-login-form
-        v-model="isLoginFormOpen"
-        @logout="logShift()"
-        @closeForm="isLoginFormOpen = $event"
-      ></app-login-form>
-      <app-signup-form
-        v-bind:value="isSignupFormOpen"
-        v-on:input="isSignupFormOpen = $event.target.value"
-        @closeForm="isSignupFormOpen = $event"
-      ></app-signup-form>
     </div>
+    <app-login-form
+      v-model="isLoginFormOpen"
+      @logout="logShift($event)"
+      @closeForm="isLoginFormOpen = $event"
+    ></app-login-form>
+    <app-signup-form
+      v-bind:value="isSignupFormOpen"
+      v-on:input="isSignupFormOpen = $event.target.value"
+      @closeForm="isSignupFormOpen = $event"
+    ></app-signup-form>
   </div>
 </template>
 
@@ -68,13 +61,13 @@ export default {
       activeNavBar: false,
       isLoginFormOpen: false,
       isSignupFormOpen: false,
-      loginBtn: firebase.auth().currentUser === null,
+      isLogged: firebase.auth().currentUser === null,
       routes: this.$router.options.routes.slice(0, 4),
     };
   },
   methods: {
     logShift(a) {
-      this.loginBtn = a;
+      this.isLogged = a;
     },
     logOut() {
       this.userLogout();
@@ -91,125 +84,119 @@ export default {
     animeMouseOutLink(e) {
       this.mouseOutLink(e);
     },
-    menuAnimate(e) {
-      this.menu(e);
-    },
-  },
-  computed: {
-    disableButton: function () {
-      return this.loginBtn === true ? false : true;
+    menuAnimate() {
+      this.menu();
     },
   },
 };
 </script>
 
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
-}
-.nav-bar-container {
-  width: calc(100% - 160px);
-  position: absolute;
+<style lang="scss" scoped>
+$hover-color: goldenrod;
+$elements-height: 30px;
+
+.menu-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-width: 400px;
+  width: 100%;
+  z-index: 100;
 }
 .btns {
   display: table;
-  width: 100px;
+  height: $elements-height;
   float: right;
-  border: 1px solid white;
-  height: 30px;
-  margin: 10px;
-}
-.signupbtn,
-.loginbtn {
-  display: table-cell;
-  text-align: center;
-  width: 50%;
-}
-.signupbtn:hover,
-.loginbtn:hover {
-  background-color: olive;
-}
-.signupbtn {
-  border-left: 1px solid white;
-}
-button {
-  background-color: transparent;
   color: white;
-  border: none;
+  border: 1px solid white;
+  border-radius: 4px;
+  margin: 8px 10px;
   font-size: 14px;
-  height: 100%;
+
+  $btnss: logInBtn, logOutBtn, signUpBtn;
+  @each $btn in $btnss {
+    & .#{$btn} {
+      width: 50px;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+
+      &:hover {
+        background-color: olive;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: ease 0.1s;
+      }
+    }
+  }
+  .signUpBtn {
+    border-left: 1px solid white;
+  }
+}
+ul {
   width: 100%;
-  cursor: pointer;
-}
-button:disabled {
-  background-color: rgb(204, 204, 204);
-  color: rgb(102, 102, 102);
-  opacity: 0.8;
-}
-button:disabled:hover {
-  background-color: rgb(204, 204, 204);
-  color: rgb(102, 102, 102);
-  opacity: 1;
+  height: 50px;
+  text-align: center;
+  position: absolute;
+  background-color: #000000;
+  z-index: -1;
+  transition: ease 0.1s;
+  border-bottom: 2px solid rgba(218, 165, 32, 0.075);
+
+  .link {
+    font-family: "Bauhaus 93", sans-serif;
+    font-size: 24px;
+    height: 35px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin: 6px 2%;
+    padding: 0 1%;
+
+    &:hover {
+      color: $hover-color;
+    }
+  }
+  .router-link-exact-active {
+    color: $hover-color;
+    border-bottom: 2px solid $hover-color;
+  }
 }
 
-.nav-bar {
-  padding-top: 5px;
-  width: 100%;
-  position: absolute;
-  text-align: center;
-  transform: translateX(50px);
-}
-.link {
-  font-family: "Bauhaus 93", sans-serif;
-  display: inline-block;
-  font-size: 24px;
-  color: white;
-  /* list-style-type: none; */
-  text-decoration: none;
-  padding: 0 2% 0 2%;
-}
-.router-link-exact-active {
-  border: 2px solid white;
-  border-radius: 5px;
-}
-@media screen and (max-width: 760px) {
-  .nav-bar {
-    width: 150px;
-    padding-top: 100px; 
-    transform: translateX(10px);
-    text-align: left;
-  }
-  .link {
-    margin-bottom: 15%;
-    padding: 0 10px 0 10px;
+@media screen and (max-width: 700px) {
+  ul {
+    height: 200px;
+    width: 100%;
+
+    & .link {
+      display: block;
+      width: fit-content;
+      margin: 10px auto 10px;
+    }
   }
 }
 
 /* burger */
 .burger {
   width: 35px;
-  height: 30px;
-  margin: 10px 10px;
+  height: $elements-height;
+  margin: 10px;
   position: relative;
   cursor: pointer;
   float: left;
-  z-index: 50;
-}
-.burger span {
-  background-color: #fff;
-  position: absolute;
-  width: 100%;
-  height: 4px;
-}
-.burger span:nth-child(1) {
-  top: 0px;
-}
-.burger span:nth-child(2) {
-  top: 10px;
-}
-.burger span:nth-child(3) {
-  top: 20px;
+
+  span {
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+
+    @for $i from 0 through 2 {
+      &:nth-child(#{$i + 1}) {
+        top: $i * 10px;
+      }
+    }
+  }
 }
 </style>

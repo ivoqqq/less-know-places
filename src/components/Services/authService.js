@@ -37,7 +37,7 @@ export let authService = {
                     this.$emit("logout", false);
                     this.$emit("closeForm", false);
                     this.clearInputFields();
-                    this.$router.replace("/hit-the-road").catch(() => { });
+                    // this.$router.replace("/hit-the-road").catch(() => { });
                 })
                 .catch(err => {
                     this.error = err.message;
@@ -49,8 +49,8 @@ export let authService = {
                 .signOut()
                 .then(() => {
                     this.$router.push("/").catch(() => { });
-                    this.loginBtn = true;
-                });
+                    this.isLogged = true;
+                });               
         },
         userData() {
             if (firebase.auth().currentUser !== null) {

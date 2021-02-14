@@ -143,7 +143,6 @@ button:hover {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.6);
-  -webkit-animation: animatezoom 0.3s;
   animation: animatezoom 0.3s;
 }
 /* Modal Content/Box */

@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <header class="header">
+    <header>
       <navigation-bar></navigation-bar>
     </header>
-    <main class="container">
+    <main class="main-container">
       <router-view></router-view>
     </main>
   </div>
@@ -15,21 +15,19 @@ import NavigationBar from "./components/NavigationBar";
 export default {
   name: "App",
   components: {
-    NavigationBar
-  }
+    NavigationBar,
+  },
 };
 </script>
 
 <style>
 * {
   margin: 0;
-  padding: 0;
+  padding: 0; 
 }
-.header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  z-index: 300;
+.destination-image {
+  width: 200px;
+  height: 130px;
+  object-fit: contain;
 }
 </style>

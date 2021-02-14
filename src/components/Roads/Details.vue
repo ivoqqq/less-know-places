@@ -5,17 +5,10 @@
       <div class="card">
         <h2 class="card-title">{{ road.username }}</h2>
         <div class="start">
-          <img class="card-img-top" :src="road.startimage" alt="No picture" />
+          <img class="destination-image" :src="road.startimage" alt="No picture" />
           <p class="startpoint">
             <span>Start:</span>
             {{ road.startpoint }}
-          </p>
-        </div>
-        <div class="end">
-          <img class="card-img-top" :src="road.endimage" alt="No picture" />
-          <p class="endpoint">
-            <span>End:</span>
-            {{ road.endpoint }}
           </p>
         </div>
         <div class="btns">
@@ -68,7 +61,7 @@ export default {
 
 <style scoped>
 .details-container {
-  background-color: rgb(29, 49, 49);;
+  background-color: rgb(23, 37, 37);
   height: 100vh;
   overflow: auto;
   background-position: center;
@@ -103,12 +96,12 @@ h1 {
   box-shadow: 10px 10px 5px black;
   font-size: 22px;
 }
-img {
+/* .destination-image {
   width: 200px;
   height: 130px;
-}
+  object-fit: contain;
+} */
 .start,
-.end,
 .btns {
   padding-bottom: 5px;
   padding-top: 5px;

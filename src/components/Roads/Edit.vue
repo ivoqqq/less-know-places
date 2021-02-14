@@ -32,34 +32,6 @@
         </div>
 
         <div>
-          <div class="error" v-if="$v.road.endpoint.$error">
-            <p v-if="!$v.road.endpoint.minLength">Minimum length is 3 characters</p>
-            <p v-if="!$v.road.endpoint.maxLength">Maximum length is 15 characters</p>
-            <p v-if="!$v.road.endpoint.required">Please fill in ending point</p>
-          </div>
-          <label>End point:</label>
-          <input
-            class="endpoint"
-            type="text"
-            v-model="road.endpoint"
-            @blur="$v.road.endpoint.$touch()"
-          />
-        </div>
-
-        <div>
-          <div class="error" v-if="$v.road.endimage.$error">
-            <p v-if="!$v.road.endimage.required">Place image url</p>
-          </div>
-          <label>End image:</label>
-          <input
-            class="endimage"
-            type="text"
-            v-model="road.endimage"
-            @blur="$v.road.endimage.$touch()"
-          />
-        </div>
-
-        <div>
           <div class="error" v-if="$v.road.expectations.$error">
             <p v-if="!$v.road.expectations.minLength">Minimum length is 6 characters</p>
             <p v-if="!$v.road.expectations.maxLength">Maximum length is 150 characters</p>
@@ -95,11 +67,6 @@ export default {
         minLength: minLength(3),
         maxLength: maxLength(15)
       },
-      endpoint: {
-        required,
-        minLength: minLength(3),
-        maxLength: maxLength(15)
-      },
       expectations: {
         required,
         minLength: minLength(6),
@@ -108,9 +75,6 @@ export default {
       startimage: {
         required
       },
-      endimage: {
-        required
-      }
     }
   },
   created() {
