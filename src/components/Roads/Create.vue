@@ -161,7 +161,7 @@ export default {
 
 <style scoped>
 input:focus {
-  opacity: 0.2;
+  opacity: 0.6;
 }
 input[type="file"] {
   display: none;
