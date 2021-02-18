@@ -1,5 +1,7 @@
 # first-project
 ```
+Currently updating...
+
 Vue JS CRUD app with Cloud Firestore
 
 This app stores information about places you might like to visit.
