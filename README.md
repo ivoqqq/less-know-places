@@ -2,10 +2,10 @@
 ```
 Vue JS CRUD app with Cloud Firestore
 
-This app stores information about future journeys. It provides the starting and ending destination with pictures from these destinations and what users expect to see or learn during the journey.
+This app stores information about places you might want to visit.
 
 Public part when user is not logged in. 
-To view, create, edit or delete journeys, user have to be logged in first.
+To view, create, edit or delete places, user have to be logged in first.
 ```
 
 

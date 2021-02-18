@@ -1,6 +1,5 @@
 <template>
   <div class="roads-container">
-    <!-- <div class="loader" v-if="!isLoaded"><p>LOADING...</p></div> -->
     <h1>Roads</h1>
     <div class="cards">
       <div class="card" v-for="road in roads" :key="road.key">
@@ -38,13 +37,11 @@ export default {
   data() {
     return {
       roads: [],
-      isLoaded: false,
       isImgLoaded: false,
     };
   },
   created() {
     this.getQueryData();
-    // var isLoaded = image.complete && image.naturalHeight !== 0;
   },
   methods: {
     details(road) {
@@ -54,12 +51,7 @@ export default {
       console.log(e);
       this.isImgLoaded = true;
     },
-  },
-  wathc: {
-    isImgLoaded() {
-      console.log(this.isImgLoaded);
-    },
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -95,12 +87,9 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-  overflow: auto;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* top: 0; left: 0;
-  width: 100%; height: 100%; */
   background-image: url("../../assets/city-lights-night-traffic-highway-roads-1609975.jpg");
   filter: grayscale(60%) blur(1px);
 }

@@ -37,7 +37,6 @@ export let authService = {
                     this.$emit("logout", false);
                     this.$emit("closeForm", false);
                     this.clearInputFields();
-                    // this.$router.replace("/hit-the-road").catch(() => { });
                 })
                 .catch(err => {
                     this.error = err.message;

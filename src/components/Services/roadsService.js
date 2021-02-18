@@ -1,5 +1,7 @@
 import firebase from "firebase";
 import router from "../../router"
+import { uuidv4Gen } from "./file-name-uuidv4-generator";
+
 export let roadService = {
     data() {
         return {
@@ -14,7 +16,6 @@ export let roadService = {
     },
     methods: {
         createData() {
-
             firebase
                 .firestore()
                 .collection("roads")
@@ -77,7 +78,7 @@ export let roadService = {
                         });
                     });
                 })
-                .then(()=> {
+                .then(() => {
                     console.log("ALL DATA LOADED")
                     this.isLoaded = true
                 })
@@ -88,6 +89,7 @@ export let roadService = {
                 .collection("roads")
                 .get()
                 .then(querySnapshot => {
+                    console.log(querySnapshot)
                     querySnapshot.forEach(doc => {
                         if (firebase.auth().currentUser.uid === doc.data().id) {
 
@@ -102,6 +104,39 @@ export let roadService = {
                         }
                     });
                 });
+        },
+        addFile(event) {
+            this.progress = 0;
+            this.imageData = event.target.files[0];
+            let fileName = uuidv4Gen()
+
+            var file = new File([this.imageData], fileName + ".jpg", {
+                type: "image/jpeg",
+            });
+            //copmatable chrome; edge: 01.2020...; IE: no;
+            //formData.append() is older => more compatable
+
+            const storageRef = firebase.storage().ref(`${file.name}`).put(file); //expected Blob or File
+            console.log(storageRef)
+
+            storageRef.on(
+                `state_changed`,
+                (snapshot) => {
+                    //the task of uploading
+                    this.file = "UPLOADING...";
+                    this.progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                },
+                (error) => {
+                    console.log(error.message);
+                },
+                () => {
+                    storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                        this.road.startimage = url;
+                        this.file = "FILE UPLOADED";
+                    });
+                }
+            );
         }
     },
 }

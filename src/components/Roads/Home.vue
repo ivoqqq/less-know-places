@@ -1,7 +1,5 @@
 <template>
   <div class="home-container">
-    <!-- <h1>HOME PAGE</h1> -->
-    <!-- <div class="info">In this page logged users can upload their future journeys and what they expect to see or learn..</div> -->
   </div>
 </template>
 

@@ -7,7 +7,7 @@
         <div class="start">
           <img class="destination-image" :src="road.startimage" alt="No picture" />
           <p class="startpoint">
-            <span>Start:</span>
+            <span>visit:</span>
             {{ road.startpoint }}
           </p>
         </div>
@@ -131,3 +131,4 @@ button:disabled {
   transform: scale(1);
 }
 </style>
+

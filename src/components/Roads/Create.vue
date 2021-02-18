@@ -1,74 +1,55 @@
 <template>
   <div class="create-container">
-    <div class="cover-container">
-      <form class="inputFields" @submit.prevent="addData">
-        <!-- <h1>Create your road {{ username }}</h1> -->
+    <form class="input-form" @submit.prevent="addData">
+      <!-- <h1>Create your road {{ username }}</h1> -->
+      <div class="error" v-if="$v.road.startpoint.$error">
+        <p v-if="!$v.road.startpoint.minLength">
+          Minimum length is 3 characters
+        </p>
+        <p v-if="!$v.road.startpoint.maxLength">
+          Maximum length is 15 characters
+        </p>
+        <p v-if="!$v.road.startpoint.required">Please fill in starting point</p>
+      </div>
+      <input
+        class="startpoint"
+        type="text"
+        v-model="road.startpoint"
+        placeholder="type in suggested place..."
+        @blur="$v.road.startpoint.$touch()"
+      />
+      <div class="error" v-if="$v.road.expectations.$error">
+        <p v-if="!$v.road.expectations.minLength">
+          Minimum length is 6 characters
+        </p>
+        <p v-if="!$v.road.expectations.maxLength">
+          Maximum length is 200 characters
+        </p>
+        <p v-if="!$v.road.expectations.required">
+          Please write your expectations
+        </p>
+      </div>
+      <input
+        class="expectations"
+        type="text"
+        placeholder="about the place..."
+        v-model="road.expectations"
+        @blur="$v.road.expectations.$touch()"
+      />
 
-        <div class="error" v-if="$v.road.startpoint.$error">
-          <p v-if="!$v.road.startpoint.minLength">
-            Minimum length is 3 characters
-          </p>
-          <p v-if="!$v.road.startpoint.maxLength">
-            Maximum length is 15 characters
-          </p>
-          <p v-if="!$v.road.startpoint.required">
-            Please fill in starting point
-          </p>
-        </div>
+      <div class="image-container">
+        <label for="input-image" class="input-file-label">{{ file }}</label>
         <input
-          class="startpoint"
-          type="text"
-          v-model="road.startpoint"
-          placeholder="type in your startpoint..."
-          @blur="$v.road.startpoint.$touch()"
+          id="input-image"
+          ref="upload"
+          @change="uploadFile"
+          accept="image/*"
+          type="file"
         />
-        <!-- <div class="error" v-if="$v.road.startimage.$error">
-          <p v-if="!$v.road.startimage.required">Place image url</p>
-        </div> -->
-        <!-- <input
-          class="startimage"
-          type="text"
-          placeholder="place startimage URL..."
-          v-model="road.startimage"
-          @blur="$v.road.startimage.$touch()"
-        /> -->
-
-        <div class="error" v-if="$v.road.expectations.$error">
-          <p v-if="!$v.road.expectations.minLength">
-            Minimum length is 6 characters
-          </p>
-          <p v-if="!$v.road.expectations.maxLength">
-            Maximum length is 150 characters
-          </p>
-          <p v-if="!$v.road.expectations.required">
-            Please write your expectations
-          </p>
-        </div>
-        <input
-          class="expectations"
-          type="text"
-          placeholder="expectations"
-          v-model="road.expectations"
-          @blur="$v.road.expectations.$touch()"
-        />
-        <div class="input-destination-image">
-          <label for="input-image" class="input-destination-label">{{
-            file
-          }}</label>
-          <input
-            id="input-image"
-            ref="upload"
-            @change="onUpload"
-            accept="image/*"
-            type="file"
-          />
-          <progress class="progress-bar" :value="progress" max="100"></progress>
-        </div>
-        <div>
-          <button :disabled="$v.$invalid">Create</button>
-        </div>
-      </form>
-    </div>
+        <progress class="progress-bar" :value="progress" max="100"></progress>
+      </div>
+      <button :disabled="$v.$invalid">Create</button>
+    </form>
   </div>
 </template>
 
@@ -76,14 +57,12 @@
 import { roadService } from "../Services/roadsService";
 import { authService } from "../Services/authService";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
-import firebase from "firebase";
 
 export default {
   mixins: [roadService, authService],
   data() {
     return {
       road: {},
-      imgURL: "",
       imageData: null,
       progress: null,
       file: "BROWSE FILE",
@@ -97,14 +76,11 @@ export default {
         maxLength: maxLength(15),
       },
       expectations: {
-        // required,
+        required,
         minLength: minLength(6),
         maxLength: maxLength(200),
       },
-      // startimage: {
-      //   required
-      // },
-    },
+    }
   },
   created() {
     this.userData();
@@ -113,119 +89,112 @@ export default {
     addData() {
       this.createData();
     },
-    onUpload(event) {
-      this.progress = 0;
-      this.imageData = event.target.files[0];
-
-      function uuidv4() {
-        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-          /[xy]/g,
-          function (c) {
-            var r = (Math.random() * 16) | 0,
-              v = c == "x" ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-          }
-        );
-      }
-      var file = new File([this.imageData], uuidv4() + ".jpg", {
-        type: "image/jpeg",
-      });
-      //copmatable chrome; edge: 01.2020...; IE: no;
-      //formData.append() is older => more compatable
-
-      const storageRef = firebase.storage().ref(`${file.name}`).put(file); //expected Blob or File
-      console.log(storageRef)
-
-      storageRef.on(
-        `state_changed`,
-        (snapshot) => {
-          //the task of uploading
-          this.file = "UPLOADING...";
-          this.progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        },
-        (error) => {
-          console.log(error.message);
-        },
-        () => {
-          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-            this.road.startimage = url;
-            this.file = "FILE UPLOADED";
-          });
-        }
-      );
+    uploadFile(event) {
+      this.addFile(event);
     },
   },
 };
 </script>
 
 <style scoped>
-input:focus {
-  opacity: 0.6;
-}
-input[type="file"] {
-  display: none;
-}
-.input-destination-label {
-  display: inline-block;
-  width: 175px;
-  height: 30px;
-  background-color: olive;
-  color: white;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  font-size: 14px;
-  transition: all 0.1s ease-in-out;
-}
-.input-destination-label:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
 .create-container {
-  background-image: url("../../assets/ro-road_332.jpg");
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.create-container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  text-align: center;
+  background-image: url("../../assets/bench-with-the-view-in-austrian-mountains-2210x1658.jpg");
+  filter: grayscale(60%) brightness(60%);
+  z-index: -1;
 }
-.cover-container {
-  background-color: rgba(0, 0, 0, 0.7);
+.input-form {
   text-align: center;
+  position: relative;
+  width: 40%;
+  padding: 100px 40px 40px 40px;
+}
+.input-form::before {
+  content: "";
   width: 100%;
   height: 100%;
-  margin: 0 auto;
-  display: table;
-}
-h1 {
-  color: gold;
-}
-.inputFields {
-  display: table-cell;
-  vertical-align: middle;
+  background-color: rgba(20, 23, 27, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+  z-index: -1;
 }
 input {
   outline: none;
   color: white;
-  width: 50%;
+  width: 100%;
   margin: 5px 0 22px 0;
   display: inline-block;
   height: 30px;
   background: transparent;
   border-color: transparent;
-  border-bottom: 2px solid yellowgreen;
+  border-bottom: 2px solid rgba(153, 205, 50, 0.5);
   font-size: 16px;
 }
+input:focus {
+  opacity: 0.6;
+}
 ::placeholder {
-  color: gold;
+  color: goldenrod;
   opacity: 0.8;
   font-size: 14px;
+}
+input[type="file"] {
+  display: none;
+}
+.input-file-label {
+  display: inline-block;
+  line-height: 30px;
+  position: relative;
+  width: 50%;
+  height: 30px;
+  background-color: olive;
+  color: white;
+  cursor: pointer;
+  opacity: 0.8;
+  font-size: 14px;
+  transition: all 0.1s ease-in-out;
+  margin: 5px 0 22px 0;
+}
+.input-file-label:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+progress {
+  border: 0;
+  text-align: left;
+  margin-left: 10px;
+}
+progress::-webkit-progress-bar {
+  height: 20px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #ccc;
+  box-shadow: 0px 0px 6px #777 inset;
+  padding: 3px;
+}
+progress::-webkit-progress-value {
+  display: inline-block;
+  height: 14px;
+  background: olive;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px #777 inset;
 }
 button {
   width: 50%;
@@ -237,6 +206,10 @@ button {
   opacity: 0.8;
   font-size: 22px;
   transition: all 0.1s ease-in-out;
+  border-radius: 4px;
+  position: relative;
+  bottom: 0;
+  margin-top: 20px;
 }
 button:hover {
   opacity: 1;
@@ -249,9 +222,8 @@ button:disabled {
   transform: scale(1);
 }
 .error {
-  color: red;
+  color: crimson;
   font-weight: 700;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  font-size: 22px;
 }
 </style>

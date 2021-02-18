@@ -1,7 +1,6 @@
 <template>
   <div class="profile-container">
-    <h1>User profile</h1>
-    <h2>Welcome {{ username }}</h2>
+    <h1>Welcome {{ username }}</h1>
     <div class="cards" :key="road.key" v-for="road in roads">
       <div class="card">
         <div class="start">
@@ -11,15 +10,7 @@
             {{ road.startpoint }}
           </p>
         </div>
-        <div class="end">
-          <img class="card-img-top" :src="road.endimage" alt="No picture" />
-          <p class="endpoint">
-            <span>End:</span>
-            {{ road.endpoint }}
-          </p>
-        </div>
         <div class="exp">{{ road.expectations }}</div>
-        <!-- <div class="exp">{{road.expectations | textShown}}...</div> с 4 реда css -->
         <div class="btns">
           <button @click="details(road)">Details</button>
         </div>
@@ -48,7 +39,7 @@ export default {
     details(road) {
       router.push({ name: "Details", params: { id: road.docID } });
     },
-  },
+  }
 };
 </script>
 
@@ -77,16 +68,10 @@ h1 {
   padding-bottom: 5px;
 }
 .start,
-.end,
 .btns {
   padding-bottom: 5px;
   padding-top: 5px;
 }
-/* .destination-image {
-  width: 200px;
-  height: 130px;
-  object-fit: contain;
-} */
 .exp {
   display: inline-block;
   width: 200px;
@@ -108,8 +93,5 @@ button {
 button:hover {
   opacity: 1;
   transform: scale(1.1);
-}
-h2 {
-  color: gold;
 }
 </style>
