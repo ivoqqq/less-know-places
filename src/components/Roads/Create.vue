@@ -9,13 +9,13 @@
         <p v-if="!$v.road.startpoint.maxLength">
           Maximum length is 15 characters
         </p>
-        <p v-if="!$v.road.startpoint.required">Please fill in starting point</p>
+        <p v-if="!$v.road.startpoint.required">The field can not be empty</p>
       </div>
       <input
         class="startpoint"
         type="text"
         v-model="road.startpoint"
-        placeholder="type in suggested place..."
+        placeholder="type in place to visit..."
         @blur="$v.road.startpoint.$touch()"
       />
       <div class="error" v-if="$v.road.expectations.$error">
@@ -25,9 +25,7 @@
         <p v-if="!$v.road.expectations.maxLength">
           Maximum length is 200 characters
         </p>
-        <p v-if="!$v.road.expectations.required">
-          Please write your expectations
-        </p>
+        <p v-if="!$v.road.expectations.required">The field can not be empty</p>
       </div>
       <input
         class="expectations"
@@ -80,7 +78,7 @@ export default {
         minLength: minLength(6),
         maxLength: maxLength(200),
       },
-    }
+    },
   },
   created() {
     this.userData();
