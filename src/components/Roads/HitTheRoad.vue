@@ -110,11 +110,6 @@ h1 {
   padding-bottom: 5px;
   padding-top: 5px;
 }
-// .destination-image {
-//   width: 200px;
-//   height: 130px;
-//   object-fit: contain;
-// }
 .exp {
   display: inline-block;
   width: 200px;

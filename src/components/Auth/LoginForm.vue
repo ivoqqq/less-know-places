@@ -88,10 +88,8 @@ export default {
     1px 1px 0 #000;
 }
 .error {
-  color: red;
-  font-size: 24px;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  color: crimson;
+  font-size: 22px;
 }
 /* Full-width input fields */
 input[type="text"],
@@ -119,7 +117,7 @@ button:hover {
   opacity: 1;
 }
 .cancelbtn {
-  background-color: #e60f00;
+  background-color: crimson;
   border-radius: 5px 0 0 5px;
 }
 .loginbtn {
@@ -142,14 +140,13 @@ button:hover {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
   animation: animatezoom 0.3s;
 }
 /* Modal Content/Box */
 .form-content {
   border-radius: 10px;
-  box-shadow: 0 0 20px 0px rgba(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(20, 23, 27, 0.9);
   margin: 15% auto 10% auto; /* 5% from the top, 15% from the bottom and centered */
   width: 30%; /* Could be more or less, depending on screen size */
 }
@@ -169,6 +166,6 @@ button:hover {
   }
 }
 v-alert {
-  color: red;
+  color: crimson;
 }
 </style>

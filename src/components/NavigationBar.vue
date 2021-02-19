@@ -99,7 +99,7 @@ $elements-height: 30px;
   position: fixed;
   left: 0;
   top: 0;
-  min-width: 400px;
+  min-width: 350px;
   width: 100%;
   z-index: 100;
 }

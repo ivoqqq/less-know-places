@@ -2,12 +2,12 @@
   <div class="edit-container">
     <div class="cover-container" @submit.prevent="editData">
       <form class="inputFields">
-        <h1>Edit your road {{road.username}}</h1>
+        <h1>Edit your place {{road.username}}</h1>
         <div>
-          <label>Start point:</label>
+          <label>Place to visit:</label>
           <div class="error" v-if="$v.road.startpoint.$error">
             <p v-if="!$v.road.startpoint.minLength">Minimum length is 3 characters</p>
-            <p v-if="!$v.road.startpoint.maxLength">Maximum length is 15 characters</p>
+            <p v-if="!$v.road.startpoint.maxLength">Maximum length is 20 characters</p>
             <p v-if="!$v.road.startpoint.required">Please fill in starting point</p>
           </div>
           <input
@@ -22,7 +22,7 @@
           <p v-if="!$v.road.startimage.required">Place image url</p>
         </div>
         <div>
-          <label>Start image:</label>
+          <label>Image:</label>
           <input
             class="startimage"
             type="text"
@@ -37,7 +37,7 @@
             <p v-if="!$v.road.expectations.maxLength">Maximum length is 150 characters</p>
             <p v-if="!$v.road.expectations.required">Please write your expectations</p>
           </div>
-          <label>Expectations:</label>
+          <label>About the place:</label>
           <input class="expectations" type="text" v-model="road.expectations" @blur="$v.road.expectations.$touch()"/>
         </div>
         <div>
@@ -65,7 +65,7 @@ export default {
       startpoint: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(15)
+        maxLength: maxLength(20)
       },
       expectations: {
         required,
@@ -111,7 +111,7 @@ export default {
   display: table;
 }
 h1 {
-  color: gold;
+  color: goldenrod;
   margin-bottom: 20px;
 }
 .inputFields {
@@ -136,7 +136,7 @@ input {
   /* margin-right: 100px; */
 }
 ::placeholder {
-  color: gold;
+  color: goldenrod;
   opacity: 0.8;
   font-size: 14px;
 }
@@ -153,11 +153,10 @@ button {
 }
 button:hover {
   opacity: 1;
-  transform: scale(1.1);
 }
 label {
   font-size: 18px;
-  color: gold;
+  color: goldenrod;
   padding-right: 5px;
 }
 button:disabled {
@@ -167,9 +166,8 @@ button:disabled {
   transform: scale(1);
 }
 .error {
-  color: red;
+  color: crimson;
   font-weight: 700;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  font-size: 22px;
 }
 </style>

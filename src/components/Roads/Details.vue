@@ -96,11 +96,6 @@ h1 {
   box-shadow: 10px 10px 5px black;
   font-size: 22px;
 }
-/* .destination-image {
-  width: 200px;
-  height: 130px;
-  object-fit: contain;
-} */
 .start,
 .btns {
   padding-bottom: 5px;
@@ -122,7 +117,7 @@ button:hover {
   transform: scale(1.1);
 }
 span {
-  color: gold;
+  color: goldenrod;
 }
 button:disabled {
   background-color: rgb(204, 204, 204);

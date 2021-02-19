@@ -25,6 +25,9 @@ export default {
   margin: 0;
   padding: 0; 
 }
+.main-container {
+  min-width: 350px;
+}
 .destination-image {
   width: 200px;
   height: 130px;

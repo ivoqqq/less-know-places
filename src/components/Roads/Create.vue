@@ -44,8 +44,8 @@
           accept="image/*"
           type="file"
         />
-        <progress class="progress-bar" :value="progress" max="100"></progress>
       </div>
+        <progress v-if="progress != null" class="progress-bar" :value="progress" max="100"></progress>
       <button :disabled="$v.$invalid">Create</button>
     </form>
   </div>
@@ -63,7 +63,7 @@ export default {
       road: {},
       imageData: null,
       progress: null,
-      file: "BROWSE FILE",
+      file: "ADD PICTURE",
     };
   },
   validations: {
@@ -71,7 +71,7 @@ export default {
       startpoint: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(15),
+        maxLength: maxLength(20),
       },
       expectations: {
         required,
@@ -120,7 +120,7 @@ export default {
   text-align: center;
   position: relative;
   width: 40%;
-  padding: 100px 40px 40px 40px;
+  padding: 80px 40px 40px 40px;
 }
 .input-form::before {
   content: "";
@@ -133,6 +133,7 @@ export default {
   border-radius: 4px;
   z-index: -1;
 }
+
 input {
   outline: none;
   color: white;
@@ -144,13 +145,13 @@ input {
   border-color: transparent;
   border-bottom: 2px solid rgba(153, 205, 50, 0.5);
   font-size: 16px;
+  opacity: 0.8;
 }
 input:focus {
-  opacity: 0.6;
+  opacity: 1;
 }
 ::placeholder {
   color: goldenrod;
-  opacity: 0.8;
   font-size: 14px;
 }
 input[type="file"] {
@@ -161,7 +162,6 @@ input[type="file"] {
   line-height: 30px;
   position: relative;
   width: 50%;
-  height: 30px;
   background-color: olive;
   color: white;
   cursor: pointer;
@@ -172,20 +172,18 @@ input[type="file"] {
 }
 .input-file-label:hover {
   opacity: 1;
-  transform: scale(1.1);
 }
 progress {
   border: 0;
   text-align: left;
-  margin-left: 10px;
 }
 progress::-webkit-progress-bar {
-  height: 20px;
-  width: 150px;
+  height: 18px;
+  width: 100%;
   border-radius: 10px;
   background-color: #ccc;
   box-shadow: 0px 0px 6px #777 inset;
-  padding: 3px;
+  padding: 2px;
 }
 progress::-webkit-progress-value {
   display: inline-block;
@@ -195,7 +193,7 @@ progress::-webkit-progress-value {
   box-shadow: 0px 0px 6px #777 inset;
 }
 button {
-  width: 50%;
+  width: 100%;
   height: 40px;
   background-color: olive;
   color: white;
@@ -207,11 +205,10 @@ button {
   border-radius: 4px;
   position: relative;
   bottom: 0;
-  margin-top: 20px;
+  margin: 20px 0 auto;
 }
 button:hover {
   opacity: 1;
-  transform: scale(1.1);
 }
 button:disabled {
   background-color: rgb(204, 204, 204);
