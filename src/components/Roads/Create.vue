@@ -35,6 +35,9 @@
         @blur="$v.road.expectations.$touch()"
       />
 
+      <div class="error" v-if="$v.progress.$error">
+        <p v-if="!$v.progress.required">You didn't choose any file</p>
+      </div>
       <div class="image-container">
         <label for="input-image" class="input-file-label">{{ file }}</label>
         <input
@@ -42,10 +45,16 @@
           ref="upload"
           @change="uploadFile"
           accept="image/*"
-          type="file"
+          type="file"  
+          @blur="$v.progress.$touch()"
         />
       </div>
-        <progress v-if="progress != null" class="progress-bar" :value="progress" max="100"></progress>
+      <progress
+        v-if="progress != null"
+        class="progress-bar"
+        :value="progress"
+        max="100"
+      ></progress>
       <button :disabled="$v.$invalid">Create</button>
     </form>
   </div>
@@ -54,7 +63,7 @@
 <script>
 import { roadService } from "../Services/roadsService";
 import { authService } from "../Services/authService";
-import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import { required, minLength, maxLength, minValue } from "vuelidate/lib/validators";
 
 export default {
   mixins: [roadService, authService],
@@ -67,6 +76,7 @@ export default {
     };
   },
   validations: {
+    
     road: {
       startpoint: {
         required,
@@ -77,7 +87,12 @@ export default {
         required,
         minLength: minLength(6),
         maxLength: maxLength(200),
-      }
+      },
+    },
+    progress: {
+      required,
+      minValue: minValue(100)
+      //TODO: validate with FILE UPLOADED
     },
   },
   created() {
@@ -169,6 +184,7 @@ input[type="file"] {
   font-size: 14px;
   transition: all 0.1s ease-in-out;
   margin: 5px 0 22px 0;
+  padding: 0 5px;
 }
 .input-file-label:hover {
   opacity: 1;
