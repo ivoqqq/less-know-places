@@ -65,7 +65,7 @@ export default {
       startpoint: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(20)
+        maxLength: maxLength(30)
       },
       expectations: {
         required,

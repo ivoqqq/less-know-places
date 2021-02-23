@@ -42,8 +42,8 @@ export default {
     this.getData();
   },
   methods: {
-    deleteData(id) {
-      this.delData(id);
+    deleteData(id, data) {
+      this.delData(id, data);
     },
     editData(id) {
       router.push({ name: "Edit", params: { id: id } });

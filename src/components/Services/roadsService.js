@@ -11,14 +11,13 @@ export let roadService = {
                 startpoint: "",
                 startimage: "",
                 expectations: "",
-            }
+            },
+            collection: firebase.firestore().collection("roads")
         };
     },
     methods: {
         createData() {
-            firebase
-                .firestore()
-                .collection("roads")
+            this.collection
                 .add(this.road)
                 .then(() => {
                     router.push("/hit-the-road")
@@ -28,9 +27,7 @@ export let roadService = {
                 });
         },
         setData() {
-            firebase
-                .firestore()
-                .collection("roads")
+            this.collection
                 .doc(this.$route.params.id)
                 .set(this.road)
                 .then(() => {
@@ -39,19 +36,28 @@ export let roadService = {
                 })
         },
         delData(id) {
-            firebase
-                .firestore()
-                .collection("roads")
+            this.collection
                 .doc(id)
-                .delete()
+                .get()
+                .then(doc => {
+                    console.log(doc)
+                    let url = doc.data().startimage
+                    console.log(url)
+                    let desertRef = firebase.storage().refFromURL(url).delete()
+                    console.log(desertRef)
+                })
                 .then(() => {
-                    router.push("/hit-the-road");
-                });
+                    this.collection
+                        .doc(id)
+                        .delete()
+                        .then(() => {
+                            router.push("/hit-the-road");
+                        });
+                })
+
         },
         getData() {
-            firebase
-                .firestore()
-                .collection("roads")
+            this.collection
                 .doc(this.$route.params.id)
                 .get()
                 .then(doc => {
@@ -60,9 +66,7 @@ export let roadService = {
                 });
         },
         getQueryData() {
-            firebase
-                .firestore()
-                .collection("roads")
+            this.collection
                 // .orderBy("rating")
                 .get()
                 .then(querySnapshot => {
@@ -78,15 +82,9 @@ export let roadService = {
                         });
                     });
                 })
-                .then(() => {
-                    console.log("ALL DATA LOADED")
-                    this.isLoaded = true
-                })
         },
         getQueryDataProfile() {
-            firebase
-                .firestore()
-                .collection("roads")
+            this.collection
                 .get()
                 .then(querySnapshot => {
                     console.log(querySnapshot)

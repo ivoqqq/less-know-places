@@ -7,7 +7,7 @@
           Minimum length is 3 characters
         </p>
         <p v-if="!$v.road.startpoint.maxLength">
-          Maximum length is 15 characters
+          Maximum length is 30 characters
         </p>
         <p v-if="!$v.road.startpoint.required">The field can not be empty</p>
       </div>
@@ -71,13 +71,13 @@ export default {
       startpoint: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(20),
+        maxLength: maxLength(30),
       },
       expectations: {
         required,
         minLength: minLength(6),
         maxLength: maxLength(200),
-      },
+      }
     },
   },
   created() {
@@ -90,7 +90,7 @@ export default {
     uploadFile(event) {
       this.addFile(event);
     },
-  },
+  }
 };
 </script>
 

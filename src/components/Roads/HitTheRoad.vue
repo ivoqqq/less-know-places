@@ -59,19 +59,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-.loader {
-  background: black;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  // p {
-  //   position: relative;
-  //   transform: translateY(50%);
-  //   font-size: 100px;
-  // }
-}
 .roads-container {
   background-color: rgb(29, 49, 49);
   min-height: 100vh;
