@@ -51,7 +51,7 @@ export let authService = {
                     this.isLogged = true;
                 });               
         },
-        userData() {
+        currentUserName() {
             if (firebase.auth().currentUser !== null) {
                 this.username = firebase.auth().currentUser.displayName
             }

@@ -12,10 +12,10 @@
           </p>
         </div>
         <div class="btns">
-          <button @click.stop="editData(docID)" :disabled="disableButton">
+          <button @click.stop="editData(docID)" :disabled="!disableButton">
             Edit
           </button>
-          <button @click.stop="deleteData(docID)" :disabled="disableButton">
+          <button @click.stop="deleteData(docID)" :disabled="!disableButton">
             Delete
           </button>
         </div>
@@ -34,8 +34,7 @@ export default {
   mixins: [roadService],
   data() {
     return {
-      road: {},
-      disabled: null,
+      road: {}
     };
   },
   created() {
@@ -51,11 +50,9 @@ export default {
   },
   computed: {
     disableButton: function () {
-      return this.road.username === firebase.auth().currentUser.displayName
-        ? false
-        : true;
-    },
-  },
+      return this.road.id === firebase.auth().currentUser.uid
+    }
+  }
 };
 </script>
 

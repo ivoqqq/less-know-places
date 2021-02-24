@@ -95,9 +95,9 @@ export default {
       //TODO: validate with FILE UPLOADED
     },
   },
-  created() {
-    this.userData();
-  },
+  // created() {
+  //   this.userData();
+  // },
   methods: {
     addData() {
       this.createData();

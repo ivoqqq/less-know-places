@@ -32,7 +32,7 @@ export default {
     };
   },
   created() {
-    this.userData();
+    this.currentUserName();
     this.getQueryDataProfile();
   },
   methods: {
