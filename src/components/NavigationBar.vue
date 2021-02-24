@@ -24,11 +24,11 @@
       </div>
     </div>
     <div class="btns">
-      <div class="logInBtn" v-if="isLogged" @click="openLoginForm">Login</div>
-      <div class="logOutBtn" v-else @click="logOut">Logout</div>
-      <div class="signUpBtn" @click="openSignupForm" v-if="isLogged">
+      <p class="logInBtn" v-if="isLogged" @click="openLoginForm">Login</p>
+      <p class="logOutBtn" v-else @click="logOut">Logout</p>
+      <p class="signUpBtn" @click="openSignupForm" v-if="isLogged">
         Sign up
-      </div>
+      </p>
     </div>
     <app-login-form
       v-model="isLoginFormOpen"
@@ -94,7 +94,10 @@ export default {
 <style lang="scss" scoped>
 $hover-color: goldenrod;
 $elements-height: 30px;
-
+.name {
+  color: white;
+  float: right;
+}
 .menu-container {
   position: fixed;
   left: 0;

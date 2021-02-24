@@ -54,7 +54,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -64,7 +64,6 @@ export default {
   min-height: 100vh;
   color: white;
   text-align: center;
-  transition: all ease-in-out 0.2s;
   position: relative;
 }
 .roads-container::before {
@@ -91,18 +90,22 @@ h1 {
   box-shadow: 10px 10px 5px black;
   padding: 5px 0;
   position: relative;
+  font-size: 18px;
 }
-.start,
+/* .start, */
 .btns {
   padding-bottom: 5px;
   padding-top: 5px;
 }
-.exp {
+.exp, .startpoint {
   display: inline-block;
   width: 200px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+span {
+  color: goldenrod;
 }
 button {
   width: 70%;
@@ -114,13 +117,12 @@ button {
   opacity: 0.8;
   font-size: 14px;
   transition: all 0.1s ease-in-out;
+  border-radius: 2px;
+
 }
 button:hover {
   opacity: 1;
   transform: scale(1.1);
-}
-span {
-  color: gold;
 }
 </style>
 

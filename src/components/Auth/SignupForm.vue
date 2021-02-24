@@ -6,11 +6,11 @@
         
         <h1 class="title">Register form</h1>
 
-        <div class="error" v-if="$v.name.$error">
-          <p v-if="!$v.name.minLength">Must be at least 3 characters</p>
-          <p v-if="!$v.name.required">Please fill in username</p>
+        <div class="error" v-if="$v.username.$error">
+          <p v-if="!$v.username.minLength">Must be at least 3 characters</p>
+          <p v-if="!$v.username.required">Please fill in username</p>
         </div>
-        <input type="text" placeholder="Your username" @blur="$v.name.$touch()" v-model="username" />
+        <input type="text" placeholder="Your username" @blur="$v.username.$touch()" v-model="username" />
 
         <div class="error" v-if="$v.email.$error">
           <p v-if="!$v.email.email">Please fill in a valid email</p>
@@ -50,7 +50,7 @@ export default {
     }
   },
   validations: {
-    name: {
+    username: {
       required,
       minLength: minLength(3)
     },

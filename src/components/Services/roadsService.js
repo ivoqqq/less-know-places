@@ -40,11 +40,8 @@ export let roadService = {
                 .doc(id)
                 .get()
                 .then(doc => {
-                    console.log(doc)
                     let url = doc.data().startimage
-                    console.log(url)
-                    let desertRef = firebase.storage().refFromURL(url).delete()
-                    console.log(desertRef)
+                    firebase.storage().refFromURL(url).delete()
                 })
                 .then(() => {
                     this.collection
@@ -54,6 +51,7 @@ export let roadService = {
                             router.push("/hit-the-road");
                         });
                 })
+                .catch(err => console.log(err))
 
         },
         getData() {
@@ -115,7 +113,6 @@ export let roadService = {
             //formData.append() is older => more compatable
 
             const storageRef = firebase.storage().ref(`${file.name}`).put(file); //expected Blob or File
-            console.log(storageRef)
 
             storageRef.on(
                 `state_changed`,
@@ -132,6 +129,7 @@ export let roadService = {
                     storageRef.snapshot.ref.getDownloadURL().then((url) => {
                         this.road.startimage = url;
                         this.file = "FILE UPLOADED";
+                        this.finishedUploadTask = 1
                     });
                 }
             );

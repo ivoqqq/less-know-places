@@ -5,7 +5,11 @@
       <div class="card">
         <h2 class="card-title">{{ road.username }}</h2>
         <div class="start">
-          <img class="destination-image" :src="road.startimage" alt="No picture" />
+          <img
+            class="destination-image"
+            :src="road.startimage"
+            alt="No picture"
+          />
           <p class="startpoint">
             <span>visit:</span>
             {{ road.startpoint }}
@@ -34,7 +38,7 @@ export default {
   mixins: [roadService],
   data() {
     return {
-      road: {}
+      road: {},
     };
   },
   created() {
@@ -42,7 +46,7 @@ export default {
   },
   methods: {
     deleteData(id, data) {
-      this.delData(id, data);
+        this.delData(id, data);
     },
     editData(id) {
       router.push({ name: "Edit", params: { id: id } });
@@ -50,9 +54,9 @@ export default {
   },
   computed: {
     disableButton: function () {
-      return this.road.id === firebase.auth().currentUser.uid
-    }
-  }
+      return this.road.id === firebase.auth().currentUser.uid;
+    },
+  },
 };
 </script>
 
@@ -70,7 +74,7 @@ export default {
 h1 {
   padding: 60px 0 20px 0;
 }
-.cards{
+.cards {
   padding: 0 20px 20px 20px;
 }
 .card {

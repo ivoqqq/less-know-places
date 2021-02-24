@@ -1,7 +1,7 @@
 <template>
   <div class="create-container">
     <form class="input-form" @submit.prevent="addData">
-      <!-- <h1>Create your road {{ username }}</h1> -->
+
       <div class="error" v-if="$v.road.startpoint.$error">
         <p v-if="!$v.road.startpoint.minLength">
           Minimum length is 3 characters
@@ -35,18 +35,19 @@
         @blur="$v.road.expectations.$touch()"
       />
 
-      <div class="error" v-if="$v.progress.$error">
-        <p v-if="!$v.progress.required">You didn't choose any file</p>
+      <div class="error" v-if="$v.finishedUploadTask.$error">
+        <p v-if="!$v.finishedUploadTask.required">You didn't choose any file</p>
       </div>
       <div class="image-container">
+          
         <label for="input-image" class="input-file-label">{{ file }}</label>
         <input
           id="input-image"
           ref="upload"
           @change="uploadFile"
           accept="image/*"
-          type="file"  
-          @blur="$v.progress.$touch()"
+          type="file"
+          @blur="$v.finishedUploadTask.$touch()"
         />
       </div>
       <progress
@@ -63,7 +64,12 @@
 <script>
 import { roadService } from "../Services/roadsService";
 import { authService } from "../Services/authService";
-import { required, minLength, maxLength, minValue } from "vuelidate/lib/validators";
+import {
+  required,
+  minLength,
+  maxLength,
+  minValue,
+} from "vuelidate/lib/validators";
 
 export default {
   mixins: [roadService, authService],
@@ -73,10 +79,10 @@ export default {
       imageData: null,
       progress: null,
       file: "ADD PICTURE",
+      finishedUploadTask: null
     };
   },
   validations: {
-    
     road: {
       startpoint: {
         required,
@@ -89,15 +95,11 @@ export default {
         maxLength: maxLength(200),
       },
     },
-    progress: {
+    finishedUploadTask: {
       required,
-      minValue: minValue(100)
-      //TODO: validate with FILE UPLOADED
+      minValue: minValue(1)
     },
   },
-  // created() {
-  //   this.userData();
-  // },
   methods: {
     addData() {
       this.createData();
@@ -105,7 +107,7 @@ export default {
     uploadFile(event) {
       this.addFile(event);
     },
-  }
+  },
 };
 </script>
 
@@ -128,7 +130,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("../../assets/bench-with-the-view-in-austrian-mountains-2210x1658.jpg");
-  filter: grayscale(60%) brightness(60%);
+  filter: grayscale(50%) brightness(60%);
   z-index: -1;
 }
 .input-form {
@@ -185,6 +187,7 @@ input[type="file"] {
   transition: all 0.1s ease-in-out;
   margin: 5px 0 22px 0;
   padding: 0 5px;
+  border-radius: 2px;
 }
 .input-file-label:hover {
   opacity: 1;
@@ -204,7 +207,7 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   display: inline-block;
   height: 14px;
-  background: olive;
+  background: rgb(6, 112, 112);
   border-radius: 10px;
   box-shadow: 0px 0px 6px #777 inset;
 }
@@ -235,6 +238,7 @@ button:disabled {
 .error {
   color: crimson;
   font-weight: 700;
-  font-size: 22px;
+  position: absolute;
+  transform: translateY(-10px);
 }
 </style>
