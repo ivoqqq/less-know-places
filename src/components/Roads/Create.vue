@@ -111,6 +111,10 @@ export default {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 .create-container {
   min-height: 100vh;
   position: relative;

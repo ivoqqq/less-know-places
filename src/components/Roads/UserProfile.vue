@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 .profile-container {
   min-height: 100vh;
   color: white;
