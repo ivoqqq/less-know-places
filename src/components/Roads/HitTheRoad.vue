@@ -60,7 +60,6 @@ export default {
   padding: 0;
 }
 .roads-container {
-  background-color: rgb(29, 49, 49);
   min-height: 100vh;
   color: white;
   text-align: center;
@@ -96,8 +95,7 @@ h2 {
   font-size: 18px;
 }
 .btns {
-  padding-bottom: 5px;
-  padding-top: 5px;
+  padding: 5px 0;
 }
 .exp, .startpoint {
   display: inline-block;

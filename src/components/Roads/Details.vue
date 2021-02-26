@@ -8,7 +8,10 @@
           <img
             class="destination-image"
             :src="road.startimage"
-            alt="No picture"
+            @error="
+              $event.target.src =
+                'https://bitsofco.de/content/images/2018/12/broken-1.png'
+            "
           />
           <p class="startpoint">
             <span>visit:</span>
@@ -46,7 +49,7 @@ export default {
   },
   methods: {
     deleteData(id, data) {
-        this.delData(id, data);
+      this.delData(id, data);
     },
     editData(id) {
       router.push({ name: "Edit", params: { id: id } });
@@ -74,20 +77,24 @@ export default {
 h1 {
   padding: 60px 0 20px 0;
 }
-.cards {
-  padding: 0 20px 20px 20px;
-}
 .card {
-  padding-bottom: 5px;
+  padding: 5px 0;
   width: 250px;
-  height: 391px;
-  background-color: rgb(25, 30, 35);
+  height: 386px;
+  background-color: rgb(20, 23, 27);
   display: inline-block;
-  vertical-align: top;
-  box-shadow: 13px 10px 5px black;
+  box-shadow: 10px 10px 5px black;
+  font-size: 18px;
+}
+.startpoint {
+  display: inline-block;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .exp {
-  background-color: rgb(25, 30, 35);
+  background-color: rgb(20, 23, 27);
   display: inline-block;
   width: 190px;
   height: 336px;
@@ -95,12 +102,10 @@ h1 {
   vertical-align: top;
   padding: 30px;
   box-shadow: 10px 10px 5px black;
-  font-size: 22px;
+  font-size: 18px;
 }
-.start,
 .btns {
-  padding-bottom: 5px;
-  padding-top: 5px;
+  padding: 5px 0;
 }
 button {
   width: 35%;
