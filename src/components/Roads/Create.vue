@@ -1,7 +1,6 @@
 <template>
   <div class="create-container">
     <form class="input-form" @submit.prevent="addData">
-
       <div class="error" v-if="$v.road.startpoint.$error">
         <p v-if="!$v.road.startpoint.minLength">
           Minimum length is 3 characters
@@ -178,7 +177,7 @@ input[type="file"] {
   display: inline-block;
   line-height: 30px;
   position: relative;
-  width: 50%;
+  width: 100px;
   background-color: olive;
   color: white;
   cursor: pointer;

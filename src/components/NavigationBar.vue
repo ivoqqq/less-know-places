@@ -26,7 +26,7 @@
     <div class="btns">
       <p class="logInBtn" v-if="isLogged" @click="openLoginForm">Login</p>
       <p class="logOutBtn" v-else @click="logOut">Logout</p>
-      <p class="signUpBtn" @click="openSignupForm" v-if="isLogged">
+      <p class="signUpBtn" v-if="isLogged" @click="openSignupForm" >
         Sign up
       </p>
     </div>

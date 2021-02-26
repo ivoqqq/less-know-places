@@ -128,7 +128,7 @@ export let roadService = {
                 () => {
                     storageRef.snapshot.ref.getDownloadURL().then((url) => {
                         this.road.startimage = url;
-                        this.file = "FILE UPLOADED";
+                        this.file = "UPLOADED";
                         this.finishedUploadTask = 1
                     });
                 }

@@ -1,18 +1,26 @@
 <template>
   <div class="profile-container">
-    <h1>Welcome {{ username }}</h1>
-    <div class="cards" :key="road.key" v-for="road in roads">
-      <div class="card">
+    <h1>Your places</h1>
+    <div class="cards">
+      <div class="card" v-for="road in roads" :key="road.key">
+        <h2 class="card-title"></h2>
         <div class="start">
-          <img class="destination-image" :src="road.startimage" alt="No picture" />
+          <img
+            class="destination-image"
+            :src="road.startimage"
+            @error="
+              $event.target.src =
+                'https://bitsofco.de/content/images/2018/12/broken-1.png'
+            "
+          />
           <p class="startpoint">
-            <span>Start:</span>
+            <span>visit:</span>
             {{ road.startpoint }}
           </p>
         </div>
         <div class="exp">{{ road.expectations }}</div>
         <div class="btns">
-          <button @click="details(road)">Details</button>
+          <details-button :road="road"></details-button>
         </div>
       </div>
     </div>
@@ -22,9 +30,12 @@
 <script>
 import { authService } from "../Services/authService";
 import { roadService } from "../Services/roadsService";
-import router from "../../router";
+import DetailsButton from "../DetailsButton";
 
 export default {
+  components: {
+    DetailsButton,
+  },
   mixins: [authService, roadService],
   data() {
     return {
@@ -35,63 +46,59 @@ export default {
     this.currentUserName();
     this.getQueryDataProfile();
   },
-  methods: {
-    details(road) {
-      router.push({ name: "Details", params: { id: road.docID } });
-    },
-  }
 };
 </script>
 
 <style scoped>
 .profile-container {
-  background-color: rgb(23, 37, 37);
+  background-color: rgb(29, 49, 49);
   min-height: 100vh;
-  overflow: auto;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+.profile-container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
-  text-align: center;
+  background-image: url("../../assets/DSC-0774.jpg");
+  filter: grayscale(50%) brightness(60%);
 }
 h1 {
   padding: 60px 0 20px 0;
+  position: relative;
 }
-.cards {
-  display: inline-block;
-  padding: 0 20px 20px 20px;
-  width: 250px;
+h2 {
+  height: 30px;
 }
 .card {
-  background-color: rgb(25, 30, 35);
+  display: inline-block;
+  margin: 0 20px 20px 20px;
+  width: 250px;
+  background-color: rgb(20, 23, 27);
   box-shadow: 10px 10px 5px black;
-  padding-bottom: 5px;
+  padding: 5px 0;
+  position: relative;
+  font-size: 18px;
 }
-.start,
 .btns {
   padding-bottom: 5px;
   padding-top: 5px;
 }
-.exp {
+.exp, .startpoint {
   display: inline-block;
   width: 200px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-button {
-  width: 70%;
-  height: 30px;
-  background-color: olive;
-  color: white;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  font-size: 14px;
-  transition: all 0.1s ease-in-out;
-}
-button:hover {
-  opacity: 1;
-  transform: scale(1.1);
+span {
+  color: goldenrod;
 }
 </style>

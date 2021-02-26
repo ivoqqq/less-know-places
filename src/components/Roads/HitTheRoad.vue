@@ -21,7 +21,7 @@
         </div>
         <div class="exp">{{ road.expectations }}</div>
         <div class="btns">
-          <button @click="details(road)">Details</button>
+          <details-button :road="road"></details-button>
         </div>
       </div>
     </div>
@@ -30,9 +30,12 @@
 
 <script>
 import { roadService } from "../Services/roadsService";
-import router from "../../router";
+import DetailsButton from "../DetailsButton"
 
 export default {
+  components: {
+    DetailsButton
+  },
   mixins: [roadService],
   data() {
     return {
@@ -44,9 +47,6 @@ export default {
     this.getQueryData();
   },
   methods: {
-    details(road) {
-      router.push({ name: "Details", params: { id: road.docID } });
-    },
     loaded(e) {
       console.log(e);
       this.isImgLoaded = true;
@@ -82,6 +82,9 @@ export default {
 h1 {
   padding: 60px 0 20px 0;
 }
+h2 {
+  height: 30px;
+}
 .card {
   display: inline-block;
   margin: 0 20px 20px 20px;
@@ -92,7 +95,6 @@ h1 {
   position: relative;
   font-size: 18px;
 }
-/* .start, */
 .btns {
   padding-bottom: 5px;
   padding-top: 5px;
@@ -106,23 +108,6 @@ h1 {
 }
 span {
   color: goldenrod;
-}
-button {
-  width: 70%;
-  height: 30px;
-  background-color: olive;
-  color: white;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  font-size: 14px;
-  transition: all 0.1s ease-in-out;
-  border-radius: 2px;
-
-}
-button:hover {
-  opacity: 1;
-  transform: scale(1.1);
 }
 </style>
 

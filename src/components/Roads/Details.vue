@@ -117,14 +117,14 @@ button:hover {
   opacity: 1;
   transform: scale(1.1);
 }
-span {
-  color: goldenrod;
-}
 button:disabled {
   background-color: rgb(204, 204, 204);
   color: rgb(102, 102, 102);
   opacity: 0.8;
   transform: scale(1);
+}
+span {
+  color: goldenrod;
 }
 </style>
 
