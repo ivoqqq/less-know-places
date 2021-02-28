@@ -2,13 +2,19 @@
   <div class="edit-container">
     <div class="cover-container" @submit.prevent="editData">
       <form class="inputFields">
-        <h1>Edit your place {{road.username}}</h1>
+        <h1>Edit your place {{ road.username }}</h1>
         <div>
           <label>Place to visit:</label>
           <div class="error" v-if="$v.road.startpoint.$error">
-            <p v-if="!$v.road.startpoint.minLength">Minimum length is 3 characters</p>
-            <p v-if="!$v.road.startpoint.maxLength">Maximum length is 20 characters</p>
-            <p v-if="!$v.road.startpoint.required">Please fill in starting point</p>
+            <p v-if="!$v.road.startpoint.minLength">
+              Minimum length is 3 characters
+            </p>
+            <p v-if="!$v.road.startpoint.maxLength">
+              Maximum length is 30 characters
+            </p>
+            <p v-if="!$v.road.startpoint.required">
+              The field can not be empty
+            </p>
           </div>
           <input
             class="startpoint"
@@ -33,12 +39,23 @@
 
         <div>
           <div class="error" v-if="$v.road.expectations.$error">
-            <p v-if="!$v.road.expectations.minLength">Minimum length is 6 characters</p>
-            <p v-if="!$v.road.expectations.maxLength">Maximum length is 150 characters</p>
-            <p v-if="!$v.road.expectations.required">Please write your expectations</p>
+            <p v-if="!$v.road.expectations.minLength">
+              Minimum length is 6 characters
+            </p>
+            <p v-if="!$v.road.expectations.maxLength">
+              Maximum length is 200 characters
+            </p>
+            <p v-if="!$v.road.expectations.required">
+              The field can not be empty
+            </p>
           </div>
           <label>About the place:</label>
-          <input class="expectations" type="text" v-model="road.expectations" @blur="$v.road.expectations.$touch()"/>
+          <input
+            class="expectations"
+            type="text"
+            v-model="road.expectations"
+            @blur="$v.road.expectations.$touch()"
+          />
         </div>
         <div>
           <button type="submit" :disabled="$v.$invalid">Edit</button>
@@ -57,7 +74,7 @@ export default {
   data() {
     return {
       docID: this.$route.params.id,
-      road: {}
+      road: {},
     };
   },
   validations: {
@@ -65,17 +82,17 @@ export default {
       startpoint: {
         required,
         minLength: minLength(3),
-        maxLength: maxLength(30)
+        maxLength: maxLength(30),
       },
       expectations: {
         required,
         minLength: minLength(6),
-        maxLength: maxLength(200)
+        maxLength: maxLength(200),
       },
       startimage: {
-        required
+        required,
       },
-    }
+    },
   },
   created() {
     this.getData();
@@ -83,8 +100,8 @@ export default {
   methods: {
     editData() {
       this.setData();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -118,7 +135,7 @@ h1 {
   display: table-cell;
   vertical-align: middle;
 }
-.inputFields > div:not(:last-child){
+.inputFields > div:not(:last-child) {
   width: 50%;
   margin: 0 auto;
 }
@@ -133,7 +150,6 @@ input {
   border-color: transparent;
   border-bottom: 1px solid yellowgreen;
   font-size: 16px;
-  /* margin-right: 100px; */
 }
 ::placeholder {
   color: goldenrod;

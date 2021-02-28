@@ -50,10 +50,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
 .profile-container {
   min-height: 100vh;
   color: white;
@@ -71,7 +67,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("../../assets/DSC-0774.jpg");
-  filter: grayscale(50%) brightness(60%);
+  filter: grayscale(40%) brightness(60%);
 }
 h1 {
   padding: 60px 0 20px 0;

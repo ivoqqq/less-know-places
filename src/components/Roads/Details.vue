@@ -65,14 +65,23 @@ export default {
 
 <style scoped>
 .details-container {
-  background-color: rgb(23, 37, 37);
-  height: 100vh;
-  overflow: auto;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+.details-container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  text-align: center;
-  color: white;
+  background-image: url("../../assets/red-nature-70254.jpg");
+  filter: grayscale(40%);
 }
 h1 {
   padding: 60px 0 20px 0;
@@ -81,28 +90,29 @@ h1 {
   padding: 5px 0;
   width: 250px;
   height: 386px;
-  background-color: rgb(20, 23, 27);
+  background-color: rgba(20, 23, 27, 0.9);
   display: inline-block;
-  box-shadow: 10px 10px 5px black;
+  position: relative;
   font-size: 18px;
+  border-radius: 4px 0 0 4px;
 }
 .startpoint {
   display: inline-block;
   width: 200px;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .exp {
-  background-color: rgb(20, 23, 27);
+  background-color: rgba(20, 23, 27, 0.9);
   display: inline-block;
   width: 190px;
   height: 336px;
   text-align: justify;
   vertical-align: top;
   padding: 30px;
-  box-shadow: 10px 10px 5px black;
   font-size: 18px;
+  position: relative;
+  border-radius: 0 4px 4px 0;
 }
 .btns {
   padding: 5px 0;
