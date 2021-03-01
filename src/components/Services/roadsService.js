@@ -35,21 +35,13 @@ export let roadService = {
                     router.push("/hit-the-road");
                 })
         },
-        delData(id) {
+        delData(id, imgUrl) {
+            firebase.storage().refFromURL(imgUrl).delete() //replace with the method at the bottom
             this.collection
                 .doc(id)
-                .get()
-                .then(doc => {
-                    let url = doc.data().startimage
-                    firebase.storage().refFromURL(url).delete()
-                })
+                .delete()
                 .then(() => {
-                    this.collection
-                        .doc(id)
-                        .delete()
-                        .then(() => {
-                            router.push("/hit-the-road");
-                        });
+                    router.push("/hit-the-road");
                 })
                 .catch(err => console.log(err))
 
@@ -133,6 +125,9 @@ export let roadService = {
                     });
                 }
             );
+        },
+        deleteImage(imgUrl) {
+            firebase.storage().refFromURL(imgUrl).delete()
         }
     },
 }

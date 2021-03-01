@@ -22,7 +22,7 @@
           <button @click.stop="editData(docID)" :disabled="!disableButton">
             Edit
           </button>
-          <button @click.stop="deleteData(docID)" :disabled="!disableButton">
+          <button @click.stop="deleteData(docID, road.startimage)" :disabled="!disableButton">
             Delete
           </button>
         </div>
@@ -48,8 +48,8 @@ export default {
     this.getData();
   },
   methods: {
-    deleteData(id, data) {
-      this.delData(id, data);
+    deleteData(id, imgUrl) {
+      this.delData(id, imgUrl);
     },
     editData(id) {
       router.push({ name: "Edit", params: { id: id } });
@@ -59,7 +59,7 @@ export default {
     disableButton: function () {
       return this.road.id === firebase.auth().currentUser.uid;
     },
-  },
+  }
 };
 </script>
 

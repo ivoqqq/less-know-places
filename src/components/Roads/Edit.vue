@@ -24,18 +24,43 @@
           />
         </div>
 
-        <div class="error" v-if="$v.road.startimage.$error">
-          <p v-if="!$v.road.startimage.required">Place image url</p>
+        <div class="error" v-if="$v.finishedUploadTask.$error">
+          <p v-if="!$v.finishedUploadTask.required">
+            You didn't choose any file
+          </p>
         </div>
-        <div>
-          <label>Image:</label>
+        <div class="change-image">
+          <p style="color: white">Change the picture of the place?</p>
           <input
-            class="startimage"
-            type="text"
-            v-model="road.startimage"
-            @blur="$v.road.startimage.$touch()"
+            type="checkbox"
+            name="my-input"
+            id="yes"
+            @click="isChecked = !isChecked"
           />
         </div>
+
+        <div class="image-container" v-if="isChecked">
+          <label
+            for="input-image"
+            class="input-file-label"
+            @click="delOldImg(road.startimage)"
+            >{{ file }}</label
+          >
+          <input
+            id="input-image"
+            ref="upload"
+            @change="uploadFile"
+            accept="image/*"
+            type="file"
+            @blur="$v.finishedUploadTask.$touch()"
+          />
+        </div>
+        <progress
+          v-if="progress != null"
+          class="progress-bar"
+          :value="progress"
+          max="100"
+        ></progress>
 
         <div>
           <div class="error" v-if="$v.road.expectations.$error">
@@ -67,14 +92,23 @@
 
 <script>
 import { roadService } from "../Services/roadsService";
-import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import {
+  required,
+  minLength,
+  maxLength,
+  minValue,
+} from "vuelidate/lib/validators";
 
 export default {
   mixins: [roadService],
   data() {
     return {
-      docID: this.$route.params.id,
       road: {},
+      imageData: null,
+      progress: null,
+      file: "ADD PICTURE",
+      finishedUploadTask: null,
+      isChecked: false,
     };
   },
   validations: {
@@ -89,9 +123,12 @@ export default {
         minLength: minLength(6),
         maxLength: maxLength(200),
       },
-      startimage: {
-        required,
+    },
+    finishedUploadTask: {
+      required: function(){
+        return !this.isChecked
       },
+      minValue: minValue(1),
     },
   },
   created() {
@@ -99,9 +136,23 @@ export default {
   },
   methods: {
     editData() {
+      // this.deleteImage()
       this.setData();
     },
+    uploadFile(event) {
+      this.addFile(event);
+    },
+    delOldImg(imgUrl) {
+      this.deleteImage(imgUrl);
+    },
   },
+  watch: {
+    progress(){
+      if(this.progress === 100){
+        this.isChecked = false
+      }
+    }
+  }
 };
 </script>
 
@@ -148,14 +199,59 @@ input {
   height: 30px;
   background: transparent;
   border-color: transparent;
-  border-bottom: 1px solid yellowgreen;
+  border-bottom: 2px solid rgba(153, 205, 50, 0.5);
   font-size: 16px;
+  opacity: 0.8;
+}
+input:focus {
+  opacity: 1;
 }
 ::placeholder {
   color: goldenrod;
-  opacity: 0.8;
   font-size: 14px;
 }
+
+input[type="file"] {
+  display: none;
+}
+.input-file-label {
+  display: inline-block;
+  line-height: 30px;
+  position: relative;
+  width: 100px;
+  background-color: olive;
+  color: white;
+  cursor: pointer;
+  opacity: 0.8;
+  font-size: 14px;
+  transition: all 0.1s ease-in-out;
+  margin: 5px 0 22px 0;
+  padding: 0 5px;
+  border-radius: 2px;
+}
+.input-file-label:hover {
+  opacity: 1;
+}
+progress {
+  border: 0;
+  text-align: left;
+}
+progress::-webkit-progress-bar {
+  height: 18px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #ccc;
+  box-shadow: 0px 0px 6px #777 inset;
+  padding: 2px;
+}
+progress::-webkit-progress-value {
+  display: inline-block;
+  height: 14px;
+  background: rgb(6, 112, 112);
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px #777 inset;
+}
+
 button {
   width: 50%;
   height: 40px;
