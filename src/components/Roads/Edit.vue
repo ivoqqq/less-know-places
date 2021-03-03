@@ -1,36 +1,32 @@
 <template>
   <div class="edit-container">
-    <div class="cover-container" @submit.prevent="editData">
-      <form class="inputFields">
-        <h1>Edit your place {{ road.username }}</h1>
-        <div>
-          <label>Place to visit:</label>
-          <div class="error" v-if="$v.road.startpoint.$error">
-            <p v-if="!$v.road.startpoint.minLength">
-              Minimum length is 3 characters
-            </p>
-            <p v-if="!$v.road.startpoint.maxLength">
-              Maximum length is 30 characters
-            </p>
-            <p v-if="!$v.road.startpoint.required">
-              The field can not be empty
-            </p>
-          </div>
-          <input
-            class="startpoint"
-            type="text"
-            v-model="road.startpoint"
-            @blur="$v.road.startpoint.$touch()"
-          />
-        </div>
-
-        <div class="error" v-if="$v.finishedUploadTask.$error">
-          <p v-if="!$v.finishedUploadTask.required">
-            You didn't choose any file
+    <form class="inputFields" @submit.prevent="editData">
+      <h1>Edit your place {{ road.username }}</h1>
+      <div>
+        <label>Place to visit:</label>
+        <div class="error" v-if="$v.road.startpoint.$error">
+          <p v-if="!$v.road.startpoint.minLength">
+            Minimum length is 3 characters
           </p>
+          <p v-if="!$v.road.startpoint.maxLength">
+            Maximum length is 30 characters
+          </p>
+          <p v-if="!$v.road.startpoint.required">The field can not be empty</p>
         </div>
-        <div class="change-image">
-          <p style="color: white">Change the picture of the place?</p>
+        <input
+          class="startpoint"
+          type="text"
+          v-model="road.startpoint"
+          @blur="$v.road.startpoint.$touch()"
+        />
+      </div>
+
+      <div class="error" v-if="$v.finishedUploadTask.$error">
+        <p v-if="!$v.finishedUploadTask.required">You didn't choose any file</p>
+      </div>
+      <div class="change-image">
+        <div class="change-image-checkbox">
+          <p>Change image?</p>
           <input
             type="checkbox"
             name="my-input"
@@ -39,54 +35,47 @@
           />
         </div>
 
-        <div class="image-container" v-if="isChecked">
-          <label
-            for="input-image"
-            class="input-file-label"
-            @click="delOldImg(road.startimage)"
-            >{{ file }}</label
-          >
+        <div class="input-image-container" v-if="isChecked">
+          <label for="input-image" class="input-file-label">{{ file }}</label>
           <input
             id="input-image"
             ref="upload"
-            @change="uploadFile"
             accept="image/*"
             type="file"
+            @change="uploadFile(road.startimage)"
             @blur="$v.finishedUploadTask.$touch()"
           />
         </div>
-        <progress
-          v-if="progress != null"
-          class="progress-bar"
-          :value="progress"
-          max="100"
-        ></progress>
+      </div>
+      <progress
+        v-if="progress != null"
+        class="progress-bar"
+        :value="progress"
+        max="100"
+      ></progress>
 
-        <div>
-          <div class="error" v-if="$v.road.expectations.$error">
-            <p v-if="!$v.road.expectations.minLength">
-              Minimum length is 6 characters
-            </p>
-            <p v-if="!$v.road.expectations.maxLength">
-              Maximum length is 200 characters
-            </p>
-            <p v-if="!$v.road.expectations.required">
-              The field can not be empty
-            </p>
-          </div>
-          <label>About the place:</label>
-          <input
-            class="expectations"
-            type="text"
-            v-model="road.expectations"
-            @blur="$v.road.expectations.$touch()"
-          />
+      <div>
+        <label>About the place:</label>
+        <div class="error" v-if="$v.road.expectations.$error">
+          <p v-if="!$v.road.expectations.minLength">
+            Minimum length is 6 characters
+          </p>
+          <p v-if="!$v.road.expectations.maxLength">
+            Maximum length is 200 characters
+          </p>
+          <p v-if="!$v.road.expectations.required">
+            The field can not be empty
+          </p>
         </div>
-        <div>
-          <button type="submit" :disabled="$v.$invalid">Edit</button>
-        </div>
-      </form>
-    </div>
+        <input
+          class="expectations"
+          type="text"
+          v-model="road.expectations"
+          @blur="$v.road.expectations.$touch()"
+        />
+      </div>
+      <button type="submit" :disabled="$v.$invalid">Edit</button>
+    </form>
   </div>
 </template>
 
@@ -125,8 +114,8 @@ export default {
       },
     },
     finishedUploadTask: {
-      required: function(){
-        return !this.isChecked
+      required: function () {
+        return !this.isChecked;
       },
       minValue: minValue(1),
     },
@@ -136,60 +125,81 @@ export default {
   },
   methods: {
     editData() {
-      // this.deleteImage()
       this.setData();
     },
-    uploadFile(event) {
+    uploadFile(oldImgUrl) {
+      this.deleteImage(oldImgUrl);
       this.addFile(event);
-    },
-    delOldImg(imgUrl) {
-      this.deleteImage(imgUrl);
     },
   },
   watch: {
-    progress(){
-      if(this.progress === 100){
-        this.isChecked = false
+    progress() {
+      if (this.progress === 100) {
+        this.isChecked = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.edit-container {
-  background-color: darkslategrey;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-align: center;
+.change-image {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.change-image p {
+  color: white;
+  margin: 5px 0 22px 0;
+  line-height: 30px;
+  width: 100px;
+}
+.change-image-checkbox {
+  display: flex;
+}
+input[type="checkbox"] {
+  width: 30px;
+  margin: 5px 10px 22px 10px;
 }
 
-.cover-container {
-  background-color: rgba(0, 0, 0, 0.7);
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  display: table;
+.edit-container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.edit-container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  background-color: darkslategrey;
+  filter: grayscale(50%) brightness(60%);
+  z-index: -1;
+}
+
 h1 {
-  color: goldenrod;
+  color: white;
   margin-bottom: 20px;
 }
 .inputFields {
   display: table-cell;
   vertical-align: middle;
+  text-align: center;
+  width: 80%;
+  min-width: 515px;
 }
 .inputFields > div:not(:last-child) {
   width: 50%;
   margin: 0 auto;
 }
+
 input {
   outline: none;
   color: white;
@@ -269,7 +279,6 @@ button:hover {
 label {
   font-size: 18px;
   color: goldenrod;
-  padding-right: 5px;
 }
 button:disabled {
   background-color: rgb(204, 204, 204);
@@ -280,6 +289,7 @@ button:disabled {
 .error {
   color: crimson;
   font-weight: 700;
-  font-size: 22px;
+  position: absolute;
+  transform: translateY(-10px);
 }
 </style>
