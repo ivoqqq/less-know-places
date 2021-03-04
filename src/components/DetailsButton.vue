@@ -1,18 +1,18 @@
 <template>
-  <button @click="details(road)">Details</button>
+  <button @click="details(place)">Details</button>
 </template>
 
 <script>
 import router from "../router";
 export default {
   props: {
-      road: {
+      place: {
           type: Object
       }
   },
   methods: {
-    details(road) {
-      router.push({ name: "Details", params: { id: road.docID } });
+    details(place) {
+      router.push({ name: "Details", params: { id: place.docID } });
     },
   },
 };

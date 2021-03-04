@@ -2,12 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import firebase from "firebase";
 
-import Home from "./components/Roads/Home";
-import HitTheRoad from "./components/Roads/HitTheRoad";
-import Create from "./components/Roads/Create";
-import UserProfile from "./components/Roads/UserProfile"
-import Details from "./components/Roads/Details";
-import Edit from "./components/Roads/Edit";
+import Home from "./components/Views/Home";
+import HitTheRoad from "./components/Views/HitTheRoad";
+import Create from "./components/Views/Create";
+import UserProfile from "./components/Views/UserProfile"
+import Details from "./components/Views/Details";
+import Edit from "./components/Views/Edit";
 
 Vue.use(VueRouter)
 
@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) {
     alert("to visit this page you have to login first")
-    next("/")
+    // next("/")
   } else if (!requiresAuth && currentUser) {
     next()
   } else {
