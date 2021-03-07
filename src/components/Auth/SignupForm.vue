@@ -164,7 +164,7 @@ button:hover {
 .form-content {
   border-radius: 10px;
   background-color: rgba(20, 23, 27, 0.9);
-  margin: 25% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 15% auto 10%; /* 5% from the top, 15% from the bottom and centered */
   width: 40%; /* Could be more or less, depending on screen size */
   min-width: 400px;
 }
