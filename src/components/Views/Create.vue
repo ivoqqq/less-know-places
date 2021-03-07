@@ -25,7 +25,7 @@
         </p>
         <p v-if="!$v.place.description.required">No empty fields</p>
       </div>
-      <input
+      <textarea
         class="description"
         type="text"
         placeholder="about the place..."
@@ -137,8 +137,8 @@ export default {
   border-radius: 4px;
   z-index: -1;
 }
-
-input {
+input, textarea {
+  resize: none;
   outline: none;
   color: white;
   width: 100%;
@@ -150,6 +150,9 @@ input {
   border-bottom: 2px solid rgba(153, 205, 50, 0.5);
   font-size: 16px;
   opacity: 0.8;
+}
+textarea {
+  height: 100px;
 }
 input:focus {
   opacity: 1;
@@ -226,6 +229,6 @@ button:disabled {
   color: crimson;
   font-weight: 700;
   position: absolute;
-  transform: translateY(-10px);
+  transform: translateY(-15px);
 }
 </style>
