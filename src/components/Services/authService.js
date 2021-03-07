@@ -51,10 +51,11 @@ export let authService = {
                     this.isLogged = true;
                 });               
         },
-        currentUserName() {
-            if (firebase.auth().currentUser !== null) {
-                this.username = firebase.auth().currentUser.displayName
-            }
-        }
+        // currentUserEmail() {
+        //     if (firebase.auth().currentUser !== null) {
+        //         // this.username = firebase.auth().currentUser.displayName
+        //         this.userEmail = firebase.auth().currentUser.email
+        //     }
+        // }
     }
 }

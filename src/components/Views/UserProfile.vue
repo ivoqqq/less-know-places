@@ -43,7 +43,6 @@ export default {
     };
   },
   created() {
-    this.currentUserName();
     this.getQueryDataProfile();
   },
 };
