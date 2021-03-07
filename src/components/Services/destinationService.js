@@ -60,7 +60,6 @@ export let destinationService = {
                 // .orderBy("rating")
                 .get()
                 .then(querySnapshot => {
-                    console.log(querySnapshot)
                     querySnapshot.forEach(doc => {
                         this.places.push({
                             docID: doc.id,
@@ -77,7 +76,6 @@ export let destinationService = {
             this.collection
                 .get()
                 .then(querySnapshot => {
-                    console.log(querySnapshot)
                     querySnapshot.forEach(doc => {
                         if (firebase.auth().currentUser.uid === doc.data().userID) {
 

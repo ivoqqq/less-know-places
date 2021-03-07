@@ -1,5 +1,5 @@
 <template>
-  <div class="places-container">
+  <div class="places-container container">
     <h1>Roads</h1>
     <div class="cards">
       <div class="card" v-for="place in places" :key="place.key">
@@ -30,11 +30,11 @@
 
 <script>
 import { destinationService } from "../Services/destinationService";
-import DetailsButton from "../DetailsButton"
+import DetailsButton from "../DetailsButton";
 
 export default {
   components: {
-    DetailsButton
+    DetailsButton,
   },
   mixins: [destinationService],
   data() {
@@ -45,32 +45,16 @@ export default {
   },
   created() {
     this.getQueryData();
-    console.log(this.places)
   },
   methods: {
     loaded() {
       this.isImgLoaded = true;
     },
-  }
+  },
 };
 </script>
 <style scoped>
-.places-container {
-  min-height: 100vh;
-  color: white;
-  text-align: center;
-  position: relative;
-}
 .places-container::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   background-image: url("../../assets/city-lights-night-traffic-highway-roads-1609975.jpg");
   filter: grayscale(60%) blur(1px);
 }
@@ -93,7 +77,8 @@ h2 {
 .btns {
   padding: 5px 0;
 }
-.description, .title {
+.description,
+.title {
   display: inline-block;
   width: 200px;
   overflow: hidden;

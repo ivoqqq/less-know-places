@@ -1,5 +1,5 @@
 <template>
-  <div class="details-container">
+  <div class="details-container container">
     <h1>Details</h1>
     <div class="cards">
       <div class="card">
@@ -46,7 +46,6 @@ export default {
   },
   created() {
     this.getData();
-    console.log(this.place.id)
   },
   methods: {
     deleteData(id, imgUrl) {
@@ -65,22 +64,7 @@ export default {
 </script>
 
 <style scoped>
-.details-container {
-  min-height: 100vh;
-  color: white;
-  text-align: center;
-  position: relative;
-}
 .details-container::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   background-image: url("../../assets/red-nature-70254.jpg");
   filter: grayscale(40%);
 }
@@ -95,7 +79,6 @@ h1 {
   display: inline-block;
   position: relative;
   font-size: 18px;
-  border-radius: 4px 0 0 4px;
 }
 .title {
   display: inline-block;
@@ -113,7 +96,6 @@ h1 {
   padding: 30px;
   font-size: 18px;
   position: relative;
-  border-radius: 0 4px 4px 0;
 }
 .btns {
   padding: 5px 0;

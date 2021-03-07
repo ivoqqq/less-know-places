@@ -1,17 +1,17 @@
 <template>
   <div class="edit-container">
-    <form class="inputFields" @submit.prevent="editData">
+    <form class="input-form" @submit.prevent="editData">
       <h1>Edit your place {{ place.username }}</h1>
       <div>
         <label>Place to visit:</label>
         <div class="error" v-if="$v.place.title.$error">
           <p v-if="!$v.place.title.minLength">
-            Minimum length is 3 characters
+            At least 3 characters
           </p>
           <p v-if="!$v.place.title.maxLength">
-            Maximum length is 30 characters
+            Maximum 30 characters
           </p>
-          <p v-if="!$v.place.title.required">The field can not be empty</p>
+          <p v-if="!$v.place.title.required">No empty fields</p>
         </div>
         <input
           type="text"
@@ -24,8 +24,8 @@
         <p v-if="!$v.finishedUploadTask.required">You didn't choose any file</p>
       </div>
       <div class="change-image">
+        <p>Change image?</p>
         <div class="change-image-checkbox">
-          <p>Change image?</p>
           <input
             type="checkbox"
             name="my-input"
@@ -57,13 +57,13 @@
         <label>About the place:</label>
         <div class="error" v-if="$v.place.description.$error">
           <p v-if="!$v.place.description.minLength">
-            Minimum length is 6 characters
+            At least 6 characters
           </p>
           <p v-if="!$v.place.description.maxLength">
-            Maximum length is 200 characters
+            Maximum 200 characters
           </p>
           <p v-if="!$v.place.description.required">
-            The field can not be empty
+            No empty fields
           </p>
         </div>
         <input
@@ -73,7 +73,7 @@
           @blur="$v.place.description.$touch()"
         />
       </div>
-      <button type="submit" :disabled="$v.$invalid">Edit</button>
+      <button class="button" type="submit" :disabled="$v.$invalid">Edit</button>
     </form>
   </div>
 </template>
@@ -150,7 +150,6 @@ export default {
 .change-image p {
   color: goldenrod;
   margin: 5px 0 22px 0;
-  line-height: 30px;
   width: 100px;
 }
 .change-image-checkbox {
@@ -163,6 +162,7 @@ input[type="checkbox"] {
 
 .edit-container {
   min-height: 100vh;
+  min-width: 400px;
   position: relative;
   display: flex;
   align-items: center;
@@ -175,9 +175,6 @@ input[type="checkbox"] {
   width: 100%;
   top: 0;
   left: 0;
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; */
   background-color: darkslategrey;
   filter: grayscale(50%) brightness(60%);
   z-index: -1;
@@ -187,16 +184,25 @@ h1 {
   color: white;
   margin-bottom: 20px;
 }
-.inputFields {
-  display: table-cell;
-  vertical-align: middle;
+.input-form {
   text-align: center;
+  position: relative;
   width: 80%;
-  min-width: 515px;
+  padding: 80px 40px 40px 40px;
 }
-.inputFields > div:not(:last-child) {
+.input-form > div:not(:last-child) {
   width: 50%;
   margin: 0 auto;
+}
+@media screen and (max-width: 650px){
+  .input-form > div:not(:last-child), .button {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 400px){
+  .input-form > div:not(:last-child), .button {
+    width: 70%;
+  }
 }
 
 input {
@@ -260,7 +266,10 @@ progress::-webkit-progress-value {
   border-radius: 10px;
   box-shadow: 0px 0px 6px #777 inset;
 }
-
+label {
+  font-size: 18px;
+  color: goldenrod;
+}
 button {
   width: 50%;
   height: 40px;
@@ -274,10 +283,6 @@ button {
 }
 button:hover {
   opacity: 1;
-}
-label {
-  font-size: 18px;
-  color: goldenrod;
 }
 button:disabled {
   background-color: rgb(204, 204, 204);

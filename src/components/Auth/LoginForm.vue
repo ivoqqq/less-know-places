@@ -1,8 +1,8 @@
 <template>
   <div id="loginform" class="modal-form" v-show="value">
     <form class="form-content" @submit.prevent>
-      <div class="container">
-        <h1 class="error" v-if="error">{{error}}</h1>
+      <div class="modal-container">
+        <h1 class="error" v-if="error">{{ error }}</h1>
 
         <h1 class="title">Log in</h1>
 
@@ -10,7 +10,12 @@
           <p v-if="!$v.email.email">Please fill in a valid email</p>
           <p v-if="!$v.email.required">Please fill in email</p>
         </div>
-        <input type="text" placeholder="Your email" @blur="$v.email.$touch()" v-model="email" />
+        <input
+          type="text"
+          placeholder="Your email"
+          @blur="$v.email.$touch()"
+          v-model="email"
+        />
 
         <div class="error" v-if="$v.password.$error">
           <p v-if="!$v.password.minLength">Must be at least 6 characters</p>
@@ -24,7 +29,9 @@
         />
 
         <div class="clearfix">
-          <button class="cancelbtn" @click="clearInputFields(), close()">Cancel</button>
+          <button class="cancelbtn" @click="clearInputFields(), close()">
+            Cancel
+          </button>
           <button class="loginbtn" @click="login()">Login</button>
         </div>
       </div>
@@ -40,25 +47,25 @@ export default {
   mixins: [authService],
   props: {
     value: {
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       email: "",
       password: "",
-      error: null
+      error: null,
     };
   },
   validations: {
     email: {
       required,
-      email
+      email,
     },
     password: {
       required,
-      minLength: minLength(6)
-    }
+      minLength: minLength(6),
+    },
   },
   methods: {
     close() {
@@ -72,31 +79,25 @@ export default {
     },
     login() {
       this.userLogin();
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-* {
-  outline: none;
-}
 .title {
   color: white;
   opacity: 0.7;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
-}
-.error {
-  color: crimson;
-  font-size: 22px;
+  margin-bottom: 20px;
 }
 /* Full-width input fields */
 input[type="text"],
 input[type="password"] {
   color: white;
   width: 100%;
-  margin: 5px 0 22px 0;
+  margin: 15px 0 22px 0;
   display: inline-block;
   height: 20px;
   background: transparent;
@@ -128,7 +129,7 @@ button:hover {
   float: left;
   width: 50%;
 }
-.container {
+.modal-container {
   padding: 15px;
 }
 /* The Modal (background) */
@@ -147,8 +148,9 @@ button:hover {
 .form-content {
   border-radius: 10px;
   background-color: rgba(20, 23, 27, 0.9);
-  margin: 15% auto 10% auto; /* 5% from the top, 15% from the bottom and centered */
-  width: 30%; /* Could be more or less, depending on screen size */
+  margin: 25% auto; /* 5% from the top, 15% from the bottom and centered */
+  width: 40%; /* Could be more or less, depending on screen size */
+  min-width: 400px;
 }
 .clearfix::after {
   content: "";
@@ -165,7 +167,10 @@ button:hover {
     transform: scale(1);
   }
 }
-v-alert {
+.error {
   color: crimson;
+  font-weight: 700;
+  position: absolute;
+  transform: translateY(-10px);
 }
 </style>

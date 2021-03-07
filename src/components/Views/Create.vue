@@ -1,14 +1,14 @@
 <template>
-  <div class="create-container">
+  <div class="create-container container">
     <form class="input-form" @submit.prevent="addData">
       <div class="error" v-if="$v.place.title.$error">
         <p v-if="!$v.place.title.minLength">
-          Minimum length is 3 characters
+          At least 3 characters
         </p>
         <p v-if="!$v.place.title.maxLength">
-          Maximum length is 30 characters
+          Maximum 30 characters
         </p>
-        <p v-if="!$v.place.title.required">The field can not be empty</p>
+        <p v-if="!$v.place.title.required">No empty fields</p>
       </div>
       <input
         type="text"
@@ -18,12 +18,12 @@
       />
       <div class="error" v-if="$v.place.description.$error">
         <p v-if="!$v.place.description.minLength">
-          Minimum length is 6 characters
+          At least 6 characters
         </p>
         <p v-if="!$v.place.description.maxLength">
-          Maximum length is 200 characters
+          Maximum 200 characters
         </p>
-        <p v-if="!$v.place.description.required">The field can not be empty</p>
+        <p v-if="!$v.place.description.required">No empty fields</p>
       </div>
       <input
         class="description"
@@ -111,22 +111,11 @@ export default {
 
 <style scoped>
 .create-container {
-  min-height: 100vh;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .create-container::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   background-image: url("../../assets/bench-with-the-view-in-austrian-mountains-2210x1658.jpg");
   filter: grayscale(50%) brightness(60%);
   z-index: -1;
