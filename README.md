@@ -1,7 +1,5 @@
 # first-project
 ```
-[lessknownplaces.web.app](https://lessknownplaces.web.app)
-[Google](https://www.google.com)
 
 Currently updating...
 
