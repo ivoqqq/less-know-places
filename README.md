@@ -1,4 +1,4 @@
-# first-project
+# lessknownplaces
 ```
 Currently updating...
 
@@ -9,7 +9,8 @@ This app stores information about places you might like to visit.
 Public part when user is not logged in. 
 To view, create, edit or delete places, user have to be logged in first.
 ```
-
+## Try it
+https://lessknownplaces.web.app
 
 ## Project setup
 ```
