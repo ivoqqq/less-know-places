@@ -2,7 +2,7 @@
   <div id="signupform" class="modal-form" v-show="value">
     <form class="form-content" @submit.prevent>
       <div class="modal-container">
-        <h1 class="error" v-if="error">{{ error }}</h1>
+        <p class="fib-error" v-if="error">{{ error }}</p>
 
         <h1 class="title">Register form</h1>
 
@@ -187,5 +187,10 @@ button:hover {
   font-weight: 700;
   position: absolute;
   transform: translateY(-10px);
+}
+.fib-error {
+  color: crimson;
+  font-weight: 700;
+  font-size: 16px;
 }
 </style>

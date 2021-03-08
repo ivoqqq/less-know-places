@@ -12,7 +12,7 @@ export let destinationService = {
                 description: "",
                 photo: "",
             },
-            collection: firebase.firestore().collection("roads")
+            collection: firebase.firestore().collection("places")
         };
     },
     methods: {

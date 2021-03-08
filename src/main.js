@@ -9,14 +9,13 @@ Vue.use(Vuelidate)
 Vue.config.productionTip = false
 
 const configOptions = {
-  apiKey: "AIzaSyAVLSTiGdFU0vpUaCAvZDZfSxNRW8je6Qg",
-  authDomain: "hit-the-road-bea36.firebaseapp.com",
-  databaseURL: "https://hit-the-road-bea36.firebaseio.com",
-  projectId: "hit-the-road-bea36",
-  storageBucket: "hit-the-road-bea36.appspot.com",
-  messagingSenderId: "561915196823",
-  appId: "1:561915196823:web:2a79d11182759aca8440d2",
-  measurementId: "G-H88J9NZNXW"
+  apiKey: "AIzaSyAo1cDb17-oa1qqaSjc-nbqZX4hCSmovHY",
+  authDomain: "lessknownplaces.firebaseapp.com",
+  projectId: "lessknownplaces",
+  storageBucket: "lessknownplaces.appspot.com",
+  messagingSenderId: "389063040372",
+  appId: "1:389063040372:web:90cd21c6ff1bfa23536021",
+  measurementId: "G-1C1E9MBMPH"
 };
 
 firebase.initializeApp(configOptions);

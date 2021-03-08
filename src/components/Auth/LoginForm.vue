@@ -2,10 +2,9 @@
   <div id="loginform" class="modal-form" v-show="value">
     <form class="form-content" @submit.prevent>
       <div class="modal-container">
-        <h1 class="error" v-if="error">{{ error }}</h1>
+        <p class="fib-error" v-if="error">{{ error }}</p>
 
         <h1 class="title">Log in</h1>
-
         <div class="error" v-if="$v.email.$error">
           <p v-if="!$v.email.email">Please fill in a valid email</p>
           <p v-if="!$v.email.required">Please fill in email</p>
@@ -172,5 +171,10 @@ button:hover {
   font-weight: 700;
   position: absolute;
   transform: translateY(-10px);
+}
+.fib-error {
+  color: crimson;
+  font-weight: 700;
+  font-size: 16px;
 }
 </style>
