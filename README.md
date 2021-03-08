@@ -1,4 +1,4 @@
-# lessknownplaces
+# less-known-places
 ```
 Currently updating...
 
