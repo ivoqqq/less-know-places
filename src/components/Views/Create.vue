@@ -2,12 +2,8 @@
   <div class="create-container container">
     <form class="input-form" @submit.prevent="addData">
       <div class="error" v-if="$v.place.title.$error">
-        <p v-if="!$v.place.title.minLength">
-          At least 3 characters
-        </p>
-        <p v-if="!$v.place.title.maxLength">
-          Maximum 30 characters
-        </p>
+        <p v-if="!$v.place.title.minLength">At least 3 characters</p>
+        <p v-if="!$v.place.title.maxLength">Maximum 30 characters</p>
         <p v-if="!$v.place.title.required">No empty fields</p>
       </div>
       <input
@@ -17,12 +13,8 @@
         @blur="$v.place.title.$touch()"
       />
       <div class="error" v-if="$v.place.description.$error">
-        <p v-if="!$v.place.description.minLength">
-          At least 6 characters
-        </p>
-        <p v-if="!$v.place.description.maxLength">
-          Maximum 200 characters
-        </p>
+        <p v-if="!$v.place.description.minLength">At least 6 characters</p>
+        <p v-if="!$v.place.description.maxLength">Maximum 200 characters</p>
         <p v-if="!$v.place.description.required">No empty fields</p>
       </div>
       <textarea
@@ -37,7 +29,6 @@
         <p v-if="!$v.finishedUploadTask.required">You didn't choose any file</p>
       </div>
       <div class="image-container">
-          
         <label for="input-image" class="input-file-label">{{ file }}</label>
         <input
           id="input-image"
@@ -77,7 +68,7 @@ export default {
       imageData: null,
       progress: null,
       file: "ADD PICTURE",
-      finishedUploadTask: null
+      finishedUploadTask: null,
     };
   },
   validations: {
@@ -95,7 +86,7 @@ export default {
     },
     finishedUploadTask: {
       required,
-      minValue: minValue(1)
+      minValue: minValue(1),
     },
   },
   methods: {
@@ -137,8 +128,8 @@ export default {
   border-radius: 4px;
   z-index: -1;
 }
-input, textarea {
-  resize: none;
+input,
+textarea {
   outline: none;
   color: white;
   width: 100%;
@@ -153,8 +144,9 @@ input, textarea {
 }
 textarea {
   height: 100px;
+  resize: none;
 }
-input:focus {
+input:focus, textarea:focus {
   opacity: 1;
 }
 ::placeholder {

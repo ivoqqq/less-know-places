@@ -5,12 +5,8 @@
       <div>
         <label>Place to visit:</label>
         <div class="error" v-if="$v.place.title.$error">
-          <p v-if="!$v.place.title.minLength">
-            At least 3 characters
-          </p>
-          <p v-if="!$v.place.title.maxLength">
-            Maximum 30 characters
-          </p>
+          <p v-if="!$v.place.title.minLength">At least 3 characters</p>
+          <p v-if="!$v.place.title.maxLength">Maximum 30 characters</p>
           <p v-if="!$v.place.title.required">No empty fields</p>
         </div>
         <input
@@ -56,17 +52,11 @@
       <div>
         <label>About the place:</label>
         <div class="error" v-if="$v.place.description.$error">
-          <p v-if="!$v.place.description.minLength">
-            At least 6 characters
-          </p>
-          <p v-if="!$v.place.description.maxLength">
-            Maximum 200 characters
-          </p>
-          <p v-if="!$v.place.description.required">
-            No empty fields
-          </p>
+          <p v-if="!$v.place.description.minLength">At least 6 characters</p>
+          <p v-if="!$v.place.description.maxLength">Maximum 200 characters</p>
+          <p v-if="!$v.place.description.required">No empty fields</p>
         </div>
-        <input
+        <textarea
           class="description"
           type="text"
           v-model="place.description"
@@ -194,18 +184,21 @@ h1 {
   width: 50%;
   margin: 0 auto;
 }
-@media screen and (max-width: 650px){
-  .input-form > div:not(:last-child), .button {
+@media screen and (max-width: 650px) {
+  .input-form > div:not(:last-child),
+  .button {
     width: 70%;
   }
 }
-@media screen and (max-width: 400px){
-  .input-form > div:not(:last-child), .button {
+@media screen and (max-width: 400px) {
+  .input-form > div:not(:last-child),
+  .button {
     width: 70%;
   }
 }
 
-input {
+input,
+textarea {
   outline: none;
   color: white;
   width: 100%;
@@ -218,7 +211,11 @@ input {
   font-size: 16px;
   opacity: 0.8;
 }
-input:focus {
+textarea {
+  height: 100px;
+  resize: none;
+}
+input:focus, textarea:focus {
   opacity: 1;
 }
 ::placeholder {
