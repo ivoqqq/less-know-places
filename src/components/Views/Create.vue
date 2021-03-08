@@ -227,7 +227,7 @@ button:disabled {
 }
 .error {
   color: crimson;
-  font-weight: 700;
+  font-weight: 600;
   position: absolute;
   transform: translateY(-15px);
 }
