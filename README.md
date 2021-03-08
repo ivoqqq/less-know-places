@@ -1,6 +1,6 @@
 # first-project
 ```
-https://lessknownplaces.web.app/
+[lessknownplaces.web.app](https://lessknownplaces.web.app)
 
 Currently updating...
 
