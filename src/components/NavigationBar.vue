@@ -26,9 +26,7 @@
     <div class="btns">
       <p class="logInBtn" v-if="isLogged" @click="openLoginForm">Login</p>
       <p class="logOutBtn" v-else @click="logOut">Logout</p>
-      <p class="signUpBtn" v-if="isLogged" @click="openSignupForm" >
-        Sign up
-      </p>
+      <p class="signUpBtn" v-if="isLogged" @click="openSignupForm">SignUp</p>
     </div>
     <app-login-form
       v-model="isLoginFormOpen"
@@ -92,6 +90,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@font-face {
+  font-family: "Bauhaus 93";
+  src: local("Bauhaus 93"), url("../assets/BAUHS93.ttf") format("truetype");
+}
 $hover-color: goldenrod;
 $elements-height: 30px;
 .name {
@@ -123,6 +125,7 @@ $elements-height: 30px;
       display: table-cell;
       text-align: center;
       vertical-align: middle;
+      padding: 0 4px;
 
       &:hover {
         background-color: olive;
@@ -147,8 +150,9 @@ ul {
   border-bottom: 2px solid rgba(218, 165, 32, 0.075);
 
   .link {
-    font-family: "Bauhaus 93", sans-serif;
+    font-family: "Bauhaus 93";
     font-size: 24px;
+
     height: 35px;
     display: inline-block;
     color: white;
@@ -183,7 +187,7 @@ ul {
 .burger {
   width: 35px;
   height: $elements-height;
-  margin: 10px;
+  margin: 12px 10px;
   position: relative;
   cursor: pointer;
   float: left;
