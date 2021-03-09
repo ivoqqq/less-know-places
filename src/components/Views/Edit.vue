@@ -126,8 +126,8 @@ export default {
       if (this.progress === 100) {
         this.isChecked = false;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

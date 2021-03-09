@@ -42,6 +42,7 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
+  background-color:rgb(0, 11, 20);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

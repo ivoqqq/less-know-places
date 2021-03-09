@@ -5,13 +5,6 @@ import { uuidv4Gen } from "./file-name-uuidv4-generator";
 export let destinationService = {
     data() {
         return {
-            place: {
-                userID: firebase.auth().currentUser.uid,
-                username: firebase.auth().currentUser.displayName,
-                title: "",
-                description: "",
-                photo: "",
-            },
             collection: firebase.firestore().collection("places")
         };
     },

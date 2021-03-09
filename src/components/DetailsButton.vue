@@ -1,20 +1,20 @@
 <template>
   <button @click="details(place)">Details</button>
 </template>
-
 <script>
 import router from "../router";
+
 export default {
   props: {
-      place: {
-          type: Object
-      }
+    place: {
+      type: Object,
+    },
   },
   methods: {
     details(place) {
       router.push({ name: "Details", params: { id: place.docID } });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -34,5 +34,11 @@ button {
 button:hover {
   opacity: 1;
   transform: scale(1.1);
+}
+button:disabled {
+  background-color: rgb(204, 204, 204);
+  color: rgb(102, 102, 102);
+  opacity: 0.8;
+  transform: scale(1);
 }
 </style>

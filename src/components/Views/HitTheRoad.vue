@@ -55,7 +55,7 @@ export default {
 </script>
 <style scoped>
 .places-container::before {
-  background-image: url("../../assets/city-lights-night-traffic-highway-roads-1609975.jpg");
+  /* background-image: url("../../assets/city-lights-night-traffic-highway-roads-1609975.jpg"); */
   filter: grayscale(60%) blur(1px);
 }
 h1 {

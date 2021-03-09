@@ -64,7 +64,13 @@ export default {
   mixins: [destinationService, authService],
   data() {
     return {
-      place: {},
+      place: {
+        userID: this.currentUserID(),
+        username: this.currentUsername(),
+        title: "",
+        description: "",
+        photo: ""
+      },
       imageData: null,
       progress: null,
       file: "ADD PICTURE",
@@ -96,7 +102,7 @@ export default {
     uploadFile(event) {
       this.addFile(event);
     },
-  },
+  }
 };
 </script>
 
@@ -146,7 +152,8 @@ textarea {
   height: 100px;
   resize: none;
 }
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   opacity: 1;
 }
 ::placeholder {

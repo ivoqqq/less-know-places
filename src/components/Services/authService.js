@@ -49,13 +49,17 @@ export let authService = {
                 .then(() => {
                     this.$router.push("/").catch(() => { });
                     this.isLogged = true;
-                });               
+                });
         },
-        // currentUserEmail() {
-        //     if (firebase.auth().currentUser !== null) {
-        //         // this.username = firebase.auth().currentUser.displayName
-        //         this.userEmail = firebase.auth().currentUser.email
-        //     }
-        // }
+        currentUserID() {
+            if (firebase.auth().currentUser !== null) {
+                return firebase.auth().currentUser.uid
+            }
+        },
+        currentUsername() {
+            if (firebase.auth().currentUser !== null) {
+                return firebase.auth().currentUser.displayName
+            }
+        }
     }
 }

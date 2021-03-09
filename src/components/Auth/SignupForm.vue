@@ -86,7 +86,7 @@ export default {
   methods: {
     close() {
       this.$emit("closeForm", false);
-      this.$router.replace("/").catch(() => {});
+      // this.$router.replace("/").catch(() => {});
     },
     clearInputFields() {
       this.username = "";
