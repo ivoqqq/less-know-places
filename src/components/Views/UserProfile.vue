@@ -61,11 +61,11 @@ h1 {
   display: inline-block;
   margin: 0 20px 20px 20px;
   width: 250px;
-  background-color: rgb(20, 23, 27);
-  box-shadow: 10px 10px 5px black;
+  background-color: rgba(20, 23, 27, 0.9);
   padding: 5px 0;
   position: relative;
   font-size: 18px;
+  border-radius: 4px;
 
   h2 {
     height: 30px;

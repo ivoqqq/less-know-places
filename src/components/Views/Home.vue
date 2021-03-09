@@ -30,10 +30,4 @@ export default {
 h1 {
   padding-top: 60px;
 }
-.info {
-  padding-top: 100px;
-  font-size: 22px;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
 </style>

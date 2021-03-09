@@ -1,6 +1,6 @@
 <template>
   <div class="places-container container">
-    <h1>Roads</h1>
+    <h1>Places</h1>
     <div class="cards">
       <div class="card" v-for="place in places" :key="place.key">
         <h2 class="card-title">{{ place.username }}</h2>
@@ -49,14 +49,14 @@ export default {
   methods: {
     loaded() {
       this.isImgLoaded = true;
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
 .places-container::before {
-  /* background-image: url("../../assets/city-lights-night-traffic-highway-roads-1609975.jpg"); */
-  filter: grayscale(60%) blur(1px);
+  background-image: url("../../assets/DSC_1928.jpg");
+  filter: grayscale(40%);
 }
 h1 {
   padding: 60px 0 20px 0;
@@ -68,11 +68,11 @@ h2 {
   display: inline-block;
   margin: 0 20px 20px 20px;
   width: 250px;
-  background-color: rgb(20, 23, 27);
-  box-shadow: 10px 10px 5px black;
+  background-color: rgba(20, 23, 27, 0.9);
   padding: 5px 0;
   position: relative;
   font-size: 18px;
+  border-radius: 4px;
 }
 .btns {
   padding: 5px 0;
