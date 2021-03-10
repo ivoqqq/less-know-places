@@ -6,6 +6,7 @@
         <h2 class="card-title">{{ place.username }}</h2>
         <div>
           <img
+            @click="openModalImage($event)"
             @load="loaded"
             class="destination-image"
             :src="place.photo"
@@ -14,6 +15,7 @@
                 'https://bitsofco.de/content/images/2018/12/broken-1.png'
             "
           />
+          
           <p class="title">
             <span>visit: </span>
             {{ place.title }}
@@ -25,22 +27,27 @@
         </div>
       </div>
     </div>
+    <popup-image v-if="show" :imgurl="imgurl" @closeModalImage="show = $event"></popup-image>
   </div>
 </template>
 
 <script>
 import { destinationService } from "../Services/destinationService";
 import DetailsButton from "../DetailsButton";
+import PopupImage from "../PopupImage"
 
 export default {
   components: {
     DetailsButton,
+    PopupImage
   },
   mixins: [destinationService],
   data() {
     return {
       places: [],
       isImgLoaded: false,
+      show: false,
+      imgurl: ""
     };
   },
   created() {
@@ -49,6 +56,10 @@ export default {
   methods: {
     loaded() {
       this.isImgLoaded = true;
+    },
+    openModalImage(e){
+      this.imgurl = e.target.src
+      this.show = true
     }
   }
 };
