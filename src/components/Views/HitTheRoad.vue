@@ -6,9 +6,9 @@
         <h2 class="card-title">{{ place.username }}</h2>
         <div>
           <img
+            class="destination-image"
             @click="openModalImage($event)"
             @load="loaded"
-            class="destination-image"
             :src="place.photo"
             @error="
               $event.target.src =
@@ -84,6 +84,13 @@ h2 {
   position: relative;
   font-size: 18px;
   border-radius: 4px;
+}
+.destination-image {
+  transition: ease 0.2s;
+}
+.destination-image:hover {
+  cursor: pointer;
+  opacity: 0.9;
 }
 .btns {
   padding: 5px 0;

@@ -108,7 +108,6 @@ export default {
     1px 1px 0 #000;
   margin-bottom: 20px;
 }
-/* Full-width input fields */
 input[type="text"],
 input[type="password"] {
   color: white;
@@ -149,26 +148,24 @@ button:hover {
   padding: 15px;
 }
 .modal-form {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  z-index: 1;
   right: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-animation: animatezoom 0.3s;
   animation: animatezoom 0.3s;
 }
-/* Modal Content/Box */
 .form-content {
   border-radius: 10px;
   background-color: rgba(20, 23, 27, 0.9);
-  margin: 15% auto 10%; /* 5% from the top, 15% from the bottom and centered */
-  width: 40%; /* Could be more or less, depending on screen size */
+  margin: 100px auto;
+  width: 40%;
   min-width: 400px;
 }
-/* Clear floats */
 .clearfix::after {
   content: "";
   clear: both;

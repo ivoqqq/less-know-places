@@ -7,6 +7,7 @@
         <div>
           <img
             class="destination-image"
+            @click="openModalImage($event)"
             :src="place.photo"
             @error="
               $event.target.src =
@@ -22,12 +23,20 @@
           <button @click.stop="editData(docID)" :disabled="!disableButton">
             Edit
           </button>
-          <button @click.stop="deleteData(docID, place.photo)" :disabled="!disableButton">
+          <button
+            @click.stop="deleteData(docID, place.photo)"
+            :disabled="!disableButton"
+          >
             Delete
           </button>
         </div>
       </div>
       <div class="description">{{ place.description }}</div>
+      <popup-image
+        v-if="show"
+        :imgurl="imgurl"
+        @closeModalImage="show = $event"
+      ></popup-image>
     </div>
   </div>
 </template>
@@ -36,12 +45,18 @@
 import firebase from "firebase";
 import router from "../../router";
 import { destinationService } from "../Services/destinationService";
+import PopupImage from "../PopupImage";
 
 export default {
+  components: {
+    PopupImage,
+  },
   mixins: [destinationService],
   data() {
     return {
       place: {},
+      show: false,
+      imgurl: ""
     };
   },
   created() {
@@ -54,12 +69,16 @@ export default {
     editData(id) {
       router.push({ name: "Edit", params: { id: id } });
     },
+    openModalImage(e) {
+      this.imgurl = e.target.src;
+      this.show = true;
+    },
   },
   computed: {
     disableButton: function () {
       return this.place.userID === firebase.auth().currentUser.uid;
     },
-  }
+  },
 };
 </script>
 
@@ -96,6 +115,13 @@ h1 {
   padding: 30px;
   font-size: 18px;
   position: relative;
+}
+.destination-image {
+  transition: ease 0.2s;
+}
+.destination-image:hover {
+  cursor: pointer;
+  opacity: 0.9;
 }
 .btns {
   padding: 5px 0;

@@ -1,6 +1,6 @@
 <template>
 <div class="modal-form">
-  <span class="close-modal" @click="closeModalImage">X</span> 
+  <span class="close-modal" @click="closeModalImage">×</span> 
   <img class="modal-image" :src="imgurl"/>
 </div>
 </template>
@@ -22,20 +22,19 @@ export default {
 
 <style scoped>
 .modal-form {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  z-index: 1000;
   right: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
   animation: animatezoom 0.3s;
 }
-/* Modal Content/Box */
 .modal-image {
   border-radius: 10px;
-  padding-top: 100px;
+  margin-top: 100px;
   width: 90%;
 }
 .clearfix::after {
@@ -43,7 +42,6 @@ export default {
   clear: both;
   display: table;
 }
-/* ------------------------------- */
 
 @keyframes animatezoom {
   from {
@@ -55,13 +53,14 @@ export default {
 }
 .close-modal {
     position: absolute;
-    top: 70px;
+    top: 55px;
     right: 5%;
     color: #f1f1f1;
-    font-size: 22px;
+    font-size: 32px;
     font-weight: bold;
     transition: 0.3s;
     opacity: 0.9;
+    font-family: Verdana, sans-serif;
 }
 .close-modal:hover{
   cursor: pointer;

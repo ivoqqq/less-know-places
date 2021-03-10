@@ -7,6 +7,7 @@
         <div>
           <img
             class="destination-image"
+            @click="openModalImage($event)"
             :src="place.photo"
             @error="
               $event.target.src =
@@ -24,6 +25,11 @@
         </div>
       </div>
     </div>
+    <popup-image
+      v-if="show"
+      :imgurl="imgurl"
+      @closeModalImage="show = $event"
+    ></popup-image>
   </div>
 </template>
 
@@ -31,20 +37,30 @@
 import { authService } from "../Services/authService";
 import { destinationService } from "../Services/destinationService";
 import DetailsButton from "../DetailsButton";
+import PopupImage from "../PopupImage";
 
 export default {
   components: {
     DetailsButton,
+    PopupImage,
   },
   mixins: [authService, destinationService],
   data() {
     return {
       places: [],
+      show: false,
+      imgurl: "",
     };
   },
   created() {
     this.getQueryDataProfile();
   },
+  methods: {
+    openModalImage(e) {
+      this.imgurl = e.target.src;
+      this.show = true;
+    }
+  }
 };
 </script>
 
@@ -69,6 +85,13 @@ h1 {
 
   h2 {
     height: 30px;
+  }
+  .destination-image {
+    transition: ease 0.2s;
+  }
+  .destination-image:hover {
+    cursor: pointer;
+    opacity: 0.9;
   }
   .btns {
     padding: 5px 0;
