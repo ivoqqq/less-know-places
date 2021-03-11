@@ -134,32 +134,7 @@ export default {
   border-radius: 4px;
   z-index: -1;
 }
-input,
-textarea {
-  outline: none;
-  color: white;
-  width: 100%;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  height: 30px;
-  background: transparent;
-  border-color: transparent;
-  border-bottom: 2px solid rgba(153, 205, 50, 0.5);
-  font-size: 16px;
-  opacity: 0.8;
-}
-textarea {
-  height: 100px;
-  resize: none;
-}
-input:focus,
-textarea:focus {
-  opacity: 1;
-}
-::placeholder {
-  color: goldenrod;
-  font-size: 14px;
-}
+
 input[type="file"] {
   display: none;
 }

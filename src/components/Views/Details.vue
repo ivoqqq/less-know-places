@@ -56,7 +56,7 @@ export default {
     return {
       place: {},
       show: false,
-      imgurl: ""
+      imgurl: "",
     };
   },
   created() {
@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .details-container::before {
   background-image: url("../../assets/red-nature-70254.jpg");
   filter: grayscale(40%);
@@ -98,12 +98,26 @@ h1 {
   display: inline-block;
   position: relative;
   font-size: 18px;
-}
-.title {
-  display: inline-block;
-  width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+  .title {
+    display: inline-block;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    span {
+      color: goldenrod;
+    }
+  }
+
+  .destination-image {
+    transition: ease 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
 }
 .description {
   background-color: rgba(20, 23, 27, 0.9);
@@ -116,39 +130,33 @@ h1 {
   font-size: 18px;
   position: relative;
 }
-.destination-image {
-  transition: ease 0.2s;
-}
-.destination-image:hover {
-  cursor: pointer;
-  opacity: 0.9;
-}
+
 .btns {
   padding: 5px 0;
-}
-button {
-  width: 35%;
-  height: 30px;
-  background-color: olive;
-  color: white;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  font-size: 14px;
-  transition: all 0.1s ease-in-out;
-}
-button:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-button:disabled {
-  background-color: rgb(204, 204, 204);
-  color: rgb(102, 102, 102);
-  opacity: 0.8;
-  transform: scale(1);
-}
-span {
-  color: goldenrod;
+
+  button {
+    width: 35%;
+    height: 30px;
+    background-color: olive;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    font-size: 14px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    &:disabled {
+      background-color: rgb(204, 204, 204);
+      color: rgb(102, 102, 102);
+      opacity: 0.8;
+      transform: scale(1);
+    }
+  }
 }
 </style>
 

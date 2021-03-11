@@ -27,7 +27,4 @@ export default {
   color: white;
   text-align: center;
 }
-h1 {
-  padding-top: 60px;
-}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="edit-container">
     <form class="input-form" @submit.prevent="editData">
-      <h1>Edit your place {{ place.username }}</h1>
+      <h2>Edit your place {{ place.username }}</h2>
       <div>
         <label>Place to visit:</label>
         <div class="error" v-if="$v.place.title.$error">
@@ -19,21 +19,20 @@
       <div class="error" v-if="$v.finishedUploadTask.$error">
         <p v-if="!$v.finishedUploadTask.required">You didn't choose any file</p>
       </div>
-      <div class="change-image">
+      <div class="change-image-container">
         <p>Change image?</p>
         <div class="change-image-checkbox">
           <input
             type="checkbox"
-            name="my-input"
-            id="yes"
+            id="checkbox"
             @click="isChecked = !isChecked"
           />
         </div>
 
-        <div class="input-image-container" v-if="isChecked">
-          <label for="input-image" class="input-file-label">{{ file }}</label>
+        <div class="input-image" v-if="isChecked">
+          <label for="file-image" class="input-file-label">{{ file }}</label>
           <input
-            id="input-image"
+            id="file-image"
             ref="upload"
             accept="image/*"
             type="file"
@@ -126,30 +125,12 @@ export default {
       if (this.progress === 100) {
         this.isChecked = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style scoped>
-.change-image {
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-}
-.change-image p {
-  color: goldenrod;
-  margin: 5px 0 22px 0;
-  width: 100px;
-}
-.change-image-checkbox {
-  display: flex;
-}
-input[type="checkbox"] {
-  width: 30px;
-  margin: 5px 10px 22px 10px;
-}
-
+<style lang="scss" scoped>
 .edit-container {
   min-height: 100vh;
   min-width: 400px;
@@ -157,93 +138,97 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.edit-container::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: darkslategrey;
-  filter: grayscale(50%) brightness(60%);
-  z-index: -1;
-}
 
-h1 {
-  color: white;
-  margin-bottom: 20px;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: darkslategrey;
+    filter: grayscale(50%) brightness(60%);
+    z-index: -1;
+  }
+
+  label {
+    font-size: 18px;
+    color: goldenrod;
+  }
 }
 .input-form {
   text-align: center;
   position: relative;
   width: 80%;
   padding: 80px 40px 40px 40px;
+
+  h2 {
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  & > div {
+    width: 50%;
+    margin: 0 auto;
+  }
 }
-.input-form > div:not(:last-child) {
-  width: 50%;
-  margin: 0 auto;
+
+.change-image-container {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+
+  p {
+    color: goldenrod;
+    margin: 5px 0 22px 0;
+    width: 100px;
+  }
+  .change-image-checkbox {
+    display: flex;
+
+    input[type="checkbox"] {
+      width: 30px;
+      margin: 5px 10px 22px 10px;
+    }
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+  .input-file-label {
+    display: inline-block;
+    line-height: 30px;
+    position: relative;
+    width: 100px;
+    background-color: olive;
+    color: white;
+    cursor: pointer;
+    opacity: 0.8;
+    font-size: 14px;
+    transition: all 0.1s ease-in-out;
+    margin: 5px 0 22px 0;
+    padding: 0 5px;
+    border-radius: 2px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
+
 @media screen and (max-width: 650px) {
-  .input-form > div:not(:last-child),
+  .input-form > div,
   .button {
     width: 70%;
   }
 }
 @media screen and (max-width: 400px) {
-  .input-form > div:not(:last-child),
+  .input-form > div,
   .button {
     width: 70%;
   }
 }
 
-input,
-textarea {
-  outline: none;
-  color: white;
-  width: 100%;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  height: 30px;
-  background: transparent;
-  border-color: transparent;
-  border-bottom: 2px solid rgba(153, 205, 50, 0.5);
-  font-size: 16px;
-  opacity: 0.8;
-}
-textarea {
-  height: 100px;
-  resize: none;
-}
-input:focus, textarea:focus {
-  opacity: 1;
-}
-::placeholder {
-  color: goldenrod;
-  font-size: 14px;
-}
-
-input[type="file"] {
-  display: none;
-}
-.input-file-label {
-  display: inline-block;
-  line-height: 30px;
-  position: relative;
-  width: 100px;
-  background-color: olive;
-  color: white;
-  cursor: pointer;
-  opacity: 0.8;
-  font-size: 14px;
-  transition: all 0.1s ease-in-out;
-  margin: 5px 0 22px 0;
-  padding: 0 5px;
-  border-radius: 2px;
-}
-.input-file-label:hover {
-  opacity: 1;
-}
 progress {
   border: 0;
   text-align: left;
@@ -263,10 +248,7 @@ progress::-webkit-progress-value {
   border-radius: 10px;
   box-shadow: 0px 0px 6px #777 inset;
 }
-label {
-  font-size: 18px;
-  color: goldenrod;
-}
+
 button {
   width: 50%;
   height: 40px;
@@ -276,21 +258,25 @@ button {
   cursor: pointer;
   opacity: 0.8;
   font-size: 22px;
+  border-radius: 4px;
   transition: all 0.1s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:disabled {
+    background-color: rgb(204, 204, 204);
+    color: rgb(102, 102, 102);
+    opacity: 0.8;
+    transform: scale(1);
+  }
 }
-button:hover {
-  opacity: 1;
-}
-button:disabled {
-  background-color: rgb(204, 204, 204);
-  color: rgb(102, 102, 102);
-  opacity: 0.8;
-  transform: scale(1);
-}
+
 .error {
   color: crimson;
   font-weight: 600;
   position: absolute;
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 </style>

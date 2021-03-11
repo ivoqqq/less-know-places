@@ -3,7 +3,7 @@
     <h1>Places</h1>
     <div class="cards">
       <div class="card" v-for="place in places" :key="place.key">
-        <h2 class="card-title">{{ place.username }}</h2>
+        <h3 class="card-title">{{ place.username }}</h3>
         <div>
           <img
             class="destination-image"
@@ -15,7 +15,7 @@
                 'https://bitsofco.de/content/images/2018/12/broken-1.png'
             "
           />
-          
+
           <p class="title">
             <span>visit: </span>
             {{ place.title }}
@@ -27,19 +27,23 @@
         </div>
       </div>
     </div>
-    <popup-image v-if="show" :imgurl="imgurl" @closeModalImage="show = $event"></popup-image>
+    <popup-image
+      v-if="show"
+      :imgurl="imgurl"
+      @closeModalImage="show = $event"
+    ></popup-image>
   </div>
 </template>
 
 <script>
 import { destinationService } from "../Services/destinationService";
 import DetailsButton from "../DetailsButton";
-import PopupImage from "../PopupImage"
+import PopupImage from "../PopupImage";
 
 export default {
   components: {
     DetailsButton,
-    PopupImage
+    PopupImage,
   },
   mixins: [destinationService],
   data() {
@@ -47,7 +51,7 @@ export default {
       places: [],
       isImgLoaded: false,
       show: false,
-      imgurl: ""
+      imgurl: "",
     };
   },
   created() {
@@ -57,23 +61,20 @@ export default {
     loaded() {
       this.isImgLoaded = true;
     },
-    openModalImage(e){
-      this.imgurl = e.target.src
-      this.show = true
-    }
-  }
+    openModalImage(e) {
+      this.imgurl = e.target.src;
+      this.show = true;
+    },
+  },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .places-container::before {
   background-image: url("../../assets/DSC_1928.jpg");
   filter: grayscale(40%);
 }
 h1 {
   padding: 60px 0 20px 0;
-}
-h2 {
-  height: 30px;
 }
 .card {
   display: inline-block;
@@ -84,27 +85,32 @@ h2 {
   position: relative;
   font-size: 18px;
   border-radius: 4px;
-}
-.destination-image {
-  transition: ease 0.2s;
-}
-.destination-image:hover {
-  cursor: pointer;
-  opacity: 0.9;
-}
-.btns {
-  padding: 5px 0;
-}
-.description,
-.title {
-  display: inline-block;
-  width: 200px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-span {
-  color: goldenrod;
+
+  h3 {
+    height: 30px;
+  }
+  .destination-image {
+    transition: ease 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
+  .btns {
+    padding: 5px 0;
+  }
+  .description,
+  .title {
+    display: inline-block;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  span {
+    color: goldenrod;
+  }
 }
 </style>
 

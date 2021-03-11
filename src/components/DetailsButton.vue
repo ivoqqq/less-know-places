@@ -13,12 +13,12 @@ export default {
   methods: {
     details(place) {
       router.push({ name: "Details", params: { id: place.docID } });
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 button {
   width: 70%;
   height: 30px;
@@ -30,15 +30,17 @@ button {
   font-size: 14px;
   transition: all 0.1s ease-in-out;
   border-radius: 2px;
-}
-button:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-button:disabled {
-  background-color: rgb(204, 204, 204);
-  color: rgb(102, 102, 102);
-  opacity: 0.8;
-  transform: scale(1);
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  &:disabled {
+    background-color: rgb(204, 204, 204);
+    color: rgb(102, 102, 102);
+    opacity: 0.8;
+    transform: scale(1);
+  }
 }
 </style>

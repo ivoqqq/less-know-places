@@ -59,8 +59,8 @@ export default {
     openModalImage(e) {
       this.imgurl = e.target.src;
       this.show = true;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -88,10 +88,11 @@ h1 {
   }
   .destination-image {
     transition: ease 0.2s;
-  }
-  .destination-image:hover {
-    cursor: pointer;
-    opacity: 0.9;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
   }
   .btns {
     padding: 5px 0;
@@ -104,8 +105,8 @@ h1 {
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-}
-span {
-  color: goldenrod;
+  span {
+    color: goldenrod;
+  }
 }
 </style>

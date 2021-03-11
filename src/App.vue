@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 * {
   margin: 0;
   padding: 0;
@@ -42,7 +42,7 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-  background-color:rgb(0, 11, 20);
+  background-color: rgb(0, 11, 20);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -51,5 +51,35 @@ export default {
   width: 200px;
   height: 130px;
   object-fit: contain;
+}
+input,
+textarea {
+  font-family: monospace;
+  font-size: 16px;
+  outline: none;
+  color: white;
+  width: 100%;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  height: 30px;
+  background: transparent;
+  border-color: transparent;
+  border-bottom: 2px solid rgba(153, 205, 50, 0.5);
+  opacity: 0.8;
+
+  &::placeholder {
+    color: goldenrod;
+  }
+
+  &:focus {
+    opacity: 1;
+  }
+}
+textarea {
+  height: 100px;
+  resize: none;
+}
+.error {
+  font-family: monospace;
 }
 </style>

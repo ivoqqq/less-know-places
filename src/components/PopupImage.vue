@@ -1,26 +1,26 @@
 <template>
-<div class="modal-form">
-  <span class="close-modal" @click="closeModalImage">×</span> 
-  <img class="modal-image" :src="imgurl"/>
-</div>
+  <div class="modal-form">
+    <span class="close-modal" @click="closeModalImage">×</span>
+    <img class="modal-image" :src="imgurl" />
+  </div>
 </template>
 
 <script>
 export default {
-    props: {
-      imgurl: {
-        type: String
-      }
+  props: {
+    imgurl: {
+      type: String,
     },
-    methods: {
-      closeModalImage(){
-        this.$emit("closeModalImage", false)
-      }
-    }
-}
+  },
+  methods: {
+    closeModalImage() {
+      this.$emit("closeModalImage", false);
+    },
+  },
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .modal-form {
   position: fixed;
   z-index: 1000;
@@ -31,27 +31,14 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
   animation: animatezoom 0.3s;
-}
-.modal-image {
-  border-radius: 10px;
-  margin-top: 100px;
-  width: 90%;
-}
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
 
-@keyframes animatezoom {
-  from {
-    transform: scale(0);
+  .modal-image {
+    border-radius: 10px;
+    margin-top: 100px;
+    width: 90%;
   }
-  to {
-    transform: scale(1);
-  }
-}
-.close-modal {
+
+  .close-modal {
     position: absolute;
     top: 55px;
     right: 5%;
@@ -61,9 +48,20 @@ export default {
     transition: 0.3s;
     opacity: 0.9;
     font-family: Verdana, sans-serif;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
 }
-.close-modal:hover{
-  cursor: pointer;
-  opacity: 1;
+
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 </style>
