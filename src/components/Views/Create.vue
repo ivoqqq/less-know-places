@@ -6,7 +6,8 @@
         <p v-if="!$v.place.title.maxLength">Maximum 30 characters</p>
         <p v-if="!$v.place.title.required">No empty fields</p>
       </div>
-      <input
+      <textarea
+        class="title"
         type="text"
         v-model="place.title"
         placeholder="type in place to visit..."
@@ -14,7 +15,7 @@
       />
       <div class="error" v-if="$v.place.description.$error">
         <p v-if="!$v.place.description.minLength">At least 6 characters</p>
-        <p v-if="!$v.place.description.maxLength">Maximum 200 characters</p>
+        <p v-if="!$v.place.description.maxLength">Maximum 300 characters</p>
         <p v-if="!$v.place.description.required">No empty fields</p>
       </div>
       <textarea
@@ -62,21 +63,6 @@ import {
 
 export default {
   mixins: [destinationService, authService],
-  data() {
-    return {
-      place: {
-        userID: this.currentUserID(),
-        username: this.currentUsername(),
-        title: "",
-        description: "",
-        photo: ""
-      },
-      imageData: null,
-      progress: null,
-      file: "ADD PICTURE",
-      finishedUploadTask: null,
-    };
-  },
   validations: {
     place: {
       title: {
@@ -87,13 +73,28 @@ export default {
       description: {
         required,
         minLength: minLength(6),
-        maxLength: maxLength(200),
+        maxLength: maxLength(300),
       },
     },
     finishedUploadTask: {
       required,
       minValue: minValue(1),
     },
+  },
+  data() {
+    return {
+      place: {
+        userID: this.currentUserID(),
+        username: this.currentUsername(),
+        title: "",
+        description: "",
+        photo: "",
+      },
+      imageData: null,
+      progress: null,
+      file: "ADD PICTURE",
+      finishedUploadTask: null,
+    };
   },
   methods: {
     addData() {
@@ -102,11 +103,11 @@ export default {
     uploadFile(event) {
       this.addFile(event);
     },
-  }
+  },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .create-container {
   display: flex;
   align-items: center;
@@ -122,17 +123,21 @@ export default {
   position: relative;
   width: 40%;
   padding: 80px 40px 40px 40px;
-}
-.input-form::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: rgba(20, 23, 27, 0.9);
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 4px;
-  z-index: -1;
+
+  &:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 23, 27, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    z-index: -1;
+  }
+  .title {
+    height: 40px;
+  }
 }
 
 input[type="file"] {
@@ -152,10 +157,12 @@ input[type="file"] {
   margin: 5px 0 22px 0;
   padding: 0 5px;
   border-radius: 2px;
+
+  &:hover {
+    opacity: 1;
+  }
 }
-.input-file-label:hover {
-  opacity: 1;
-}
+
 progress {
   border: 0;
   text-align: left;
@@ -189,15 +196,17 @@ button {
   position: relative;
   bottom: 0;
   margin: 20px 0 auto;
-}
-button:hover {
-  opacity: 1;
-}
-button:disabled {
-  background-color: rgb(204, 204, 204);
-  color: rgb(102, 102, 102);
-  opacity: 0.8;
-  transform: scale(1);
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:disabled {
+    background-color: rgb(204, 204, 204);
+    color: rgb(102, 102, 102);
+    opacity: 0.8;
+    transform: scale(1);
+  }
 }
 .error {
   color: crimson;

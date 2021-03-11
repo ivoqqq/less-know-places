@@ -83,13 +83,50 @@ export default {
 };
 </script>
 
-<style scoped>
-.title {
-  color: white;
-  opacity: 0.7;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-  margin-bottom: 20px;
+<style lang="scss" scoped>
+
+.modal-form {
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: animatezoom 0.3s;
+
+  .form-content {
+    border-radius: 10px;
+    background-color: rgba(20, 23, 27, 0.9);
+    margin: 100px auto;
+    width: 40%;
+    min-width: 400px;
+
+    .modal-container {
+      padding: 15px;
+    }
+    .title {
+      color: white;
+      opacity: 0.7;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000;
+      margin-bottom: 20px;
+    }
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+}
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 input[type="text"],
 input[type="password"] {
@@ -111,9 +148,10 @@ button {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
-}
-button:hover {
-  opacity: 1;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 .cancelbtn {
   background-color: crimson;
@@ -126,41 +164,6 @@ button:hover {
 .loginbtn {
   float: left;
   width: 50%;
-}
-.modal-container {
-  padding: 15px;
-}
-.modal-form {
-  position: fixed;
-  z-index: 1;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation: animatezoom 0.3s;
-}
-.form-content {
-  border-radius: 10px;
-  background-color: rgba(20, 23, 27, 0.9);
-  margin: 100px auto;
-  width: 40%;
-  min-width: 400px;
-}
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-@keyframes animatezoom {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
 }
 .error {
   color: crimson;

@@ -9,7 +9,8 @@
           <p v-if="!$v.place.title.maxLength">Maximum 30 characters</p>
           <p v-if="!$v.place.title.required">No empty fields</p>
         </div>
-        <input
+        <textarea
+          class="title"
           type="text"
           v-model="place.title"
           @blur="$v.place.title.$touch()"
@@ -52,7 +53,7 @@
         <label>About the place:</label>
         <div class="error" v-if="$v.place.description.$error">
           <p v-if="!$v.place.description.minLength">At least 6 characters</p>
-          <p v-if="!$v.place.description.maxLength">Maximum 200 characters</p>
+          <p v-if="!$v.place.description.maxLength">Maximum 300 characters</p>
           <p v-if="!$v.place.description.required">No empty fields</p>
         </div>
         <textarea
@@ -78,16 +79,6 @@ import {
 
 export default {
   mixins: [destinationService],
-  data() {
-    return {
-      place: {},
-      imageData: null,
-      progress: null,
-      file: "ADD PICTURE",
-      finishedUploadTask: null,
-      isChecked: false,
-    };
-  },
   validations: {
     place: {
       title: {
@@ -98,7 +89,7 @@ export default {
       description: {
         required,
         minLength: minLength(6),
-        maxLength: maxLength(200),
+        maxLength: maxLength(300),
       },
     },
     finishedUploadTask: {
@@ -107,6 +98,16 @@ export default {
       },
       minValue: minValue(1),
     },
+  },
+  data() {
+    return {
+      place: {},
+      imageData: null,
+      progress: null,
+      file: "ADD PICTURE",
+      finishedUploadTask: null,
+      isChecked: false,
+    };
   },
   created() {
     this.getData();
@@ -165,6 +166,9 @@ export default {
   h2 {
     color: white;
     margin-bottom: 20px;
+  }
+  .title {
+    height: 40px;
   }
 
   & > div {

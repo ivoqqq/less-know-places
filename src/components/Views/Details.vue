@@ -98,6 +98,7 @@ h1 {
   display: inline-block;
   position: relative;
   font-size: 18px;
+  border-radius: 4px 0 0 4px;
 
   .title {
     display: inline-block;
@@ -125,10 +126,21 @@ h1 {
   width: 190px;
   height: 336px;
   text-align: justify;
+  word-wrap: break-word;
   vertical-align: top;
   padding: 30px;
   font-size: 18px;
   position: relative;
+  border-radius: 0 4px 4px 0;
+}
+@media screen and (max-width: 499px){
+  .card {
+    height: 230px;
+    border-radius: 4px 4px 0 0;
+  }
+  .description{
+    border-radius: 0 0 4px 4px;
+  }
 }
 
 .btns {
