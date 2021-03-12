@@ -8,7 +8,6 @@
           <img
             class="destination-image"
             @click="openModalImage($event)"
-            @load="loaded"
             :src="place.photo"
             @error="
               $event.target.src =
@@ -49,7 +48,6 @@ export default {
   data() {
     return {
       places: [],
-      isImgLoaded: false,
       show: false,
       imgurl: "",
     };
@@ -58,14 +56,11 @@ export default {
     this.getQueryData();
   },
   methods: {
-    loaded() {
-      this.isImgLoaded = true;
-    },
     openModalImage(e) {
       this.imgurl = e.target.src;
       this.show = true;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -75,6 +70,10 @@ export default {
 }
 h1 {
   padding: 60px 0 20px 0;
+}
+.quota {
+  color: crimson;
+  position: absolute
 }
 .card {
   display: inline-block;

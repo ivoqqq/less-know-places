@@ -37,7 +37,7 @@
             ref="upload"
             accept="image/*"
             type="file"
-            @change="uploadFile(place.photo)"
+            @change="uploadFile(place.photo, $event)"
             @blur="$v.finishedUploadTask.$touch()"
           />
         </div>
@@ -116,7 +116,7 @@ export default {
     editData() {
       this.setData();
     },
-    uploadFile(oldImgUrl) {
+    uploadFile(oldImgUrl, event) {
       this.deleteImage(oldImgUrl);
       this.addFile(event);
     },
