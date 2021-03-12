@@ -31,12 +31,14 @@
       </div>
       <div class="image-container">
         <label for="input-image" class="input-file-label">{{ file }}</label>
+        
         <input
           id="input-image"
           ref="upload"
           @change="uploadFile"
           accept="image/*"
           type="file"
+          :disabled="disableFileInput" 
           @blur="$v.finishedUploadTask.$touch()"
         />
       </div>
@@ -94,6 +96,7 @@ export default {
       progress: null,
       file: "ADD PICTURE",
       finishedUploadTask: null,
+      disableFileInput: false
     };
   },
   methods: {
@@ -104,6 +107,13 @@ export default {
       this.addFile(event);
     },
   },
+  watch: {
+    progress() {
+      if (this.progress !== null) {
+        this.disableFileInput = true
+      }
+    },
+  }
 };
 </script>
 
