@@ -93,7 +93,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   animation: animatezoom 0.3s;
 
   .form-content {
@@ -101,7 +101,8 @@ export default {
     background-color: rgba(20, 23, 27, 0.9);
     margin: 100px auto;
     width: 40%;
-    min-width: 400px;
+    max-width: 500px;
+    min-width: 300px;
 
     .modal-container {
       padding: 15px;

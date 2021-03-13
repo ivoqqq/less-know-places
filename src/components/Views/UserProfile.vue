@@ -91,7 +91,7 @@ h1 {
 
     &:hover {
       cursor: pointer;
-      opacity: 0.9;
+      transform: scale(1.05);
     }
   }
   .btns {

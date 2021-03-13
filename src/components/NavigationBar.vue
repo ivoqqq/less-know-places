@@ -116,22 +116,22 @@ $elements-height: 30px;
   border: 1px solid white;
   border-radius: 4px;
   margin: 8px 10px;
-  font-size: 14px;
 
-  $btnss: logInBtn, logOutBtn, signUpBtn;
-  @each $btn in $btnss {
+  $btns: logInBtn, logOutBtn, signUpBtn;
+
+  @each $btn in $btns {
     & .#{$btn} {
       width: 50px;
       display: table-cell;
       text-align: center;
       vertical-align: middle;
       padding: 0 4px;
+      transition: ease 0.2s;
 
       &:hover {
         background-color: olive;
         cursor: pointer;
         border-radius: 2px;
-        transition: ease 0.1s;
       }
     }
   }

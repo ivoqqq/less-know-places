@@ -3,13 +3,14 @@
     <form class="input-form" @submit.prevent="editData">
       <h2>Edit your place {{ place.username }}</h2>
       <div>
-        <label>Place to visit:</label>
+        <label class="lbl">Place to visit:</label>
         <div class="error" v-if="$v.place.title.$error">
           <p v-if="!$v.place.title.minLength">At least 3 characters</p>
           <p v-if="!$v.place.title.maxLength">Maximum 30 characters</p>
           <p v-if="!$v.place.title.required">No empty fields</p>
         </div>
         <textarea
+          id="title"
           class="title"
           type="text"
           v-model="place.title"
@@ -50,7 +51,7 @@
       ></progress>
 
       <div>
-        <label>About the place:</label>
+        <label class="lbl">About the place:</label>
         <div class="error" v-if="$v.place.description.$error">
           <p v-if="!$v.place.description.minLength">At least 6 characters</p>
           <p v-if="!$v.place.description.maxLength">Maximum 300 characters</p>
@@ -152,9 +153,11 @@ export default {
     z-index: -1;
   }
 
-  label {
-    font-size: 18px;
+  .lbl {
+    display: inline-block;
+    font-size: 22px;
     color: goldenrod;
+    height: 45px;
   }
 }
 .input-form {
@@ -276,11 +279,10 @@ button {
     transform: scale(1);
   }
 }
-
 .error {
   color: crimson;
   font-weight: 600;
   position: absolute;
-  transform: translateY(-5px);
+  transform: translateY(-15px);
 }
 </style>

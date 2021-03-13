@@ -59,8 +59,8 @@ export default {
     openModalImage(e) {
       this.imgurl = e.target.src;
       this.show = true;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -73,7 +73,7 @@ h1 {
 }
 .quota {
   color: crimson;
-  position: absolute
+  position: absolute;
 }
 .card {
   display: inline-block;
@@ -93,7 +93,7 @@ h1 {
 
     &:hover {
       cursor: pointer;
-      opacity: 0.9;
+      transform: scale(1.05);
     }
   }
   .btns {

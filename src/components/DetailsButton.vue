@@ -27,7 +27,7 @@ button {
   border: none;
   cursor: pointer;
   opacity: 0.8;
-  font-size: 14px;
+  font-size: 16px;
   transition: all 0.1s ease-in-out;
   border-radius: 2px;
 

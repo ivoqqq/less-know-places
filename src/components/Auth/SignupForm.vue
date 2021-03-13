@@ -7,7 +7,8 @@
         <h1 class="title">Register form</h1>
 
         <div class="error" v-if="$v.username.$error">
-          <p v-if="!$v.username.minLength">Must be at least 3 characters</p>
+          <p v-if="!$v.username.minLength">At least 3 characters</p>
+          <p v-if="!$v.username.maxLength">Maximum 10 characters</p>
           <p v-if="!$v.username.required">Please fill in username</p>
         </div>
         <input
@@ -18,6 +19,8 @@
         />
 
         <div class="error" v-if="$v.email.$error">
+          <p v-if="!$v.email.minLength">At least 3 characters</p>
+          <p v-if="!$v.email.maxLength">Maximum 20 characters</p>
           <p v-if="!$v.email.email">Please fill in a valid email</p>
           <p v-if="!$v.email.required">Please fill in email</p>
         </div>
@@ -51,7 +54,7 @@
 </template>
 
 <script>
-import { required, email, minLength } from "vuelidate/lib/validators";
+import { required, email, minLength, maxLength } from "vuelidate/lib/validators";
 import { authService } from "../Services/authService";
 
 export default {
@@ -65,6 +68,7 @@ export default {
     username: {
       required,
       minLength: minLength(3),
+      maxLength: maxLength(10),
     },
     email: {
       required,
@@ -109,7 +113,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   animation: animatezoom 0.3s;
 
   .form-content {
@@ -117,7 +121,8 @@ export default {
     background-color: rgba(20, 23, 27, 0.9);
     margin: 100px auto;
     width: 40%;
-    min-width: 400px;
+    max-width: 500px;
+    min-width: 300px;
 
     .modal-container {
       padding: 15px;

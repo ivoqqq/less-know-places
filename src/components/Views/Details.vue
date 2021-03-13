@@ -116,7 +116,7 @@ h1 {
 
     &:hover {
       cursor: pointer;
-      opacity: 0.9;
+      transform: scale(1.05);
     }
   }
 }
@@ -133,13 +133,14 @@ h1 {
   position: relative;
   border-radius: 0 4px 4px 0;
 }
-@media screen and (max-width: 499px){
+@media screen and (max-width: 499px) {
   .card {
-    height: 230px;
+    height: 250px;
     border-radius: 4px 4px 0 0;
   }
-  .description{
+  .description {
     border-radius: 0 0 4px 4px;
+    margin-bottom: 10px;
   }
 }
 
@@ -154,7 +155,7 @@ h1 {
     border: none;
     cursor: pointer;
     opacity: 0.8;
-    font-size: 14px;
+    font-size: 16px;
     transition: all 0.1s ease-in-out;
 
     &:hover {
