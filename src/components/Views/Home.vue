@@ -37,7 +37,6 @@ h1 {
   font-size: 22px;
   text-align: left;
   width: 60%;
-  text-align: justify;
 
   &:before {
     content: "";

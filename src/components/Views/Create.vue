@@ -163,7 +163,7 @@ input[type="file"] {
   cursor: pointer;
   opacity: 0.8;
   font-size: 14px;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
   margin: 5px 0 22px 0;
   padding: 0 5px;
   border-radius: 2px;

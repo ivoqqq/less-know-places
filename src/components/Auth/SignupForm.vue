@@ -117,7 +117,7 @@ export default {
   animation: animatezoom 0.3s;
 
   .form-content {
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: rgba(20, 23, 27, 0.9);
     margin: 100px auto;
     width: 40%;
@@ -164,12 +164,13 @@ input[type="password"] {
 button {
   background-color: olive;
   color: white;
-  padding: 14px 20px;
+  padding: 12px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+  font-size: 16px;
 
   &:hover {
     opacity: 1;
@@ -177,10 +178,10 @@ button {
 }
 .cancelbtn {
   background-color: crimson;
-  border-radius: 5px 0 0 5px;
+  border-radius: 2px 0 0 2px;
 }
 .regbtn {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 2px 2px 0;
 }
 .cancelbtn,
 .regbtn {

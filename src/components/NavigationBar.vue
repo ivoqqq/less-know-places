@@ -90,10 +90,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @font-face {
-//   font-family: "Bauhaus 93";
-//   src: local("Bauhaus 93"), url("../assets/BAUHS93.ttf") format("truetype");
-// }
+
 $hover-color: goldenrod;
 $elements-height: 30px;
 .name {
