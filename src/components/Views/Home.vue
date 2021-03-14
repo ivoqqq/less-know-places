@@ -1,10 +1,14 @@
 <template>
-  <div class="home-container">
-    <h1>Hello!</h1>
-    <h2>
-      If you want to see and visit interesting and beautiful, but not so famous places in Bulgaria you can start by loggin in :). 
-      If you want, you can also share views with us.
-    </h2>
+  <div class="home-container container">
+    <div class="greeting">
+      <h1>Hello, traveler!</h1>
+      <br />
+      <p>
+        If you want to see and visit interesting and beautiful, but not so
+        famous places in Bulgaria you can start by logging in.
+      </p>
+      <p>You can also share views with us.</p>
+    </div>
   </div>
 </template>
 
@@ -16,22 +20,41 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .home-container {
-  background-image: url("../../assets/Forest Road-4096x2731.jpg");
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-h1, h2 {
-  width: 40%;
-  padding-top: 60px;
+.home-container::before {
+  background-image: url("../../assets/Forest Road-4096x2731.jpg");
+  z-index: -1;
+}
+h1 {
+  width: 100%;
+}
+.greeting {
+  font-size: 22px;
+  text-align: left;
+  width: 60%;
+  text-align: justify;
+
+  &:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 23, 27, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  p {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-style: italic;
+  }
 }
 </style>

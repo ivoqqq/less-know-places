@@ -124,12 +124,13 @@ h1 {
   background-color: rgba(20, 23, 27, 0.9);
   display: inline-block;
   width: 190px;
-  height: 336px;
-  text-align: justify;
+  height: 366px;
+  text-align: left;
   word-wrap: break-word;
   vertical-align: top;
-  padding: 30px;
+  padding: 15px 30px;
   font-size: 18px;
+  line-height: 1.3;
   position: relative;
   border-radius: 0 4px 4px 0;
 }
@@ -169,6 +170,12 @@ h1 {
       opacity: 0.8;
       transform: scale(1);
     }
+  }
+  :nth-child(1){
+    border-radius: 2px 0 0 2px;
+  }
+  :nth-child(2){
+    border-radius: 0px 2px 2px 0;
   }
 }
 </style>

@@ -189,6 +189,7 @@ export default {
     color: goldenrod;
     margin: 5px 0 22px 0;
     width: 100px;
+    font-size: 14px;
   }
   .change-image-checkbox {
     display: flex;

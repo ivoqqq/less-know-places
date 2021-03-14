@@ -25,6 +25,7 @@ export default {
   margin: 0;
   padding: 0;
   outline: none;
+  font-family: "Rubik";
 }
 .main-container {
   min-width: 350px;
@@ -54,7 +55,7 @@ export default {
 }
 input,
 textarea {
-  font-family: monospace;
+  font-family: "Rubik";
   font-size: 16px;
   outline: none;
   color: white;
