@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import LoginForm from "./views/LoginForm";
-import SignupForm from "./views/SignupForm";
+import LoginForm from "./Views/LoginForm";
+import SignupForm from "./Views/SignupForm";
 import firebase from "firebase";
 import { authService } from "./Services/authService";
 import { animation } from "../nav-bar-anime-mixins";
