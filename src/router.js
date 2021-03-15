@@ -2,12 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import firebase from "firebase";
 
-import Home from "./components/Views/Home";
-import HitTheRoad from "./components/Views/HitTheRoad";
-import Create from "./components/Views/Create";
-import UserProfile from "./components/Views/UserProfile"
-import Details from "./components/Views/Details";
-import Edit from "./components/Views/Edit";
+import Home from "./components/views/Home";
+import HitTheRoad from "./components/views/HitTheRoad";
+import Create from "./components/views/Create";
+import UserProfile from "./components/views/UserProfile"
+import Details from "./components/views/Details";
+import Edit from "./components/views/Edit";
 
 Vue.use(VueRouter)
 

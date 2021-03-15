@@ -28,30 +28,30 @@
       <p class="logOutBtn" v-else @click="logOut">Logout</p>
       <p class="signUpBtn" v-if="isLogged" @click="openSignupForm">SignUp</p>
     </div>
-    <app-login-form
+    <login-form
       v-model="isLoginFormOpen"
       @logout="logShift($event)"
       @closeForm="isLoginFormOpen = $event"
-    ></app-login-form>
-    <app-signup-form
+    ></login-form>
+    <signup-form
       v-bind:value="isSignupFormOpen"
       v-on:input="isSignupFormOpen = $event.target.value"
       @closeForm="isSignupFormOpen = $event"
-    ></app-signup-form>
+    ></signup-form>
   </div>
 </template>
 
 <script>
-import AppLoginForm from "./Auth/LoginForm";
-import AppSignupForm from "./Auth/SignupForm";
+import LoginForm from "./views/LoginForm";
+import SignupForm from "./views/SignupForm";
 import firebase from "firebase";
 import { authService } from "./Services/authService";
 import { animation } from "../nav-bar-anime-mixins";
 
 export default {
   components: {
-    AppLoginForm,
-    AppSignupForm,
+    LoginForm,
+    SignupForm,
   },
   mixins: [authService, animation],
   data() {
