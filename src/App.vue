@@ -21,10 +21,6 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-  font-family: "Bauhaus 93";
-  src: local("Bauhaus 93"), url("./assets/BAUHS93.ttf") format("truetype");
-}
 * {
   margin: 0;
   padding: 0;

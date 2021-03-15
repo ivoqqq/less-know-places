@@ -28,7 +28,6 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) {
     alert("to visit this page you have to login first")
-    // next("/")
   } else if (!requiresAuth && currentUser) {
     next()
   } else {
