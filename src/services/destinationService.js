@@ -50,7 +50,7 @@ export let destinationService = {
         },
         getQueryData() {
             this.collection
-                // .orderBy("date")
+                .orderBy("created", "desc")
                 .get()
                 .then(querySnapshot => {
                     querySnapshot.forEach(doc => {

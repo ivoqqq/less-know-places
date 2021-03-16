@@ -91,7 +91,7 @@ export default {
         title: "",
         description: "",
         photo: "",
-        date: new Date()
+        created: new Date()
       },
       imageData: null,
       progress: null,
