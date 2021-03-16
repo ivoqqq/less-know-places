@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import { destinationService } from "../Services/destinationService";
-import { authService } from "../Services/authService";
+import { destinationService } from "../components/Services/destinationService";
+import { authService } from "../components/Services/authService";
 import {
   required,
   minLength,
@@ -124,7 +124,7 @@ export default {
   justify-content: center;
 }
 .create-container::before {
-  background-image: url("../../assets/bench-with-the-view-in-austrian-mountains-2210x1658.jpg");
+  background-image: url("../assets/bench-with-the-view-in-austrian-mountains-2210x1658.jpg");
   filter: grayscale(50%) brightness(60%);
   z-index: -1;
 }

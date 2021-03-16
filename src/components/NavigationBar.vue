@@ -42,11 +42,11 @@
 </template>
 
 <script>
-import LoginForm from "./Views/LoginForm";
-import SignupForm from "./Views/SignupForm";
+import LoginForm from "../views/LoginForm";
+import SignupForm from "../views/SignupForm";
+import { authService } from "../components/Services/authService";
+import { animation } from "../mixins/nav-bar-anime-mixins";
 import firebase from "firebase";
-import { authService } from "./Services/authService";
-import { animation } from "../nav-bar-anime-mixins";
 
 export default {
   components: {

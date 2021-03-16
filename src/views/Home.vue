@@ -27,7 +27,7 @@ export default {
   justify-content: center;
 }
 .home-container::before {
-  background-image: url("../../assets/Forest Road-4096x2731.jpg");
+  background-image: url("../assets/Forest Road-4096x2731.jpg");
   z-index: -1;
 }
 h1 {

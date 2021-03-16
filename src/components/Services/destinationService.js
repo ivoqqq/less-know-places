@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import router from "../../router"
+import router from "../../router/router"
 import { uuidv4Gen } from "./file-name-uuidv4-generator";
 const Compress = require("compress.js");
 

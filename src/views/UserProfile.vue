@@ -1,9 +1,9 @@
 <template>
-  <div class="places-container container">
-    <h1>Places</h1>
+  <div class="profile-container container">
+    <h1>Your places</h1>
     <div class="cards">
       <div class="card" v-for="place in places" :key="place.key">
-        <h3 class="card-title">{{ place.username }}</h3>
+        <h2 class="card-title"></h2>
         <div>
           <img
             class="destination-image"
@@ -14,9 +14,8 @@
                 'https://bitsofco.de/content/images/2018/12/broken-1.png'
             "
           />
-
           <p class="title">
-            <span>visit: </span>
+            <span>visit:</span>
             {{ place.title }}
           </p>
         </div>
@@ -35,16 +34,17 @@
 </template>
 
 <script>
-import { destinationService } from "../Services/destinationService";
-import DetailsButton from "../DetailsButton";
-import PopupImage from "../PopupImage";
+import { authService } from "../components/Services/authService";
+import { destinationService } from "../components/Services/destinationService";
+import DetailsButton from "../components/DetailsButton";
+import PopupImage from "../components/PopupImage";
 
 export default {
   components: {
     DetailsButton,
     PopupImage,
   },
-  mixins: [destinationService],
+  mixins: [authService, destinationService],
   data() {
     return {
       places: [],
@@ -53,7 +53,7 @@ export default {
     };
   },
   created() {
-    this.getQueryData();
+    this.getQueryDataProfile();
   },
   methods: {
     openModalImage(e) {
@@ -63,17 +63,15 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
-.places-container::before {
-  background-image: url("../../assets/DSC_1928.jpg");
-  filter: grayscale(40%);
+.profile-container::before {
+  background-image: url("../assets/DSC-0774.jpg");
+  filter: grayscale(40%) brightness(60%);
 }
 h1 {
   padding: 60px 0 20px 0;
-}
-.quota {
-  color: crimson;
-  position: absolute;
+  position: relative;
 }
 .card {
   display: inline-block;
@@ -85,7 +83,7 @@ h1 {
   font-size: 18px;
   border-radius: 4px;
 
-  h3 {
+  h2 {
     height: 30px;
   }
   .destination-image {
@@ -112,5 +110,3 @@ h1 {
   }
 }
 </style>
-
-

@@ -43,9 +43,9 @@
 
 <script>
 import firebase from "firebase";
-import router from "../../router";
-import { destinationService } from "../Services/destinationService";
-import PopupImage from "../PopupImage";
+import router from "../router/router";
+import { destinationService } from "../components/Services/destinationService";
+import PopupImage from "../components/PopupImage";
 
 export default {
   components: {
@@ -84,7 +84,7 @@ export default {
 
 <style lang="scss" scoped>
 .details-container::before {
-  background-image: url("../../assets/red-nature-70254.jpg");
+  background-image: url("../assets/red-nature-70254.jpg");
   filter: grayscale(40%);
 }
 h1 {

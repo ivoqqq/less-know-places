@@ -1,26 +1,11 @@
 <template>
-  <div id="signupform" class="modal-form" v-show="value">
+  <div id="loginform" class="modal-form" v-show="value">
     <form class="form-content" @submit.prevent>
       <div class="modal-container">
         <p class="fib-error" v-if="error">{{ error }}</p>
 
-        <h1 class="title">Register form</h1>
-
-        <div class="error" v-if="$v.username.$error">
-          <p v-if="!$v.username.minLength">At least 3 characters</p>
-          <p v-if="!$v.username.maxLength">Maximum 10 characters</p>
-          <p v-if="!$v.username.required">Please fill in username</p>
-        </div>
-        <input
-          type="text"
-          placeholder="Your username"
-          @blur="$v.username.$touch()"
-          v-model="username"
-        />
-
+        <h1 class="title">Log in</h1>
         <div class="error" v-if="$v.email.$error">
-          <p v-if="!$v.email.minLength">At least 3 characters</p>
-          <p v-if="!$v.email.maxLength">Maximum 20 characters</p>
           <p v-if="!$v.email.email">Please fill in a valid email</p>
           <p v-if="!$v.email.required">Please fill in email</p>
         </div>
@@ -46,7 +31,7 @@
           <button class="cancelbtn" @click="clearInputFields(), close()">
             Cancel
           </button>
-          <button class="regbtn" @click="register()">Register</button>
+          <button class="loginbtn" @click="login()">Login</button>
         </div>
       </div>
     </form>
@@ -54,22 +39,24 @@
 </template>
 
 <script>
-import { required, email, minLength, maxLength } from "vuelidate/lib/validators";
-import { authService } from "../Services/authService";
+import { required, email, minLength } from "vuelidate/lib/validators";
+import { authService } from "../components/Services/authService";
 
 export default {
   mixins: [authService],
   props: {
     value: {
-      require: true,
+      required: true,
     },
   },
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: null,
+    };
+  },
   validations: {
-    username: {
-      required,
-      minLength: minLength(3),
-      maxLength: maxLength(10),
-    },
     email: {
       required,
       email,
@@ -79,32 +66,25 @@ export default {
       minLength: minLength(6),
     },
   },
-  data() {
-    return {
-      username: "",
-      email: "",
-      password: "",
-      error: null,
-    };
-  },
   methods: {
     close() {
       this.$emit("closeForm", false);
       // this.$router.replace("/").catch(() => {});
     },
     clearInputFields() {
-      this.username = "";
       this.email = "";
       this.password = "";
       this.error = null;
     },
-    register() {
-      this.userRegistration();
+    login() {
+      this.userLogin();
     },
   },
 };
 </script>
+
 <style lang="scss" scoped>
+
 .modal-form {
   position: fixed;
   z-index: 1;
@@ -149,7 +129,6 @@ export default {
     transform: scale(1);
   }
 }
-
 input[type="text"],
 input[type="password"] {
   color: white;
@@ -178,25 +157,25 @@ button {
 }
 .cancelbtn {
   background-color: crimson;
-  border-radius: 2px 0 0 2px;
+  border-radius: 4px 0 0 4px;
 }
-.regbtn {
-  border-radius: 0 2px 2px 0;
+.loginbtn {
+  border-radius: 0 4px 4px 0;
 }
 .cancelbtn,
-.regbtn {
+.loginbtn {
   float: left;
   width: 50%;
 }
 .error {
   color: crimson;
-  font-weight: 600;
+  font-weight: 700;
   position: absolute;
   transform: translateY(-10px);
 }
 .fib-error {
   color: crimson;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
 }
 </style>

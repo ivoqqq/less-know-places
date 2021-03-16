@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { destinationService } from "../Services/destinationService";
+import { destinationService } from "../components/Services/destinationService";
 import {
   required,
   minLength,
