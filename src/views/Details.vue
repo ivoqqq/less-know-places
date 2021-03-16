@@ -44,14 +44,14 @@
 <script>
 import firebase from "firebase";
 import router from "../router/router";
-import { destinationService } from "../components/Services/destinationService";
+import { destinationService } from "../services/destinationService";
 import PopupImage from "../components/PopupImage";
 
 export default {
   components: {
     PopupImage,
   },
-  mixins: [destinationService],
+  mixins: [ destinationService ],
   data() {
     return {
       place: {},

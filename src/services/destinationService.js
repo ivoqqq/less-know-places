@@ -1,7 +1,7 @@
 import firebase from "firebase";
-import router from "../../router/router"
-import { uuidv4Gen } from "./file-name-uuidv4-generator";
-const Compress = require("compress.js");
+import router from "../router/router"
+import { uuidv4Gen } from "../utils/file-name-uuidv4-generator";
+import Compress from "compress.js"
 
 export let destinationService = {
     data() {
@@ -25,7 +25,6 @@ export let destinationService = {
                 .doc(this.$route.params.id)
                 .set(this.place)
                 .then(() => {
-                    // router.push({ name: "Details", params: { id: this.$route.params.id } });
                     router.push("/profile");
                 })
         },
@@ -51,7 +50,7 @@ export let destinationService = {
         },
         getQueryData() {
             this.collection
-                // .orderBy("rating")
+                // .orderBy("date")
                 .get()
                 .then(querySnapshot => {
                     querySnapshot.forEach(doc => {
@@ -87,8 +86,8 @@ export let destinationService = {
         addFile(event) {
             
             // compress file before upload
-            const compress = new Compress();
             const fileForCompression = [event.target.files[0]]
+            const compress = new Compress();
             compress
                 .compress(fileForCompression, {
                     size: 4,
@@ -105,6 +104,7 @@ export let destinationService = {
                     this.imageData = blobFile
                     this.progress = 0;
                     
+                    //generate random name for the file
                     let fileName = uuidv4Gen()
 
                     let file = new File([this.imageData], fileName + ".jpg", {
@@ -113,7 +113,7 @@ export let destinationService = {
                     //copmatable chrome; edge: 01.2020...; IE: no;
                     //formData.append() is older => more compatable
 
-                    const storageRef = firebase.storage().ref(`${file.name}`).put(file); //expected Blob or File
+                    const storageRef = firebase.storage().ref(`${file.name}`).put(file);
 
                     storageRef.on(
                         `state_changed`,

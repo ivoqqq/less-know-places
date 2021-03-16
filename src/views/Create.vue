@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import { destinationService } from "../components/Services/destinationService";
-import { authService } from "../components/Services/authService";
+import { destinationService } from "../services/destinationService";
+import { authService } from "../services/authService";
 import {
   required,
   minLength,
@@ -64,7 +64,7 @@ import {
 } from "vuelidate/lib/validators";
 
 export default {
-  mixins: [destinationService, authService],
+  mixins: [ destinationService, authService ],
   validations: {
     place: {
       title: {
@@ -91,6 +91,7 @@ export default {
         title: "",
         description: "",
         photo: "",
+        date: new Date()
       },
       imageData: null,
       progress: null,

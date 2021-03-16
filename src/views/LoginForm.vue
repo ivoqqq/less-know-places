@@ -40,10 +40,10 @@
 
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
-import { authService } from "../components/Services/authService";
+import { authService } from "../services/authService";
 
 export default {
-  mixins: [authService],
+  mixins: [ authService ],
   props: {
     value: {
       required: true,

@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import { authService } from "../components/Services/authService";
-import { destinationService } from "../components/Services/destinationService";
+import { authService } from "../services/authService";
+import { destinationService } from "../services/destinationService";
 import DetailsButton from "../components/DetailsButton";
 import PopupImage from "../components/PopupImage";
 
@@ -44,7 +44,7 @@ export default {
     DetailsButton,
     PopupImage,
   },
-  mixins: [authService, destinationService],
+  mixins: [ authService, destinationService ],
   data() {
     return {
       places: [],

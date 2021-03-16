@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { destinationService } from "../components/Services/destinationService";
+import { destinationService } from "../services/destinationService";
 import DetailsButton from "../components/DetailsButton";
 import PopupImage from "../components/PopupImage";
 
@@ -44,7 +44,7 @@ export default {
     DetailsButton,
     PopupImage,
   },
-  mixins: [destinationService],
+  mixins: [ destinationService ],
   data() {
     return {
       places: [],
