@@ -85,11 +85,6 @@ export default {
     menuAnimate() {
       this.menu();
     },
-  },
-  watch: {
-    '$route' () {
-      this.activeNavBar = false
-    }
   }
 };
 </script>
