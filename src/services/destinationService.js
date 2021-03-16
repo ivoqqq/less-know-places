@@ -67,6 +67,7 @@ export let destinationService = {
         },
         getQueryDataProfile() {
             this.collection
+                .orderBy("created", "desc")
                 .get()
                 .then(querySnapshot => {
                     querySnapshot.forEach(doc => {
@@ -84,7 +85,7 @@ export let destinationService = {
                 });
         },
         addFile(event) {
-            
+
             // compress file before upload
             const fileForCompression = [event.target.files[0]]
             const compress = new Compress();
@@ -103,7 +104,7 @@ export let destinationService = {
 
                     this.imageData = blobFile
                     this.progress = 0;
-                    
+
                     //generate random name for the file
                     let fileName = uuidv4Gen()
 
