@@ -124,7 +124,7 @@ h1 {
   background-color: rgba(20, 23, 27, 0.9);
   display: inline-block;
   width: 190px;
-  height: 366px;
+  // height: 366px;
   text-align: left;
   word-wrap: break-word;
   vertical-align: top;
@@ -133,6 +133,11 @@ h1 {
   line-height: 1.3;
   position: relative;
   border-radius: 0 4px 4px 0;
+}
+@media screen and (min-width: 500px){
+  .description {
+    height: 366px;
+  }
 }
 @media screen and (max-width: 499px) {
   .card {
