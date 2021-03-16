@@ -2,7 +2,7 @@
   <div id="signupform" class="modal-form" v-show="value">
     <form class="form-content" @submit.prevent>
       <div class="modal-container">
-        <p class="fib-error" v-if="error">{{ error }}</p>
+        <p class="fire-error" v-if="error">{{ error }}</p>
 
         <h1 class="title">Register form</h1>
 
@@ -43,10 +43,10 @@
         />
 
         <div class="clearfix">
-          <button class="cancelbtn" @click="clearInputFields(), close()">
+          <button class="cancel-btn" @click="clearInputFields(), close()">
             Cancel
           </button>
-          <button class="regbtn" @click="register()">Register</button>
+          <button class="register-btn" @click="register()">Register</button>
         </div>
       </div>
     </form>
@@ -73,6 +73,8 @@ export default {
     email: {
       required,
       email,
+      minLength: minLength(3),
+      maxLength: maxLength(20),
     },
     password: {
       required,
@@ -129,7 +131,7 @@ export default {
     }
     .title {
       color: white;
-      opacity: 0.7;
+      opacity: 0.9;
       text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
         1px 1px 0 #000;
       margin-bottom: 20px;
@@ -176,15 +178,15 @@ button {
     opacity: 1;
   }
 }
-.cancelbtn {
+.cancel-btn {
   background-color: crimson;
   border-radius: 2px 0 0 2px;
 }
-.regbtn {
+.register-btn {
   border-radius: 0 2px 2px 0;
 }
-.cancelbtn,
-.regbtn {
+.cancel-btn,
+.register-btn {
   float: left;
   width: 50%;
 }
@@ -194,7 +196,7 @@ button {
   position: absolute;
   transform: translateY(-10px);
 }
-.fib-error {
+.fire-error {
   color: crimson;
   font-weight: 600;
   font-size: 16px;

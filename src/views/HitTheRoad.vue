@@ -71,10 +71,6 @@ export default {
 h1 {
   padding: 60px 0 20px 0;
 }
-.quota {
-  color: crimson;
-  position: absolute;
-}
 .card {
   display: inline-block;
   margin: 0 20px 20px 20px;

@@ -2,7 +2,7 @@
   <div id="loginform" class="modal-form" v-show="value">
     <form class="form-content" @submit.prevent>
       <div class="modal-container">
-        <p class="fib-error" v-if="error">{{ error }}</p>
+        <p class="fire-error" v-if="error">{{ error }}</p>
 
         <h1 class="title">Log in</h1>
         <div class="error" v-if="$v.email.$error">
@@ -28,10 +28,10 @@
         />
 
         <div class="clearfix">
-          <button class="cancelbtn" @click="clearInputFields(), close()">
+          <button class="cancel-btn" @click="clearInputFields(), close()">
             Cancel
           </button>
-          <button class="loginbtn" @click="login()">Login</button>
+          <button class="login-btn" @click="login()">Login</button>
         </div>
       </div>
     </form>
@@ -109,7 +109,7 @@ export default {
     }
     .title {
       color: white;
-      opacity: 0.7;
+      opacity: 0.9;
       text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
         1px 1px 0 #000;
       margin-bottom: 20px;
@@ -155,15 +155,15 @@ button {
     opacity: 1;
   }
 }
-.cancelbtn {
+.cancel-btn {
   background-color: crimson;
   border-radius: 4px 0 0 4px;
 }
-.loginbtn {
+.login-btn {
   border-radius: 0 4px 4px 0;
 }
-.cancelbtn,
-.loginbtn {
+.cancel-btn,
+.login-btn {
   float: left;
   width: 50%;
 }
@@ -173,7 +173,7 @@ button {
   position: absolute;
   transform: translateY(-10px);
 }
-.fib-error {
+.fire-error {
   color: crimson;
   font-weight: 700;
   font-size: 16px;
