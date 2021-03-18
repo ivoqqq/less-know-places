@@ -120,6 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/styles/container";
+@import "@/styles/progress-bar";
 
 .create-container {
   display: flex;
@@ -176,25 +177,6 @@ input[type="file"] {
   }
 }
 
-progress {
-  border: 0;
-  text-align: left;
-}
-progress::-webkit-progress-bar {
-  height: 18px;
-  width: 100%;
-  border-radius: 10px;
-  background-color: #ccc;
-  box-shadow: 0px 0px 6px #777 inset;
-  padding: 2px;
-}
-progress::-webkit-progress-value {
-  display: inline-block;
-  height: 14px;
-  background: rgb(6, 112, 112);
-  border-radius: 10px;
-  box-shadow: 0px 0px 6px #777 inset;
-}
 button {
   width: 100%;
   height: 40px;

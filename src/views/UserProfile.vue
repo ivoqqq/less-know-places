@@ -3,7 +3,7 @@
     <h1>Your places</h1>
     <div class="cards">
       <div class="card" v-for="place in places" :key="place.key">
-        <h2 class="card-title"></h2>
+        <h3 class="card-title"></h3>
         <div>
           <img
             class="destination-image"
@@ -66,6 +66,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/styles/container";
+@import "@/styles/card";
+@import "@/styles/image-thumb";
 
 .profile-container::before {
   background-image: url("../assets/DSC-0774.jpg");
@@ -74,41 +76,5 @@ export default {
 h1 {
   padding: 60px 0 20px 0;
   position: relative;
-}
-.card {
-  display: inline-block;
-  margin: 0 20px 20px 20px;
-  width: 250px;
-  background-color: rgba(20, 23, 27, 0.9);
-  padding: 5px 0;
-  position: relative;
-  font-size: 18px;
-  border-radius: 4px;
-
-  h2 {
-    height: 30px;
-  }
-  .destination-image {
-    transition: ease 0.2s;
-
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-    }
-  }
-  .btns {
-    padding: 5px 0;
-  }
-  .description,
-  .title {
-    display: inline-block;
-    width: 200px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  span {
-    color: goldenrod;
-  }
 }
 </style>

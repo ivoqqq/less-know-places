@@ -133,6 +133,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/progress-bar";
 
 .edit-container {
   min-height: 100vh;
@@ -236,26 +237,6 @@ export default {
   .button {
     width: 70%;
   }
-}
-
-progress {
-  border: 0;
-  text-align: left;
-}
-progress::-webkit-progress-bar {
-  height: 18px;
-  width: 100%;
-  border-radius: 10px;
-  background-color: #ccc;
-  box-shadow: 0px 0px 6px #777 inset;
-  padding: 2px;
-}
-progress::-webkit-progress-value {
-  display: inline-block;
-  height: 14px;
-  background: rgb(6, 112, 112);
-  border-radius: 10px;
-  box-shadow: 0px 0px 6px #777 inset;
 }
 
 button {

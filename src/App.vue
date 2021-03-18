@@ -30,11 +30,7 @@ export default {
 .main-container {
   min-width: 350px;
 }
-.destination-image {
-  width: 200px;
-  height: 130px;
-  object-fit: contain;
-}
+
 input,
 textarea {
   font-family: "Rubik";

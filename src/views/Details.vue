@@ -84,6 +84,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/styles/container";
+@import "@/styles/image-thumb";
 
 .details-container::before {
   background-image: url("../assets/red-nature-70254.jpg");
@@ -126,7 +127,6 @@ h1 {
   background-color: rgba(20, 23, 27, 0.9);
   display: inline-block;
   width: 190px;
-  // height: 366px;
   text-align: left;
   word-wrap: break-word;
   vertical-align: top;
