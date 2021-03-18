@@ -65,6 +65,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/container";
+
 .profile-container::before {
   background-image: url("../assets/DSC-0774.jpg");
   filter: grayscale(40%) brightness(60%);

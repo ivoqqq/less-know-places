@@ -60,7 +60,7 @@ export let destinationService = {
                             username: doc.data().username,
                             title: doc.data().title,
                             description: doc.data().description,
-                            photo: doc.data().photo,
+                            photo: doc.data().photo
                         })
                     });
                 })
@@ -109,7 +109,7 @@ export let destinationService = {
                     let fileName = uuidv4Gen()
 
                     let file = new File([this.imageData], fileName + ".jpg", {
-                        type: "image/jpeg",
+                        type: "image/jpeg"
                     });
                     //copmatable chrome; edge: 01.2020...; IE: no;
                     //formData.append() is older => more compatable

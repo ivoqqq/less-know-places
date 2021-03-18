@@ -133,6 +133,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .edit-container {
   min-height: 100vh;
   min-width: 400px;

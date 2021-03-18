@@ -30,24 +30,6 @@ export default {
 .main-container {
   min-width: 350px;
 }
-.container {
-  min-height: 100vh;
-  position: relative;
-  text-align: center;
-  color: white;
-}
-.container::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgb(0, 11, 20);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .destination-image {
   width: 200px;
   height: 130px;

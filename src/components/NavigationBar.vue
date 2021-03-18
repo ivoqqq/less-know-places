@@ -92,7 +92,7 @@ export default {
 <style lang="scss" scoped>
 @font-face {
   font-family: "Bauhaus 93";
-  src: local("Bauhaus 93"), url("../assets/BAUHS93.ttf") format("truetype");
+  src: local("Bauhaus 93"), url("../assets/bauhs93.woff") format("truetype");
 }
 
 $hover-color: goldenrod;

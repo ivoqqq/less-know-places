@@ -83,6 +83,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/container";
+
 .details-container::before {
   background-image: url("../assets/red-nature-70254.jpg");
   filter: grayscale(40%);

@@ -21,6 +21,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/container";
+
 .home-container {
   display: flex;
   align-items: center;

@@ -64,6 +64,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/styles/container";
+
 .places-container::before {
   background-image: url("../assets/DSC_1928.jpg");
   filter: grayscale(40%);
