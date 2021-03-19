@@ -3,7 +3,7 @@
     <h1>Details</h1>
     <div class="cards">
       <div class="card">
-        <h3>{{ place.username }}</h3>
+        <h3 class="card-title">{{ place.username }}</h3>
         <div>
           <img
             class="destination-image"
