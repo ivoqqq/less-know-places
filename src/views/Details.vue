@@ -3,7 +3,7 @@
     <h1>Details</h1>
     <div class="cards">
       <div class="card">
-        <h2 class="card-title">{{ place.username }}</h2>
+        <h3>{{ place.username }}</h3>
         <div>
           <img
             class="destination-image"
@@ -51,7 +51,7 @@ export default {
   components: {
     PopupImage,
   },
-  mixins: [ destinationService ],
+  mixins: [destinationService],
   data() {
     return {
       place: {},
@@ -102,6 +102,10 @@ h1 {
   position: relative;
   font-size: 18px;
   border-radius: 4px 0 0 4px;
+  
+  h3 {
+    height: 30px;
+  }
 
   .title {
     display: inline-block;
@@ -136,7 +140,7 @@ h1 {
   position: relative;
   border-radius: 0 4px 4px 0;
 }
-@media screen and (min-width: 500px){
+@media screen and (min-width: 500px) {
   .description {
     height: 366px;
   }
@@ -178,10 +182,10 @@ h1 {
       transform: scale(1);
     }
   }
-  :nth-child(1){
+  :nth-child(1) {
     border-radius: 2px 0 0 2px;
   }
-  :nth-child(2){
+  :nth-child(2) {
     border-radius: 0px 2px 2px 0;
   }
 }
