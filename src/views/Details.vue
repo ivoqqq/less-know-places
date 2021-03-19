@@ -15,7 +15,7 @@
             "
           />
           <p class="title">
-            <span>visit:</span>
+            <span>visit: </span>
             {{ place.title }}
           </p>
         </div>
