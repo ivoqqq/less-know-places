@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase/app";
 import router from "../router/router";
 import { destinationService } from "../services/destinationService";
 import PopupImage from "../components/PopupImage";
