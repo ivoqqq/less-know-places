@@ -84,6 +84,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/inputs";
 
 .modal-form {
   position: fixed;
@@ -129,17 +130,7 @@ export default {
     transform: scale(1);
   }
 }
-input[type="text"],
-input[type="password"] {
-  color: white;
-  width: 100%;
-  margin: 15px 0 22px 0;
-  display: inline-block;
-  height: 20px;
-  background: transparent;
-  border-color: transparent;
-  border-bottom: 1px solid olive;
-}
+
 button {
   background-color: olive;
   color: white;
@@ -166,12 +157,6 @@ button {
 .login-btn {
   float: left;
   width: 50%;
-}
-.error {
-  color: crimson;
-  font-weight: 700;
-  position: absolute;
-  transform: translateY(-10px);
 }
 .fire-error {
   color: crimson;

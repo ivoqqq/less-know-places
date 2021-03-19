@@ -134,6 +134,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/styles/progress-bar";
+@import "@/styles/inputs";
 
 .edit-container {
   min-height: 100vh;
@@ -261,11 +262,5 @@ button {
     opacity: 0.8;
     transform: scale(1);
   }
-}
-.error {
-  color: crimson;
-  font-weight: 600;
-  position: absolute;
-  transform: translateY(-15px);
 }
 </style>

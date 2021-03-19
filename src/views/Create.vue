@@ -31,14 +31,14 @@
       </div>
       <div class="image-container">
         <label for="input-image" class="input-file-label">{{ file }}</label>
-        
+
         <input
           id="input-image"
           ref="upload"
           @change="uploadFile"
           accept="image/*"
           type="file"
-          :disabled="disableFileInput" 
+          :disabled="disableFileInput"
           @blur="$v.finishedUploadTask.$touch()"
         />
       </div>
@@ -64,7 +64,7 @@ import {
 } from "vuelidate/lib/validators";
 
 export default {
-  mixins: [ destinationService, authService ],
+  mixins: [destinationService, authService],
   validations: {
     place: {
       title: {
@@ -91,13 +91,13 @@ export default {
         title: "",
         description: "",
         photo: "",
-        created: new Date()
+        created: new Date(),
       },
       imageData: null,
       progress: null,
       file: "ADD PICTURE",
       finishedUploadTask: null,
-      disableFileInput: false
+      disableFileInput: false,
     };
   },
   methods: {
@@ -111,16 +111,17 @@ export default {
   watch: {
     progress() {
       if (this.progress !== null) {
-        this.disableFileInput = true
+        this.disableFileInput = true;
       }
     },
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/styles/container";
 @import "@/styles/progress-bar";
+@import "@/styles/inputs";
 
 .create-container {
   display: flex;
@@ -202,11 +203,5 @@ button {
     opacity: 0.8;
     transform: scale(1);
   }
-}
-.error {
-  color: crimson;
-  font-weight: 600;
-  position: absolute;
-  transform: translateY(-15px);
 }
 </style>
