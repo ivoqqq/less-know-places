@@ -7,14 +7,4 @@ module.exports = {
                 return args;
             })
     },
-    // css: {
-    //     sourceMap: true,
-    //     loaderOptions: {
-    //         sass: {
-    //             data: `
-    //           @import "./styles/container.scss";
-    //         `,
-    //         },
-    //     },
-    // },
 }
