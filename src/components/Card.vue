@@ -21,9 +21,9 @@
       <details-button :place="place"></details-button>
     </div>
     <popup-image
-      v-if="showFullImage"
+      v-if="showModalImage"
       :imgurl="imgurl"
-      @closeModalImage="showFullImage = $event"
+      @closeModalImage="showModalImage = $event"
     ></popup-image>
   </div>
 </template>
@@ -50,7 +50,7 @@ export default {
   methods: {
     openModalImage(e) {
       this.imgurl = e.target.src;
-      this.showFullImage = true;
+      this.showModalImage = true;
     },
   },
 };
