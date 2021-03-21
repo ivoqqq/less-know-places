@@ -43,9 +43,9 @@
 
 <script>
 import firebase from "firebase/app";
-import router from "../router/router";
-import { destinationService } from "../services/destinationService";
-import PopupImage from "../components/PopupImage";
+import router from "@/router/router";
+import PopupImage from "@/components/PopupImage";
+import { destinationService } from "@/services/destinationService";
 
 export default {
   components: {

@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { destinationService } from "../services/destinationService";
+import { destinationService } from "@/services/destinationService";
 import {
   required,
   minLength,
@@ -79,7 +79,7 @@ import {
 } from "vuelidate/lib/validators";
 
 export default {
-  mixins: [ destinationService ],
+  mixins: [destinationService],
   validations: {
     place: {
       title: {
