@@ -2,7 +2,7 @@
   <button @click="details(place)">Details</button>
 </template>
 <script>
-import router from "../router/router";
+import router from "@/router/router";
 
 export default {
   props: {

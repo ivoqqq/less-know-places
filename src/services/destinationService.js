@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
-import router from "../router/router"
-import { uuidv4Gen } from "../utils/file-name-uuidv4-generator";
+import router from "@/router/router"
+import { uuidv4Gen } from "@/utils/file-name-uuidv4-generator";
 import Compress from "compress.js"
 
 export let destinationService = {

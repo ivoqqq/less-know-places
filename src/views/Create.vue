@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import { destinationService } from "../services/destinationService";
-import { authService } from "../services/authService";
+import { destinationService } from "@/services/destinationService";
+import { authService } from "@/services/authService";
 import {
   required,
   minLength,

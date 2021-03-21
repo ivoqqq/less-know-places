@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
-import Home from "../views/Home";
-import HitTheRoad from "../views/HitTheRoad";
-import Create from "../views/Create";
-import UserProfile from "../views/UserProfile"
-import Details from "../views/Details";
-import Edit from "../views/Edit";
+import Home from "@/views/Home";
+import HitTheRoad from "@/views/HitTheRoad";
+import Create from "@/views/Create";
+import UserProfile from "@/views/UserProfile"
+import Details from "@/views/Details";
+import Edit from "@/views/Edit";
 
 Vue.use(VueRouter)
 
