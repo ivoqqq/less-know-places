@@ -21,11 +21,15 @@ export default {
 </script>
 
 <style lang="scss">
-* {
+*, ::before, ::after {
   margin: 0;
   padding: 0;
   outline: none;
   font-family: "Rubik";
+  box-sizing: content-box !important;
+}
+html {
+  overflow-y: auto !important; //remove default added scrollbar by Vuetify
 }
 .main-container {
   min-width: 350px;

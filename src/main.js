@@ -3,6 +3,7 @@ import App from "./App.vue";
 import Vuelidate from 'vuelidate'
 import firebase from "firebase";
 import router from "./router/router";
+import vuetify from './plugins/vuetify';
 
 Vue.use(Vuelidate)
 
@@ -25,6 +26,7 @@ firebase.auth().onAuthStateChanged(function () {
   if (!app) {
     app = new Vue({
       router,
+      vuetify,
       render: h => h(App)
     }).$mount('#app')
   }
