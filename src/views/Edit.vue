@@ -233,10 +233,10 @@ export default {
     width: 70%;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 470px) {
   .input-form > div,
   .button {
-    width: 70%;
+    width: 90%;
   }
 }
 
