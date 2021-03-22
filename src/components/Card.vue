@@ -1,21 +1,21 @@
 <template>
   <div class="card">
     <h3 class="card-title">{{ place.username }}</h3>
-    <div>
-      <img
+      <v-img
         class="destination-image"
-        @click="openModalImage($event)"
+        @click="openModalImage(place.photo)"
         :src="place.photo"
+        lazy-src="https://picsum.photos/id/11/10/6"
+        contain
         @error="
           $event.target.src =
             'https://bitsofco.de/content/images/2018/12/broken-1.png'
         "
-      />
+      ></v-img>
       <p class="title">
         <span>visit: </span>
         {{ place.title }}
       </p>
-    </div>
     <div class="description">{{ place.description }}</div>
     <div class="btns">
       <details-button :place="place"></details-button>
@@ -43,20 +43,20 @@ export default {
   },
   data() {
     return {
-      showFullImage: false,
+      showModalImage: false,
       imgurl: "",
     };
   },
   methods: {
-    openModalImage(e) {
-      this.imgurl = e.target.src;
+    openModalImage(url) {
+      this.imgurl = url;
       this.showModalImage = true;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/styles/card";
-@import "@/styles/image-thumb";
+@import "@/styles/destination-image";
 </style>
