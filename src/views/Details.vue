@@ -84,7 +84,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/styles/container";
-@import "@/styles/image-thumb";
+@import "@/styles/destination-image";
 
 .details-container::before {
   background-image: url("../assets/red-nature-70254.jpg");
@@ -115,15 +115,6 @@ h1 {
 
     span {
       color: goldenrod;
-    }
-  }
-
-  .destination-image {
-    transition: ease 0.2s;
-
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
     }
   }
 }

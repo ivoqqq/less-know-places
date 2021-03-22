@@ -11,14 +11,6 @@
   h3 {
     height: 30px;
   }
-  .destination-image {
-    transition: ease 0.2s;
-
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-    }
-  }
   .btns {
     padding: 5px 0;
   }

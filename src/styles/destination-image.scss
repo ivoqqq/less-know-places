@@ -1,0 +1,12 @@
+.destination-image {
+    width: 200px;
+    height: 130px;
+    object-fit: contain;
+    margin: 2px auto 5px auto;
+    transition: ease 0.2s;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.03);
+    }
+}
