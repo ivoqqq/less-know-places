@@ -11,7 +11,7 @@ import Card from "@/components/Card";
 
 export default {
   components: {
-    Card
+    Card,
   },
   mixins: [destinationService],
   data() {
@@ -21,7 +21,7 @@ export default {
   },
   created() {
     this.getQueryData();
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
