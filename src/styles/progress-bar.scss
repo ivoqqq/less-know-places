@@ -1,18 +1,30 @@
+progress::-webkit-progress-bar {
+    border: 0;
+    text-align: left;
+    height: 14px;
+    border-radius: 10px;
+    background-color: #ccc;
+    box-shadow: 0px 0px 6px #777 inset;
+}
+progress::-webkit-progress-value {
+    display: inline-block;
+    height: 14px;
+    background: rgb(6, 112, 112);
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #777 inset;
+    vertical-align: top;
+}
+
 progress {
     border: 0;
     text-align: left;
-}
-
-progress::-webkit-progress-bar {
-    height: 18px;
-    width: 100%;
+    height: 14px;
     border-radius: 10px;
     background-color: #ccc;
     box-shadow: 0px 0px 6px #777 inset;
     padding: 2px;
 }
-
-progress::-webkit-progress-value {
+progress::-moz-progress-bar {
     display: inline-block;
     height: 14px;
     background: rgb(6, 112, 112);
