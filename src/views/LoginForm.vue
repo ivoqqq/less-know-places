@@ -134,7 +134,7 @@ export default {
 button {
   background-color: olive;
   color: white;
-  padding: 12px 20px;
+  padding: 12px 0;
   margin: 8px 0;
   border: none;
   cursor: pointer;
