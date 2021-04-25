@@ -1,6 +1,5 @@
 # less-known-places
 ```
-Currently updating...
 
 Vue JS CRUD app with Cloud Firestore
 
